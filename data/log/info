@@ -1,0 +1,78 @@
+2015-01-18 03:32:38 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 03:34:14 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 03:35:06 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@11ba991b; line: 1, column: 2]
+2015-01-18 03:35:07 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@2709f4eb; line: 1, column: 2]
+2015-01-18 03:35:09 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@494a2237; line: 1, column: 2]
+2015-01-18 03:35:11 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@7073568b; line: 1, column: 2]
+2015-01-18 03:35:17 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unparseable date: "Jan 18, 2015"
+2015-01-18 03:35:19 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unparseable date: "Jan 18, 2015"
+2015-01-18 03:35:25 [ERROR] [pool-1-thread-2] SearchByDateListener ~> SearchByDateListener: Unparseable date: "Jan 18, 2015"
+2015-01-18 03:35:41 [ERROR] [pool-1-thread-2] SearchNextVisitByDateListener ~> SearchByDateListener: Unparseable date: ""
+2015-01-18 03:35:45 [ERROR] [pool-1-thread-2] SearchNextVisitByDateListener ~> SearchByDateListener: Unparseable date: "Jan 16, 2015"
+2015-01-18 03:36:38 [DEBUG] [pool-1-thread-2] OpenUpdateUserFrameListener ~> row: -1
+2015-01-18 03:43:13 [ERROR] [pool-1-thread-4] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@4b2235a8; line: 1, column: 2]
+2015-01-18 03:43:14 [ERROR] [pool-1-thread-4] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@af3e378; line: 1, column: 2]
+2015-01-18 03:43:14 [ERROR] [pool-1-thread-4] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@1c14e869; line: 1, column: 2]
+2015-01-18 03:43:16 [ERROR] [pool-1-thread-4] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@c46fdd6; line: 1, column: 2]
+2015-01-18 03:43:18 [ERROR] [pool-1-thread-4] SearchByDateListener ~> SearchByDateListener: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@57ab2734; line: 1, column: 2]
+2015-01-18 03:47:12 [DEBUG] [pool-1-thread-5] CreateUserListener ~> actionPerformed()
+2015-01-18 03:47:25 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 03:54:49 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 03:55:09 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 03:55:55 [DEBUG] [pool-1-thread-1] CreateUserListener ~> actionPerformed()
+2015-01-18 03:56:02 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 07:36:50 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 07:36:55 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 07:38:15 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:16 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:17 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:29 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:30 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:30 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:31 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:32 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:34 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:35 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:36 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:37 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:38 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:56 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:58 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:38:59 [DEBUG] [pool-1-thread-2] LoginListener ~> actionPerformed()
+2015-01-18 07:47:30 [DEBUG] [pool-1-thread-3] LoginListener ~> actionPerformed()
+2015-01-18 07:47:31 [DEBUG] [pool-1-thread-3] LoginListener ~> actionPerformed()
+2015-01-18 07:47:34 [DEBUG] [pool-1-thread-3] LoginListener ~> actionPerformed()
+2015-01-18 07:50:21 [DEBUG] [pool-1-thread-4] LoginListener ~> actionPerformed()
+2015-01-18 07:50:22 [DEBUG] [pool-1-thread-4] LoginListener ~> actionPerformed()
+2015-01-18 07:51:13 [DEBUG] [pool-1-thread-4] LoginListener ~> actionPerformed()
+2015-01-18 10:57:27 [DEBUG] [pool-1-thread-5] LoginListener ~> actionPerformed()
+2015-01-18 11:04:41 [DEBUG] [pool-1-thread-6] LoginListener ~> actionPerformed()
+2015-01-18 11:04:46 [DEBUG] [pool-1-thread-6] LoginListener ~> actionPerformed()
+2015-01-18 11:06:54 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:06:59 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:03 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:04 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:07 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:08 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:11 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:22 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:07:23 [DEBUG] [pool-1-thread-7] LoginListener ~> actionPerformed()
+2015-01-18 11:08:57 [DEBUG] [pool-1-thread-8] LoginListener ~> actionPerformed()
+2015-01-18 11:09:00 [DEBUG] [pool-1-thread-8] LoginListener ~> actionPerformed()
+2015-01-18 11:09:02 [DEBUG] [pool-1-thread-8] LoginListener ~> actionPerformed()
+2015-01-18 11:10:24 [DEBUG] [pool-1-thread-9] LoginListener ~> actionPerformed()
+2015-01-18 11:11:53 [DEBUG] [pool-1-thread-10] LoginListener ~> actionPerformed()
+2015-01-18 11:14:13 [DEBUG] [pool-1-thread-11] LoginListener ~> actionPerformed()
+2015-01-18 11:14:16 [DEBUG] [pool-1-thread-11] LoginListener ~> actionPerformed()
+2015-01-18 11:16:36 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 11:17:45 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()
+2015-01-18 11:17:50 [DEBUG] [pool-1-thread-1] LoginListener ~> actionPerformed()

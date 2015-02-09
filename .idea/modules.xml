@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pulse-desktop/pulse-desktop.iml" filepath="$PROJECT_DIR$/pulse-desktop/pulse-desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulse-model/pulse-model.iml" filepath="$PROJECT_DIR$/pulse-model/pulse-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulse-repository/pulse-repository.iml" filepath="$PROJECT_DIR$/pulse-repository/pulse-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulse-rest-client/pulse-rest-client.iml" filepath="$PROJECT_DIR$/pulse-rest-client/pulse-rest-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulse-rest-logic/pulse-rest-logic.iml" filepath="$PROJECT_DIR$/pulse-rest-logic/pulse-rest-logic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulse-rest-service/pulse-rest-service.iml" filepath="$PROJECT_DIR$/pulse-rest-service/pulse-rest-service.iml" />
+    </modules>
+  </component>
+</project>
