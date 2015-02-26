@@ -15,9 +15,9 @@
  */
 package com.pulse.model;
 
+
 /**
- *
- * @author Vladimir Shin
+ * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class Organisation extends Model {
     

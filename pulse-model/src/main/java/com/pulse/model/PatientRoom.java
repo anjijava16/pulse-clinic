@@ -15,9 +15,9 @@
  */
 package com.pulse.model;
 
+
 /**
- *
- * @author befast
+ * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class PatientRoom extends Model {
     

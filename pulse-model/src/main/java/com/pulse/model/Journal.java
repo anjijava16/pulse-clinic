@@ -15,11 +15,12 @@
  */
 package com.pulse.model;
 
+
 import java.util.Date;
 
+
 /**
- *
- * @author Vladimir Shin
+ * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class Journal extends Model {
     

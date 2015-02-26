@@ -15,11 +15,12 @@
  */
 package com.pulse.model;
 
+
 import java.util.List;
 
+
 /**
- *
- * @author befast
+ * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class Records extends Pojo {
     
