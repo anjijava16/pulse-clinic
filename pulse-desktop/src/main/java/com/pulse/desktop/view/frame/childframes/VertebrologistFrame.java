@@ -1,5 +1,6 @@
 package com.pulse.desktop.view.frame.childframes;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +28,9 @@ import com.pulse.desktop.controller.ViewPatientRecordListener;
 import com.pulse.model.constant.Privelegy;
 
 
+/**
+ * @author Vladimir Shin [vladimir.shin@gmail.com]
+ */
 public class VertebrologistFrame extends AbstractTabledChildFrame {
     
     private final TableService.TableHolder TABLE_HOLDER = TableService.INSTANCE.buildTable(TableService.SIMPLE_TABLE);
