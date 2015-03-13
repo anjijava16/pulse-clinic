@@ -1,7 +1,6 @@
 <web-app id="WebApp_ID" version="2.4"
          xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
-	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>prometheus-rest</display-name>
 
     <!-- You should search Spring beans configuration file here -->
@@ -24,8 +23,7 @@
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
             <!-- You should search rest resources here -->
-            <param-value>com.shin.prometheus.rest</param-value> 
-            Ser       
+            <param-value>com.shin.prometheus.rest</param-value>
         </init-param>
         
         <!-- Jersey JSON init parameters -->
