@@ -53,44 +53,44 @@ public class VisitCoursePanel {
     private final JCheckBox LABORATORY_CHECKBOX = new JCheckBox(" Лаборатория ");
     private final JCheckBox ULTRASOUND_CHECKBOX = new JCheckBox(" УЗИ ");
     private final JCheckBox UROLOGY_CHECKBOX = new JCheckBox(" Урология ");
-    private final JCheckBox GINECOLOGY_CHECKBOX = new JCheckBox(" Гинекология ");
+    private final JCheckBox GYNECOLOGY_CHECKBOX = new JCheckBox(" Гинекология ");
     private final JCheckBox STATIONARY_CHECKBOX = new JCheckBox(" Стационар ");
     
-    private final JCheckBox HIRURGIYA_CHECKBOX = new JCheckBox(" Хирургия ");
-    private final JCheckBox OKULIST_CHECKBOX = new JCheckBox(" Окулист ");
-    private final JCheckBox FIZIO_CHECKBOX = new JCheckBox(" Физиотерапия ");
-    private final JCheckBox TERAPEVT_CHECKBOX = new JCheckBox(" Терапевт ");
-    private final JCheckBox ENDOKRI_CHECKBOX = new JCheckBox(" Эндокринолог ");
-    private final JCheckBox NEVRO_CHECKBOX = new JCheckBox(" Невропатолог ");
-    private final JCheckBox VERTE_CHECKBOX = new JCheckBox(" Вертебролог ");
+    private final JCheckBox SURGERY_CHECKBOX = new JCheckBox(" Хирургия ");
+    private final JCheckBox OCULIST_CHECKBOX = new JCheckBox(" Окулист ");
+    private final JCheckBox PHYSIOTHERAPY_CHECKBOX = new JCheckBox(" Физиотерапия ");
+    private final JCheckBox THERAPY_CHECKBOX = new JCheckBox(" Терапевт ");
+    private final JCheckBox ENDO_CHECKBOX = new JCheckBox(" Эндокринолог ");
+    private final JCheckBox NEUROLOGIST_CHECKBOX = new JCheckBox(" Невропатолог ");
+    private final JCheckBox VERTEBROLOGIST_CHECKBOX = new JCheckBox(" Вертебролог ");
     private final JCheckBox MRI_CHECKBOX = new JCheckBox(" МРТ ");  
     
     private final DefaultComboBoxModel<String> ULTRASOUND_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> GINECOLOGY_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> GYNECOLOGY_DCM = new DefaultComboBoxModel<>();
     private final DefaultComboBoxModel<String> UROLOGY_DCM = new DefaultComboBoxModel<>();
     private final DefaultComboBoxModel<String> STATIONARY_DCM = new DefaultComboBoxModel<>();
-    
-    private final DefaultComboBoxModel<String> HIRURGIYA_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> OKULIST_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> FIZIO_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> TERAPEVT_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> ENDOKRI_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> NEVRO_DCM = new DefaultComboBoxModel<>();
-    private final DefaultComboBoxModel<String> VERTE_DCM = new DefaultComboBoxModel<>();
+
+    private final DefaultComboBoxModel<String> SURGERY_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> OCULIST_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> PHYSIOTHERAPY_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> THERAPY_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> ENDO_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> NEUROLOGIST_DCM = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> VERTEBROLOGIST_DCM = new DefaultComboBoxModel<>();
     private final DefaultComboBoxModel<String> MRI_DCM = new DefaultComboBoxModel<>();
     
     private final JComboBox<String> ULTRASOUND_DOCTOR_NAME_BOX = new JComboBox<>(this.ULTRASOUND_DCM);
-    private final JComboBox<String> GINECOLOGY_DOCTOR_NAME_BOX = new JComboBox<>(this.GINECOLOGY_DCM);
+    private final JComboBox<String> GYNECOLOGY_DOCTOR_NAME_BOX = new JComboBox<>(this.GYNECOLOGY_DCM);
     private final JComboBox<String> UROLOGY_DOCTOR_NAME_BOX = new JComboBox<>(this.UROLOGY_DCM);
     private final JComboBox<String> STATIONARY_DOCTOR_NAME_BOX = new JComboBox<>(this.STATIONARY_DCM);
     
-    private final JComboBox<String> HIRURGIYA_DOCTOR_NAME_BOX = new JComboBox<>(this.HIRURGIYA_DCM);
-    private final JComboBox<String> OKULIST_DOCTOR_NAME_BOX = new JComboBox<>(this.OKULIST_DCM);
-    private final JComboBox<String> FIZIO_DOCTOR_NAME_BOX = new JComboBox<>(this.FIZIO_DCM);
-    private final JComboBox<String> TERAPEVT_DOCTOR_NAME_BOX = new JComboBox<>(this.TERAPEVT_DCM);
-    private final JComboBox<String> ENDOKRI_DOCTOR_NAME_BOX = new JComboBox<>(this.ENDOKRI_DCM);
-    private final JComboBox<String> NEVRO_DOCTOR_NAME_BOX = new JComboBox<>(this.NEVRO_DCM);
-    private final JComboBox<String> VERTE_DOCTOR_NAME_BOX = new JComboBox<>(this.VERTE_DCM);
+    private final JComboBox<String> SURGERY_DOCTOR_NAME_BOX = new JComboBox<>(this.SURGERY_DCM);
+    private final JComboBox<String> OCULIST_DOCTOR_NAME_BOX = new JComboBox<>(this.OCULIST_DCM);
+    private final JComboBox<String> PHYSIOTHERAPY_DOCTOR_NAME_BOX = new JComboBox<>(this.PHYSIOTHERAPY_DCM);
+    private final JComboBox<String> THERAPY_DOCTOR_NAME_BOX = new JComboBox<>(this.THERAPY_DCM);
+    private final JComboBox<String> ENDO_DOCTOR_NAME_BOX = new JComboBox<>(this.ENDO_DCM);
+    private final JComboBox<String> NEUROLOGIST_DOCTOR_NAME_BOX = new JComboBox<>(this.NEUROLOGIST_DCM);
+    private final JComboBox<String> VERTEBROLOGIST_DOCTOR_NAME_BOX = new JComboBox<>(this.VERTEBROLOGIST_DCM);
     private final JComboBox<String> MRI_DOCTOR_NAME_BOX = new JComboBox<>(this.MRI_DCM);
     
     private final JPanel consultationPanel = new JPanel();
@@ -106,38 +106,38 @@ public class VisitCoursePanel {
     
     public void fillDoctorsList(User user) {
         if (user.getPrivelegy() == Privelegy.Ultrasound.getId()) this.ULTRASOUND_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Ginecology.getId()) this.GINECOLOGY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Ginecology.getId()) this.GYNECOLOGY_DCM.addElement(user.getNfp());
         if (user.getPrivelegy() == Privelegy.Urology.getId()) this.UROLOGY_DCM.addElement(user.getNfp());
         if (user.getPrivelegy() == Privelegy.Stationary.getId()) this.STATIONARY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Hirurgiya.getId()) this.HIRURGIYA_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Okulist.getId()) this.OKULIST_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Fizio.getId()) this.FIZIO_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Terapevt.getId()) this.TERAPEVT_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Endokrinolog.getId()) this.ENDOKRI_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Nevropatolog.getId()) this.NEVRO_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Vertebrolog.getId()) this.VERTE_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Hirurgiya.getId()) this.SURGERY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Okulist.getId()) this.OCULIST_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Fizio.getId()) this.PHYSIOTHERAPY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Terapevt.getId()) this.THERAPY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Endokrinolog.getId()) this.ENDO_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Nevropatolog.getId()) this.NEUROLOGIST_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privelegy.Vertebrolog.getId()) this.VERTEBROLOGIST_DCM.addElement(user.getNfp());
         if (user.getPrivelegy() == Privelegy.MagneticResonanceImaging.getId()) this.MRI_DCM.addElement(user.getNfp());
     }
     
     public VisitCoursePanel() {
         this.LABORATORY_CHECKBOX.setSelected(false);
         this.UROLOGY_CHECKBOX.setSelected(false);
-        this.GINECOLOGY_CHECKBOX.setSelected(false);
+        this.GYNECOLOGY_CHECKBOX.setSelected(false);
         this.ULTRASOUND_CHECKBOX.setSelected(false);
         this.STATIONARY_CHECKBOX.setSelected(false);
         
         this.UROLOGY_DOCTOR_NAME_BOX.setEnabled(false);
-        this.GINECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+        this.GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
         this.ULTRASOUND_DOCTOR_NAME_BOX.setEnabled(false);
         this.STATIONARY_DOCTOR_NAME_BOX.setEnabled(false);
         
-        this.HIRURGIYA_DOCTOR_NAME_BOX.setEnabled(false);
-        this.OKULIST_DOCTOR_NAME_BOX.setEnabled(false);
-        this.FIZIO_DOCTOR_NAME_BOX.setEnabled(false);
-        this.TERAPEVT_DOCTOR_NAME_BOX.setEnabled(false);
-        this.ENDOKRI_DOCTOR_NAME_BOX.setEnabled(false);
-        this.NEVRO_DOCTOR_NAME_BOX.setEnabled(false);
-        this.VERTE_DOCTOR_NAME_BOX.setEnabled(false);
+        this.SURGERY_DOCTOR_NAME_BOX.setEnabled(false);
+        this.OCULIST_DOCTOR_NAME_BOX.setEnabled(false);
+        this.PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(false);
+        this.THERAPY_DOCTOR_NAME_BOX.setEnabled(false);
+        this.ENDO_DOCTOR_NAME_BOX.setEnabled(false);
+        this.NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
+        this.VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
         this.MRI_DOCTOR_NAME_BOX.setEnabled(false);
         
         this.VISIT_RADIO_BUTTON_GROUP.add(FIRST_VISIT_RADIO_BUTTON);
@@ -210,31 +210,31 @@ public class VisitCoursePanel {
         return this.UROLOGY_CHECKBOX;
     }    
     public JCheckBox getGinecologyCheckBox() {
-        return this.GINECOLOGY_CHECKBOX;
+        return this.GYNECOLOGY_CHECKBOX;
     }    
     public JCheckBox getMriCheckBox() {
         return this.MRI_CHECKBOX;
     }
     public JCheckBox getHirurgiyaCheckBox() {
-        return this.HIRURGIYA_CHECKBOX;
+        return this.SURGERY_CHECKBOX;
     }
     public JCheckBox getOkulistCheckBox() {
-        return this.OKULIST_CHECKBOX;
+        return this.OCULIST_CHECKBOX;
     }
     public JCheckBox getFiziCheckBox() {
-        return this.FIZIO_CHECKBOX;
+        return this.PHYSIOTHERAPY_CHECKBOX;
     }
     public JCheckBox getTeraCheckBox() {
-        return this.TERAPEVT_CHECKBOX;
+        return this.THERAPY_CHECKBOX;
     }
     public JCheckBox getEndoCheckBox() {
-        return this.ENDOKRI_CHECKBOX;
+        return this.ENDO_CHECKBOX;
     }
     public JCheckBox getNevroCheckBox() {
-        return this.NEVRO_CHECKBOX;
+        return this.NEUROLOGIST_CHECKBOX;
     }
     public JCheckBox getVerteCheckBox() {
-        return this.VERTE_CHECKBOX;
+        return this.VERTEBROLOGIST_CHECKBOX;
     }    public JPanel getRootPanel() {
         return this.ROOT_PANEL;
     }    
@@ -248,29 +248,29 @@ public class VisitCoursePanel {
         return this.UROLOGY_DOCTOR_NAME_BOX;
     }                
     public JComboBox<String> getHirurgiyaDoctorsBox() {
-        return this.HIRURGIYA_DOCTOR_NAME_BOX;
+        return this.SURGERY_DOCTOR_NAME_BOX;
     }
     public JComboBox<String> getOkulistDoctorsBox() {
-        return this.OKULIST_DOCTOR_NAME_BOX;
+        return this.OCULIST_DOCTOR_NAME_BOX;
     }
     public JComboBox<String> getFizioDoctorsBox() {
-        return this.FIZIO_DOCTOR_NAME_BOX;
+        return this.PHYSIOTHERAPY_DOCTOR_NAME_BOX;
     }
     public JComboBox<String> getTerapevtDoctorsBox() {
-        return this.TERAPEVT_DOCTOR_NAME_BOX;
+        return this.THERAPY_DOCTOR_NAME_BOX;
     }
     public JComboBox<String> getEndokriDoctorsBox() {
-        return this.ENDOKRI_DOCTOR_NAME_BOX;
+        return this.ENDO_DOCTOR_NAME_BOX;
     }
     public JComboBox<String> getNevroDoctorsBox() {
-        return this.NEVRO_DOCTOR_NAME_BOX;
+        return this.NEUROLOGIST_DOCTOR_NAME_BOX;
     }
     public JComboBox<String> getVerteDoctorsBox() {
-        return this.VERTE_DOCTOR_NAME_BOX;
+        return this.VERTEBROLOGIST_DOCTOR_NAME_BOX;
     }
     
     public JComboBox<String> getGinecologyDoctorsBox() {
-        return this.GINECOLOGY_DOCTOR_NAME_BOX;
+        return this.GYNECOLOGY_DOCTOR_NAME_BOX;
     }
     
     public JComboBox<String> getStationaryDoctorsBox() {
@@ -369,7 +369,7 @@ public class VisitCoursePanel {
         this.gbc.weightx = 0.0;
         this.gbc.gridwidth = 1;
         this.gbc.insets = new Insets(0, 0, 0, 0);
-        visitCoursePanel.add(this.GINECOLOGY_CHECKBOX, this.gbc);
+        visitCoursePanel.add(this.GYNECOLOGY_CHECKBOX, this.gbc);
         
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.gridx = 1;
@@ -389,7 +389,7 @@ public class VisitCoursePanel {
         this.gbc.weightx = 0.0;
         this.gbc.gridwidth = 1;
         this.gbc.insets = new Insets(0, 0, 0, 0);
-        visitCoursePanel.add(this.GINECOLOGY_DOCTOR_NAME_BOX, this.gbc);  
+        visitCoursePanel.add(this.GYNECOLOGY_DOCTOR_NAME_BOX, this.gbc);
         
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.gridx = 0;
@@ -430,7 +430,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.HIRURGIYA_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.SURGERY_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -450,7 +450,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.HIRURGIYA_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.SURGERY_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -462,7 +462,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.OKULIST_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.OCULIST_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -482,7 +482,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.OKULIST_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.OCULIST_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -494,7 +494,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.FIZIO_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.PHYSIOTHERAPY_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -514,7 +514,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.FIZIO_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.PHYSIOTHERAPY_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -526,7 +526,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.TERAPEVT_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.THERAPY_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -546,7 +546,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.TERAPEVT_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.THERAPY_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -558,7 +558,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.ENDOKRI_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.ENDO_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -578,7 +578,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.ENDOKRI_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.ENDO_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -590,7 +590,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.NEVRO_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.NEUROLOGIST_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -610,7 +610,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.NEVRO_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.NEUROLOGIST_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -622,7 +622,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.VERTE_CHECKBOX, this.gbc);
+            visitCoursePanel.add(this.VERTEBROLOGIST_CHECKBOX, this.gbc);
 
             this.gbc.fill = GridBagConstraints.HORIZONTAL;
             this.gbc.gridx = 1;
@@ -642,7 +642,7 @@ public class VisitCoursePanel {
             this.gbc.weightx = 0.0;
             this.gbc.gridwidth = 1;
             this.gbc.insets = new Insets(0, 0, 0, 0);
-            visitCoursePanel.add(this.VERTE_DOCTOR_NAME_BOX, this.gbc);
+            visitCoursePanel.add(this.VERTEBROLOGIST_DOCTOR_NAME_BOX, this.gbc);
         }
         
         {
@@ -786,7 +786,7 @@ public class VisitCoursePanel {
         this.UROLOGY_CHECKBOX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if (GINECOLOGY_CHECKBOX.isSelected()
+                if (GYNECOLOGY_CHECKBOX.isSelected()
                         && UROLOGY_CHECKBOX.isSelected()) {
                     ResultToolbarService.INSTANCE.showFailedStatus("Пациент не может быть направлен в гинекологию и урологию одновременно");
                     
@@ -801,7 +801,7 @@ public class VisitCoursePanel {
                     UROLOGY_DOCTOR_NAME_BOX.setEnabled(true);
                     
                 } else {
-                    if (!GINECOLOGY_CHECKBOX.isSelected()) {
+                    if (!GYNECOLOGY_CHECKBOX.isSelected()) {
                         FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                         SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
                     }
@@ -811,149 +811,149 @@ public class VisitCoursePanel {
             }
         });
         
-        this.GINECOLOGY_CHECKBOX.addActionListener(new ActionListener() {
+        this.GYNECOLOGY_CHECKBOX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if (GINECOLOGY_CHECKBOX.isSelected()
+                if (GYNECOLOGY_CHECKBOX.isSelected()
                         && UROLOGY_CHECKBOX.isSelected()) {
                     ResultToolbarService.INSTANCE.showFailedStatus("Пациент не может быть направлен в гинекологию и урологию одновременно");
-                    
-                    GINECOLOGY_CHECKBOX.setSelected(false);
-                    GINECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+
+                    GYNECOLOGY_CHECKBOX.setSelected(false);
+                    GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
                     return;
                 }
-                
-                if (GINECOLOGY_CHECKBOX.isSelected()) {
+
+                if (GYNECOLOGY_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    GINECOLOGY_DOCTOR_NAME_BOX.setEnabled(true);
+                    GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(true);
 //                    AssignmentService.INSTANCE.getGinecologyFrame().getInternalFrame().setVisible(true);
-                    
+
                 } else {
                     if (!UROLOGY_CHECKBOX.isSelected()) {
                         FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                         SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
                     }
-                    
-                    GINECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+
+                    GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
 //                    AssignmentService.INSTANCE.getGinecologyFrame().getInternalFrame().setVisible(false);
                 }
             }
         });    
                 
-        this.HIRURGIYA_CHECKBOX.addActionListener(new ActionListener() {
+        this.SURGERY_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (HIRURGIYA_CHECKBOX.isSelected()) {                    
+            public void actionPerformed(ActionEvent ae) {
+                if (SURGERY_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    HIRURGIYA_DOCTOR_NAME_BOX.setEnabled(true);
+                    SURGERY_DOCTOR_NAME_BOX.setEnabled(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    HIRURGIYA_DOCTOR_NAME_BOX.setEnabled(false);
+
+                    SURGERY_DOCTOR_NAME_BOX.setEnabled(false);
                 }
             }
         });
         
-        this.OKULIST_CHECKBOX.addActionListener(new ActionListener() {
+        this.OCULIST_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (OKULIST_CHECKBOX.isSelected()) {                   
+            public void actionPerformed(ActionEvent ae) {
+                if (OCULIST_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    OKULIST_DOCTOR_NAME_BOX.setEnabled(true);
+                    OCULIST_DOCTOR_NAME_BOX.setEnabled(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    OKULIST_DOCTOR_NAME_BOX.setEnabled(false);
-                }                
+
+                    OCULIST_DOCTOR_NAME_BOX.setEnabled(false);
+                }
             }
         });
         
-        this.FIZIO_CHECKBOX.addActionListener(new ActionListener() {
+        this.PHYSIOTHERAPY_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (FIZIO_CHECKBOX.isSelected()) {                    
+            public void actionPerformed(ActionEvent ae) {
+                if (PHYSIOTHERAPY_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    FIZIO_DOCTOR_NAME_BOX.setEnabled(true);
-                    
+                    PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(true);
+
 //                    AssignmentService.INSTANCE.getPhysiotherapyFrame().getInternalFrame().setVisible(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    FIZIO_DOCTOR_NAME_BOX.setEnabled(false);
-                    
+
+                    PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(false);
+
 //                    AssignmentService.INSTANCE.getPhysiotherapyFrame().getInternalFrame().setVisible(false);
-                }                
+                }
             }
         });
         
-        this.TERAPEVT_CHECKBOX.addActionListener(new ActionListener() {
+        this.THERAPY_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (TERAPEVT_CHECKBOX.isSelected()) {                    
+            public void actionPerformed(ActionEvent ae) {
+                if (THERAPY_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    TERAPEVT_DOCTOR_NAME_BOX.setEnabled(true);
+                    THERAPY_DOCTOR_NAME_BOX.setEnabled(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    TERAPEVT_DOCTOR_NAME_BOX.setEnabled(false);
-                }                
+
+                    THERAPY_DOCTOR_NAME_BOX.setEnabled(false);
+                }
             }
         });
         
-        this.ENDOKRI_CHECKBOX.addActionListener(new ActionListener() {
+        this.ENDO_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (ENDOKRI_CHECKBOX.isSelected()) {                    
+            public void actionPerformed(ActionEvent ae) {
+                if (ENDO_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    ENDOKRI_DOCTOR_NAME_BOX.setEnabled(true);
+                    ENDO_DOCTOR_NAME_BOX.setEnabled(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    ENDOKRI_DOCTOR_NAME_BOX.setEnabled(false);
-                }                
+
+                    ENDO_DOCTOR_NAME_BOX.setEnabled(false);
+                }
             }
         });
         
-        this.NEVRO_CHECKBOX.addActionListener(new ActionListener() {
+        this.NEUROLOGIST_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (NEVRO_CHECKBOX.isSelected()) {                    
+            public void actionPerformed(ActionEvent ae) {
+                if (NEUROLOGIST_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    NEVRO_DOCTOR_NAME_BOX.setEnabled(true);
+                    NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    NEVRO_DOCTOR_NAME_BOX.setEnabled(false);
-                }                
+
+                    NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
+                }
             }
         });
         
-        this.VERTE_CHECKBOX.addActionListener(new ActionListener() {
+        this.VERTEBROLOGIST_CHECKBOX.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (VERTE_CHECKBOX.isSelected()) {                    
+            public void actionPerformed(ActionEvent ae) {
+                if (VERTEBROLOGIST_CHECKBOX.isSelected()) {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    VERTE_DOCTOR_NAME_BOX.setEnabled(true);
+                    VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(true);
                 } else {
                     FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
                     SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    VERTE_DOCTOR_NAME_BOX.setEnabled(false);
-                }                
+
+                    VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
+                }
             }
         });
         
