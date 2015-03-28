@@ -17,7 +17,8 @@ package com.pulse.desktop.controller;
 
 
 import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
+
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -33,8 +34,8 @@ public class SearchByDepartmentCheckBoxListener extends AbstractTableListener {
     private JComboBox<String> doctorsList;
     private JComboBox<String> departmentsList;
 
-    public SearchByDepartmentCheckBoxListener(Privelegy privelegy, JCheckBox enableSearchByDepartment, JComboBox<String> doctorsList, JComboBox<String> departmentsList) {
-        super(privelegy, null);
+    public SearchByDepartmentCheckBoxListener(Privilege privilege, JCheckBox enableSearchByDepartment, JComboBox<String> doctorsList, JComboBox<String> departmentsList) {
+        super(privilege, null);
         this.doctorsList = doctorsList;
         this.departmentsList = departmentsList;
         this.enableSearchByDepartment = enableSearchByDepartment;

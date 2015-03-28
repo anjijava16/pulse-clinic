@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+
+import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -35,7 +37,6 @@ import com.pulse.desktop.controller.PatientTypeFilterListener;
 import com.pulse.desktop.controller.SearchByDateListener;
 import com.pulse.desktop.controller.SearchFieldFocusListener;
 import com.pulse.desktop.controller.ViewAnalysListener;
-import com.pulse.model.constant.Privelegy;
 
 
 /**
@@ -56,23 +57,23 @@ public class LaboratoryFrame extends AbstractTabledChildFrame {
     private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.Laboratory;
+    private final Privilege privilege = Privilege.Laboratory;
     
     private void buildActionListeners() {
         PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
-                privelegy, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
+                privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
         
         CommonSearchListener csl = new CommonSearchListener(
-                privelegy, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
+                privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
         
         SearchByDateListener sbdl = new SearchByDateListener(
-                privelegy, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
+                privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         
         ViewAnalysListener val = new ViewAnalysListener(
-                privelegy, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
+                privilege, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
         );
         
         SearchFieldFocusListener sfl = new SearchFieldFocusListener();
@@ -86,7 +87,7 @@ public class LaboratoryFrame extends AbstractTabledChildFrame {
     }
     
     public LaboratoryFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

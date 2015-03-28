@@ -49,8 +49,7 @@ import com.pulse.model.Patient;
 import com.pulse.model.User;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.PaymentStatus;
-import com.pulse.model.constant.Privelegy;
-import com.pulse.model.constant.PrivelegyDir;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
 import java.io.UnsupportedEncodingException;
 import javax.swing.WindowConstants;
@@ -320,7 +319,7 @@ public final class PatientCommingRegistrationFrame {
                             
                             try {
                                 Visit visit = new Visit();
-                                visit.setDepartmentId(Privelegy.Laboratory.getId());
+                                visit.setDepartmentId(Privilege.Laboratory.getId());
                                 visit.setAnalysGroup(group);
                                 visit.setAnalysName(analys);
                                 visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -330,7 +329,7 @@ public final class PatientCommingRegistrationFrame {
                                 visit.setFromDoctor(fromDoctor);
                                 visit.setFromOrganisation(fromOrganisation);
                                 visit.setFilename(hash.concat(extension));
-                                visit.setFilepath(String.valueOf(Privelegy.Laboratory.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
+                                visit.setFilepath(String.valueOf(Privilege.Laboratory.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
 
                                 visit.setVisitDate(new Date());
                                 visit.setVisitStatus(Settings.NOT_VISITED);
@@ -353,7 +352,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Urology.getId());
+                        visit.setDepartmentId(Privilege.Urology.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -387,7 +386,7 @@ public final class PatientCommingRegistrationFrame {
 //                            try {
 //                                Visit visit = new Visit();
 //                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privelegy.Ginecology.getId());
+//                                visit.setDepartmentId(Privilege.Ginecology.getId());
 //                                visit.setAnalysGroup(group);
 //                                visit.setAnalysName(analys);
 //                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -397,7 +396,7 @@ public final class PatientCommingRegistrationFrame {
 //                                visit.setFromDoctor(fromDoctor);
 //                                visit.setFromOrganisation(fromOrganisation);
 //                                visit.setFilename(hash.concat(PrivelegyDir.GINECOLOGY_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privelegy.Ginecology.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
+//                                visit.setFilepath(String.valueOf(Privilege.Ginecology.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
 //
 //                                visit.setVisitDate(new Date());
 //                                visit.setVisitStatus(Settings.NOT_VISITED);
@@ -414,7 +413,7 @@ public final class PatientCommingRegistrationFrame {
                         try {
                             Visit visit = new Visit();
                             visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privelegy.Ginecology.getId());
+                            visit.setDepartmentId(Privilege.Ginecology.getId());
                             visit.setAnalysGroup(Values.Unknown.getValue());
                             visit.setAnalysName(Values.Unknown.getValue());
                             visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -450,7 +449,7 @@ public final class PatientCommingRegistrationFrame {
 //                            try {
 //                                Visit visit = new Visit();
 //                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privelegy.Ultrasound.getId());
+//                                visit.setDepartmentId(Privilege.Ultrasound.getId());
 //                                visit.setAnalysGroup(group);
 //                                visit.setAnalysName(analys);
 //                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -460,7 +459,7 @@ public final class PatientCommingRegistrationFrame {
 //                                visit.setFromDoctor(fromDoctor);
 //                                visit.setFromOrganisation(fromOrganisation);
 //                                visit.setFilename(hash.concat(PrivelegyDir.ULTRASOUND_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privelegy.Ultrasound.getId()).concat("/")
+//                                visit.setFilepath(String.valueOf(Privilege.Ultrasound.getId()).concat("/")
 //                                        .concat(String.valueOf(selectedPatient.getId())).concat("/"));
 //
 //                                visit.setVisitDate(new Date());
@@ -478,7 +477,7 @@ public final class PatientCommingRegistrationFrame {
                         try {
                             Visit visit = new Visit();
                             visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privelegy.Ultrasound.getId());
+                            visit.setDepartmentId(Privilege.Ultrasound.getId());
                             visit.setAnalysGroup(Values.Unknown.getValue());
                             visit.setAnalysName(Values.Unknown.getValue());
                             visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -509,7 +508,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Hirurgiya.getId());
+                        visit.setDepartmentId(Privilege.Hirurgiya.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -537,7 +536,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Okulist.getId());
+                        visit.setDepartmentId(Privilege.Okulist.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -572,7 +571,7 @@ public final class PatientCommingRegistrationFrame {
 //                            try {
 //                                Visit visit = new Visit();
 //                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privelegy.Fizio.getId());
+//                                visit.setDepartmentId(Privilege.Fizio.getId());
 //                                visit.setAnalysGroup(group);
 //                                visit.setAnalysName(analys);
 //                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -582,7 +581,7 @@ public final class PatientCommingRegistrationFrame {
 //                                visit.setFromDoctor(fromDoctor);
 //                                visit.setFromOrganisation(fromOrganisation);
 //                                visit.setFilename(hash.concat(PrivelegyDir.FIZIO_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privelegy.Fizio.getId()).concat("/")
+//                                visit.setFilepath(String.valueOf(Privilege.Fizio.getId()).concat("/")
 //                                        .concat(String.valueOf(selectedPatient.getId())).concat("/"));
 //
 //                                visit.setVisitDate(new Date());
@@ -600,7 +599,7 @@ public final class PatientCommingRegistrationFrame {
                         try {
                             Visit visit = new Visit();
                             visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privelegy.Fizio.getId());
+                            visit.setDepartmentId(Privilege.Fizio.getId());
                             visit.setAnalysGroup(Values.Unknown.getValue());
                             visit.setAnalysName(Values.Unknown.getValue());
                             visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -631,7 +630,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Terapevt.getId());
+                        visit.setDepartmentId(Privilege.Terapevt.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -659,7 +658,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Endokrinolog.getId());
+                        visit.setDepartmentId(Privilege.Endokrinolog.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -687,7 +686,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Nevropatolog.getId());
+                        visit.setDepartmentId(Privilege.Nevropatolog.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -715,7 +714,7 @@ public final class PatientCommingRegistrationFrame {
                     try {
                         Visit visit = new Visit();
                         visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privelegy.Vertebrolog.getId());
+                        visit.setDepartmentId(Privilege.Vertebrolog.getId());
                         visit.setAnalysGroup(Values.Unknown.getValue());
                         visit.setAnalysName(Values.Unknown.getValue());
                         visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -750,7 +749,7 @@ public final class PatientCommingRegistrationFrame {
 //                            try {
 //                                Visit visit = new Visit();
 //                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privelegy.MagneticResonanceImaging.getId());
+//                                visit.setDepartmentId(Privilege.MagneticResonanceImaging.getId());
 //                                visit.setAnalysGroup(group);
 //                                visit.setAnalysName(analys);
 //                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
@@ -760,7 +759,7 @@ public final class PatientCommingRegistrationFrame {
 //                                visit.setFromDoctor(fromDoctor);
 //                                visit.setFromOrganisation(fromOrganisation);
 //                                visit.setFilename(hash.concat(PrivelegyDir.FIZIO_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privelegy.Fizio.getId()).concat("/")
+//                                visit.setFilepath(String.valueOf(Privilege.Fizio.getId()).concat("/")
 //                                        .concat(String.valueOf(selectedPatient.getId())).concat("/"));
 //
 //                                visit.setVisitDate(new Date());
@@ -778,7 +777,7 @@ public final class PatientCommingRegistrationFrame {
                         try {
                             Visit visit = new Visit();
                             visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privelegy.MagneticResonanceImaging.getId());
+                            visit.setDepartmentId(Privilege.MagneticResonanceImaging.getId());
                             visit.setAnalysGroup(Values.Unknown.getValue());
                             visit.setAnalysName(Values.Unknown.getValue());
                             visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());

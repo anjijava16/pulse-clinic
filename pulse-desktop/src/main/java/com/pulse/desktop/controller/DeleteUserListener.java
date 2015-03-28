@@ -20,11 +20,10 @@ import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.UserClient;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +37,8 @@ public class DeleteUserListener extends AbstractTableListener {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private final UserClient userService = new UserClient();
             
-    public DeleteUserListener(Privelegy privelegy, TableService.TableHolder holder) {
-        super(privelegy, holder);
+    public DeleteUserListener(Privilege privilege, TableService.TableHolder holder) {
+        super(privilege, holder);
     }
 
     @Override

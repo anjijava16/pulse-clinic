@@ -16,7 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.service.UserFacade;
@@ -24,7 +23,7 @@ import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,8 +35,8 @@ public class SaveSecondVisitListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    public SaveSecondVisitListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public SaveSecondVisitListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
     }
 
     @Override

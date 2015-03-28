@@ -22,7 +22,7 @@ import com.pulse.desktop.view.frame.childframes.template.MriTemplateService;
 import com.pulse.desktop.view.frame.childframes.template.PhysiotherapyTemplateService;
 import com.pulse.desktop.view.frame.childframes.template.TemplateService;
 import com.pulse.desktop.view.frame.childframes.template.UltrasoundTemplateService;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -38,11 +38,11 @@ public enum AssignmentService {
     private TemplateService physiotherapyTemlateService = new PhysiotherapyTemplateService();
     private TemplateService mriTemlateService = new MriTemplateService();
     
-    private AssignmentFrame laboratoryFrame = new AssignmentFrame(this.laboratoryTemlateService, Privelegy.Laboratory.getName());
-    private AssignmentFrame ultrasoundFrame = new AssignmentFrame(this.ultrasoundTemlateService, Privelegy.Ultrasound.getName());
-    private AssignmentFrame ginecologyFrame = new AssignmentFrame(this.ginecologyTemlateService, Privelegy.Ginecology.getName());
-    private AssignmentFrame physiotherapyFrame = new AssignmentFrame(this.physiotherapyTemlateService, Privelegy.Fizio.getName());
-    private AssignmentFrame mriFrame = new AssignmentFrame(this.mriTemlateService, Privelegy.MagneticResonanceImaging.getName());
+    private AssignmentFrame laboratoryFrame = new AssignmentFrame(this.laboratoryTemlateService, Privilege.Laboratory.getName());
+    private AssignmentFrame ultrasoundFrame = new AssignmentFrame(this.ultrasoundTemlateService, Privilege.Ultrasound.getName());
+    private AssignmentFrame ginecologyFrame = new AssignmentFrame(this.ginecologyTemlateService, Privilege.Ginecology.getName());
+    private AssignmentFrame physiotherapyFrame = new AssignmentFrame(this.physiotherapyTemlateService, Privilege.Fizio.getName());
+    private AssignmentFrame mriFrame = new AssignmentFrame(this.mriTemlateService, Privilege.MagneticResonanceImaging.getName());
     
     private AssignmentService() {}
     

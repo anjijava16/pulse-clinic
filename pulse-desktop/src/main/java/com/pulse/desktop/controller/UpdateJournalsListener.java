@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 import com.pulse.model.Journal;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.JournalClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +39,8 @@ public class UpdateJournalsListener extends AbstractTableListener {
     private final JournalClient ORGANISATION_SERVICE = new JournalClient();
     private JournalTableService tableService;
 
-    public UpdateJournalsListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public UpdateJournalsListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
         this.tableService = new JournalTableService(tableHolder);
     }
 

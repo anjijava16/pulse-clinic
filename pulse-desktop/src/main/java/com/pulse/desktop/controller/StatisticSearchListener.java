@@ -31,7 +31,7 @@ import javax.swing.JComboBox;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.model.Organisation;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
@@ -60,10 +60,10 @@ public class StatisticSearchListener extends AbstractTableListener {
     private final JDatePickerImpl fromDatePicker;
     private final JDatePickerImpl untilDatePicker;
     
-    public StatisticSearchListener(Privelegy privelegy, TableService.TableHolder tableHolder, JComboBox<String> organisationsBox,
+    public StatisticSearchListener(Privilege privilege, TableService.TableHolder tableHolder, JComboBox<String> organisationsBox,
             JDatePickerImpl fromDatePicker,
             JDatePickerImpl untilDatePicker) {
-        super(privelegy, tableHolder);
+        super(privilege, tableHolder);
         this.fromDatePicker = fromDatePicker;
         this.untilDatePicker = untilDatePicker;
         this.tableService = new OrganisationsTableService(tableHolder);

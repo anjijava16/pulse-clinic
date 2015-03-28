@@ -22,7 +22,6 @@ import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.controller.table.AppointmentTableService;
-import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.model.Appointment;
 import com.pulse.rest.client.AppointmentClient;
@@ -38,7 +37,7 @@ import com.pulse.desktop.view.util.NameValidator;
 import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -52,7 +51,7 @@ public class CreatePatientAppointmentListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privelegy privelegy;
+    private Privilege privilege;
     private TableHolder tableHolder;
 
     private final AppointmentClient appointmentClient = new AppointmentClient();
@@ -60,9 +59,9 @@ public class CreatePatientAppointmentListener extends AbstractTableListener {
 
     private AppointmentTableService tableService;
 
-    public CreatePatientAppointmentListener(Privelegy privelegy, TableHolder tableHolder) {
-        super(privelegy, tableHolder);
-        this.privelegy = privelegy;
+    public CreatePatientAppointmentListener(Privilege privilege, TableHolder tableHolder) {
+        super(privilege, tableHolder);
+        this.privilege = privilege;
         this.tableHolder = tableHolder;
         this.tableService = new AppointmentTableService(tableHolder);
     }

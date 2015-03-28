@@ -25,7 +25,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,8 +40,8 @@ public class ReleasePatientListener extends AbstractTableListener {
 
     private VisitClient client = new VisitClient();
 
-    public ReleasePatientListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public ReleasePatientListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
     }
 
     @Override

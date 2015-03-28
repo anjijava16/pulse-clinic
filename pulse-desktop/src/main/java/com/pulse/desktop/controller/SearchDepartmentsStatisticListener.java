@@ -29,10 +29,11 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+
+import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.model.FilteredVisit;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +65,7 @@ public class SearchDepartmentsStatisticListener extends AbstractTableListener {
 
     public SearchDepartmentsStatisticListener(
             SimpleDateFormat originFormat,
-            Privelegy privelegy,
+            Privilege privilege,
             TableHolder holder,
             JCheckBox enableSearchByDepartment,
             JComboBox<String> doctorsList,
@@ -72,7 +73,7 @@ public class SearchDepartmentsStatisticListener extends AbstractTableListener {
             JDatePickerImpl fromDatePicker,
             JDatePickerImpl untilDatePicker
     ) {
-        super(privelegy, null);
+        super(privilege, null);
         this.holder = holder;
         this.originFormat = originFormat;
         this.doctorsList = doctorsList;
@@ -109,7 +110,7 @@ public class SearchDepartmentsStatisticListener extends AbstractTableListener {
                 if (selectedDepartment == null) {
                     return;
                 }
-                if (Privelegy.findByName(selectedDepartment) == null) {
+                if (Privilege.findByName(selectedDepartment) == null) {
                     return;
                 }
                 if (UserFacade.INSTANCE.findBy(selectedDoctor) == null) {
@@ -122,7 +123,7 @@ public class SearchDepartmentsStatisticListener extends AbstractTableListener {
                     return;
                 }
 
-                int department = Privelegy.findByName(selectedDepartment).getId();
+                int department = Privilege.findByName(selectedDepartment).getId();
                 long doctorId = UserFacade.INSTANCE.findBy(selectedDoctor).getId();
 
                 FilteredVisit visit = new FilteredVisit();

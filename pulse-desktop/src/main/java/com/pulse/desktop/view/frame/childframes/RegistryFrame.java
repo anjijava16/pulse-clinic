@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+
+import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -39,7 +41,6 @@ import com.pulse.desktop.controller.EditPatientListener;
 import com.pulse.desktop.controller.PatientTypeFilterListener;
 import com.pulse.desktop.controller.SearchByDateListener;
 import com.pulse.desktop.controller.SearchFieldFocusListener;
-import com.pulse.model.constant.Privelegy;
 
 
 /**
@@ -60,7 +61,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
     private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.Registratur;
+    private final Privilege privilege = Privilege.Registratur;
     
     private final JButton CREATE_PATIENT_BUTTON = new JButton("", new ImageIcon("./pic/add_user.png"));
     private final JButton UPDATE_PATIENT_BUTTON = new JButton("", new ImageIcon("./pic/edit_user.png"));
@@ -75,21 +76,21 @@ public class RegistryFrame extends AbstractTabledChildFrame {
         
     private void buildActionListeners() {
         PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
-                privelegy, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
+                privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
                         
         SearchByDateListener sbdl = new SearchByDateListener(
-                privelegy, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
+                privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         
         SearchFieldFocusListener sfl = new SearchFieldFocusListener();
         
-        ShowCreatePatientListener cpl = new ShowCreatePatientListener(privelegy, this.TABLE_HOLDER);
-        EditPatientListener epl = new EditPatientListener(privelegy, this.TABLE_HOLDER);        
-        ShowDeletePatientListener dpl = new ShowDeletePatientListener(privelegy, this.TABLE_HOLDER);        
+        ShowCreatePatientListener cpl = new ShowCreatePatientListener(privilege, this.TABLE_HOLDER);
+        EditPatientListener epl = new EditPatientListener(privilege, this.TABLE_HOLDER);
+        ShowDeletePatientListener dpl = new ShowDeletePatientListener(privilege, this.TABLE_HOLDER);
         
-        CreateVisitListener cvl = new CreateVisitListener(privelegy, this.TABLE_HOLDER);
-        DeleteVisitListener dvl = new DeleteVisitListener(privelegy, this.TABLE_HOLDER);
+        CreateVisitListener cvl = new CreateVisitListener(privilege, this.TABLE_HOLDER);
+        DeleteVisitListener dvl = new DeleteVisitListener(privilege, this.TABLE_HOLDER);
         
         this.SEARCH_PATTERN_FIELD.addFocusListener(sfl);
         
@@ -103,7 +104,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
         this.PATIENT_LIST_BOX.addActionListener(ptfl);
         
         CommonSearchListener csl = new CommonSearchListener(
-                privelegy, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
+                privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
         this.SEARCH_PATTERN_BUTTON.addActionListener(csl);
         this.DATE_FILTER_BUTTON.addActionListener(sbdl);
@@ -114,7 +115,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
     }
     
     public RegistryFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

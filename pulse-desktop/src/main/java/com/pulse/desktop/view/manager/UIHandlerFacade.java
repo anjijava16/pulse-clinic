@@ -19,15 +19,11 @@ package com.pulse.desktop.view.manager;
 import com.pulse.desktop.view.frame.user.AccountInternalFrame;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.view.util.FileManager;
-import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -214,7 +210,7 @@ public final class UIHandlerFacade {
 //                dtm.setValueAt(accountLink.getNfp(), rowNumber, 2);
 //                dtm.setValueAt(accountLink.getBirthday(), rowNumber, 3);
 //                dtm.setValueAt(accountLink.getUsername(), rowNumber, 4);
-//                dtm.setValueAt(Privelegy.findById(accountLink.getPrivelegy()).getName(), rowNumber, 5);
+//                dtm.setValueAt(Privilege.findById(accountLink.getPrivilege()).getName(), rowNumber, 5);
 //            }
 //        });        
 //    }
@@ -352,7 +348,7 @@ public final class UIHandlerFacade {
 //            accountData[ptr++] = account.getNfp();
 //            accountData[ptr++] = account.getBirthday();
 //            accountData[ptr++] = account.getAccountName();
-//            accountData[ptr++] = Privelegy.findById(account.getPrivelegy()).getName();
+//            accountData[ptr++] = Privilege.findById(account.getPrivilege()).getName();
 //            
 //            if (this.administrationFrame == null) {
 //                this.administrationFrame = WINDOW_MANAGER.getMainFrame().getAdministrationFrame();
@@ -523,7 +519,7 @@ public final class UIHandlerFacade {
 //                    accountData[ptr++] = accountLink.getNfp();
 //                    accountData[ptr++] = accountLink.getBirthday();
 //                    accountData[ptr++] = accountLink.getAccountName();
-//                    accountData[ptr++] = Privelegy.findById(accountLink.getPrivelegy()).getName();
+//                    accountData[ptr++] = Privilege.findById(accountLink.getPrivilege()).getName();
 //
 //                    if (administrationFrame == null) {
 //                        administrationFrame = WINDOW_MANAGER.getMainFrame().getAdministrationFrame();
@@ -539,22 +535,22 @@ public final class UIHandlerFacade {
 //                        applicationUserAccount = accountLink;
 //                    }
 //
-//                    if (accountLink.getPrivelegy() == Privelegy.Urology.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Ultrasound.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Ginecology.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Stationary.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Hirurgiya.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Okulist.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Fizio.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Terapevt.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Endokrinolog.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Nevropatolog.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.Vertebrolog.getId()
-//                            || accountLink.getPrivelegy() == Privelegy.MagneticResonanceImaging.getId()) {
+//                    if (accountLink.getPrivilege() == Privilege.Urology.getId()
+//                            || accountLink.getPrivilege() == Privilege.Ultrasound.getId()
+//                            || accountLink.getPrivilege() == Privilege.Ginecology.getId()
+//                            || accountLink.getPrivilege() == Privilege.Stationary.getId()
+//                            || accountLink.getPrivilege() == Privilege.Hirurgiya.getId()
+//                            || accountLink.getPrivilege() == Privilege.Okulist.getId()
+//                            || accountLink.getPrivilege() == Privilege.Fizio.getId()
+//                            || accountLink.getPrivilege() == Privilege.Terapevt.getId()
+//                            || accountLink.getPrivilege() == Privilege.Endokrinolog.getId()
+//                            || accountLink.getPrivilege() == Privilege.Nevropatolog.getId()
+//                            || accountLink.getPrivilege() == Privilege.Vertebrolog.getId()
+//                            || accountLink.getPrivilege() == Privilege.MagneticResonanceImaging.getId()) {
 //                        WindowManager.getInstance().getBookKeepingFrame().addDoctor(accountLink.getNfp());
 //                    }
 //
-//                    switch ((int) accountLink.getPrivelegy()) {
+//                    switch ((int) accountLink.getPrivilege()) {
 //                        case Settings.UROLOGY:
 //                            WINDOW_MANAGER.getPatientCommingRegistrationFrame().getVisitCoursePanel().getUrologyDoctorsBox().addItem(accountLink.getNfp());
 //                            break;

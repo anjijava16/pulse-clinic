@@ -18,7 +18,8 @@ package com.pulse.desktop.controller.table;
 
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -36,14 +37,14 @@ public class UsersTableService {
     }
     
     public void add(User user) {
-        if (Privelegy.findById(user.getPrivelegy()) == null) return;
+        if (Privilege.findById(user.getPrivelegy()) == null) return;
         
         final String[] data = new String[TableService.INSTANCE.USERS_TABLE_HEADER.length];
         int ptr = 0;        
 
         data[ptr++] = String.valueOf(user.getId());
         data[ptr++] = user.getNfp();
-        data[ptr++] = Privelegy.findById(user.getPrivelegy()).getName();
+        data[ptr++] = Privilege.findById(user.getPrivelegy()).getName();
         data[ptr++] = dateFormat.format(user.getBirthday());
         data[ptr++] = user.getUsername();
 

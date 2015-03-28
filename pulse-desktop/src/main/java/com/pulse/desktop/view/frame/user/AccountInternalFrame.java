@@ -22,7 +22,8 @@ import com.pulse.desktop.controller.RefreshUsersListener;
 import com.pulse.desktop.controller.OpenUpdateUserFrameListener;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
+
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -99,10 +100,10 @@ public final class AccountInternalFrame
 
     @Override
     public void addAllActionListeners() {
-        final RefreshUsersListener rul = new RefreshUsersListener(Privelegy.None, this.TABLE_HOLDER);
-        final AddUserListener aul = new AddUserListener(Privelegy.None, this.TABLE_HOLDER);
-        final OpenUpdateUserFrameListener suufl = new OpenUpdateUserFrameListener(Privelegy.None, this.TABLE_HOLDER);
-        final DeleteUserListener dul = new DeleteUserListener(Privelegy.None, this.TABLE_HOLDER);
+        final RefreshUsersListener rul = new RefreshUsersListener(Privilege.None, this.TABLE_HOLDER);
+        final AddUserListener aul = new AddUserListener(Privilege.None, this.TABLE_HOLDER);
+        final OpenUpdateUserFrameListener suufl = new OpenUpdateUserFrameListener(Privilege.None, this.TABLE_HOLDER);
+        final DeleteUserListener dul = new DeleteUserListener(Privilege.None, this.TABLE_HOLDER);
         
         this.UPDATE_USERS_BUTTON.addActionListener(rul);
         this.ADD_USER_BUTTON.addActionListener(aul);        

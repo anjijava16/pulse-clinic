@@ -37,10 +37,9 @@ import com.pulse.desktop.controller.PatientTypeFilterListener;
 import com.pulse.desktop.controller.SaveSecondVisitListener;
 import com.pulse.desktop.controller.SearchByDateListener;
 import com.pulse.desktop.controller.SearchFieldFocusListener;
-import com.pulse.desktop.controller.ViewAnalysListener;
 import com.pulse.desktop.controller.ViewPatientAppointmentListener;
 import com.pulse.desktop.controller.ViewPatientRecordListener;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -58,7 +57,7 @@ public class UrologyFrame extends AbstractTabledChildFrame {
     private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.Urology;
+    private final Privilege privilege = Privilege.Urology;
     
 //    private final JButton VIEW_ANALYS_BUTTON = new JButton(new ImageIcon("./pic/view.png"));
     private final JButton SEARCH_PATTERN_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
@@ -75,34 +74,34 @@ public class UrologyFrame extends AbstractTabledChildFrame {
     }
     
     private void buildActionListeners() {
-        MoveToStationaryListener mtsl = new MoveToStationaryListener(privelegy, this.TABLE_HOLDER);        
+        MoveToStationaryListener mtsl = new MoveToStationaryListener(privilege, this.TABLE_HOLDER);
         this.MOVE_TO_HOSPITAL_BUTTON.addActionListener(mtsl);
         
         PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
-                privelegy, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
+                privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
         
         CommonSearchListener csl = new CommonSearchListener(
-                privelegy, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
+                privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
         
         SearchByDateListener sbdl = new SearchByDateListener(
-                privelegy, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
+                privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         
 //        ViewAnalysListener val = new ViewAnalysListener(
-//                privelegy, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
+//                privilege, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
 //        );
         
-        ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privelegy, this.TABLE_HOLDER); 
+        ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privilege, this.TABLE_HOLDER);
         
         SearchFieldFocusListener sfl = new SearchFieldFocusListener();
         
-        ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privelegy, this.TABLE_HOLDER);
+        ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privilege, this.TABLE_HOLDER);
         
-        SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privelegy, this.TABLE_HOLDER);
+        SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privilege, this.TABLE_HOLDER);
         
-        MarkAsViewedListener mavl = new MarkAsViewedListener(privelegy, this.TABLE_HOLDER);
+        MarkAsViewedListener mavl = new MarkAsViewedListener(privilege, this.TABLE_HOLDER);
         
         this.SEARCH_PATTERN_FIELD.addFocusListener(sfl);
         this.VIEW_PATIENT_FORM_BUTTON.addActionListener(vpfl);
@@ -116,7 +115,7 @@ public class UrologyFrame extends AbstractTabledChildFrame {
     }
         
     public UrologyFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

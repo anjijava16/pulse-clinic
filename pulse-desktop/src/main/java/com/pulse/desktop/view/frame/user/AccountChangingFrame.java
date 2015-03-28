@@ -18,7 +18,7 @@ package com.pulse.desktop.view.frame.user;
 
 import com.pulse.desktop.controller.UpdateUserListener;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 
@@ -55,7 +55,7 @@ public final class AccountChangingFrame
 
     @Override
     public void addAllActionListeners() {
-        final UpdateUserListener uul = new UpdateUserListener(Privelegy.None, this.holder);
+        final UpdateUserListener uul = new UpdateUserListener(Privilege.None, this.holder);
         uul.setBirthdayField(USER_INFO_PANEL.getBirthdayField());
         uul.setFamilyNameField(USER_INFO_PANEL.getFamilyNameField());
         uul.setFatherNameField(USER_INFO_PANEL.getFatherNameField());

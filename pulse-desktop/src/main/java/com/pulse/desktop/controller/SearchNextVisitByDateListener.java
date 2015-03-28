@@ -29,7 +29,7 @@ import java.util.List;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.view.manager.UIHandlerFacade;
 import com.pulse.model.NextVisit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.NextVisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,8 +51,8 @@ public class SearchNextVisitByDateListener extends AbstractTableListener {
 
     private NextVisitTableService tableService;
 
-    public SearchNextVisitByDateListener(Privelegy privelegy, JDatePickerImpl calendar, TableService.TableHolder holder, SimpleDateFormat originFormat) {
-        super(privelegy, holder);
+    public SearchNextVisitByDateListener(Privilege privilege, JDatePickerImpl calendar, TableService.TableHolder holder, SimpleDateFormat originFormat) {
+        super(privilege, holder);
         this.calendar = calendar;
         this.originFormat = originFormat;
         this.tableService = new NextVisitTableService(holder);

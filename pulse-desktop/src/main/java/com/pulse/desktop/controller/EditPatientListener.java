@@ -19,7 +19,7 @@ import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import com.pulse.desktop.view.manager.WindowManager;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,8 +31,8 @@ public class EditPatientListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    public EditPatientListener(Privelegy privelegy, TableService.TableHolder holder) {
-        super(privelegy, holder);
+    public EditPatientListener(Privilege privilege, TableService.TableHolder holder) {
+        super(privilege, holder);
     }
 
     @Override

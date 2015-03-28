@@ -23,11 +23,12 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+
+import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.SearchNextVisitByDateListener;
-import com.pulse.model.constant.Privelegy;
 
 
 /**
@@ -43,18 +44,18 @@ public class NextVisitFrame extends AbstractTabledChildFrame {
     
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.NextVisit;
+    private final Privilege privilege = Privilege.NextVisit;
     
     private void buildActionListeners() {
         SearchNextVisitByDateListener sbdl = new SearchNextVisitByDateListener(
-                privelegy, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
+                privilege, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         
         this.DATE_FILTER_BUTTON.addActionListener(sbdl);
     }
     
     public NextVisitFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

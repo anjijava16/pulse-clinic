@@ -22,7 +22,7 @@ import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.UsersTableService;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.UserClient;
 
 import java.awt.event.ActionEvent;
@@ -57,8 +57,8 @@ public class CreateUserListener extends AbstractTableListener {
     
     private UsersTableService tableService;
     
-    public CreateUserListener(Privelegy privelegy, TableService.TableHolder holder) {
-        super(privelegy, holder);
+    public CreateUserListener(Privilege privilege, TableService.TableHolder holder) {
+        super(privilege, holder);
         this.tableService = new UsersTableService(holder);
     }
 
@@ -137,7 +137,7 @@ public class CreateUserListener extends AbstractTableListener {
             user.setBirthday(birthdayDate);
             user.setPassword(base64Password);
             user.setUsername(username);
-            user.setPrivelegy(Privelegy.findByName(privelegy).getId());
+            user.setPrivelegy(Privilege.findByName(privelegy).getId());
             
             try {
                 userService.update(user);     

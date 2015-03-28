@@ -19,7 +19,7 @@ package com.pulse.model.constant;
 /**
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
-public enum Privelegy {
+public enum Privilege {
 
     None("", Byte.MAX_VALUE, false, false),
     Organisation("Организации", Byte.MAX_VALUE, false, false),
@@ -51,7 +51,7 @@ public enum Privelegy {
     NextVisit("Приди проверься", (byte) 24, false, false),
     PatientRoom("Палаты", (byte) 25, false, false);
 
-    private Privelegy(String name, byte id, boolean isDepartment, boolean showAsPrivelegy) {
+    private Privilege(String name, byte id, boolean isDepartment, boolean showAsPrivelegy) {
         this.name = name;
         this.id = id;
         this.isDepartment = isDepartment;
@@ -79,8 +79,8 @@ public enum Privelegy {
         return this.id;
     }
 
-    public static Privelegy findById(int id) {
-        for (Privelegy p : values()) {
+    public static Privilege findById(int id) {
+        for (Privilege p : values()) {
             if (p.getId() == id) {
                 return p;
             }
@@ -89,8 +89,8 @@ public enum Privelegy {
         return null;
     }
 
-    public static Privelegy findByName(String name) {
-        for (Privelegy p : values()) {
+    public static Privilege findByName(String name) {
+        for (Privilege p : values()) {
             if (p.getName().equals(name)) {
                 return p;
             }

@@ -18,7 +18,7 @@ package com.pulse.desktop.view.manager;
 
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.model.constant.Privelegies;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -41,53 +41,53 @@ public enum PrivelegyService {
                 WindowManager.getInstance().getMainFrame().enableAdministrationFrame(false);
                 WindowManager.getInstance().getMainFrame().enableOrganisationFrame(false);
 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.BookKeeping.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.BookKeeping.getId())
                     WindowManager.getInstance().getMainFrame().enableMoneyFrame(false);
 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.TicketWindow.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.TicketWindow.getId())
                     WindowManager.getInstance().getMainFrame().enableTicketFrame(false);
 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Statistic.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Statistic.getId())
                     WindowManager.getInstance().getMainFrame().enableStatisticFrame(false);
 
-//                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Journal.getId())
+//                if (UserFacade.INSTANCE.getApplicationUser().getPrivilege() != Privilege.Journal.getId())
 //                    WindowManager.getInstance().getMainFrame().enableJournalFrame(false);
 
                 WindowManager.getInstance().getMainFrame().enablePatientRoomFrame(false);
                                 
                 WindowManager.getInstance().getRegistryFrame().disableAccess();
 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Urology.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Urology.getId())
                     WindowManager.getInstance().getUrologyFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Ginecology.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Ginecology.getId())
                     WindowManager.getInstance().getGinecologyFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Ultrasound.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Ultrasound.getId())
                     WindowManager.getInstance().getUltrasoundFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Okulist.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Okulist.getId())
                     WindowManager.getInstance().getOculistFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.MagneticResonanceImaging.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.MagneticResonanceImaging.getId())
                     WindowManager.getInstance().getMriFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Vertebrolog.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Vertebrolog.getId())
                     WindowManager.getInstance().getVertebrologistFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Hirurgiya.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Hirurgiya.getId())
                     WindowManager.getInstance().getSurgeryFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Nevropatolog.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Nevropatolog.getId())
                     WindowManager.getInstance().getNeurologistFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Endokrinolog.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Endokrinolog.getId())
                     WindowManager.getInstance().getEndoFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Terapevt.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Terapevt.getId())
                     WindowManager.getInstance().getTherapeuticFrame().disableAccess();
                 
-                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privelegy.Fizio.getId())
+                if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Fizio.getId())
                     WindowManager.getInstance().getPhysiotherapyFrame().disableAccess();
                 
                 break;

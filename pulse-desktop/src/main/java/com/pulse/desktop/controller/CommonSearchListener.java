@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JTextField;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +45,8 @@ public class CommonSearchListener extends AbstractTableListener {
 
     private VisitClient visitClient = new VisitClient();
 
-    public CommonSearchListener(Privelegy privelegy, TableService.TableHolder tableHolder, JTextField searchField, SimpleDateFormat dateFormat) {
-        super(privelegy, tableHolder);
+    public CommonSearchListener(Privilege privilege, TableService.TableHolder tableHolder, JTextField searchField, SimpleDateFormat dateFormat) {
+        super(privilege, tableHolder);
         this.searchField = searchField;
         this.dateFormat = dateFormat;
     }
@@ -70,10 +70,10 @@ public class CommonSearchListener extends AbstractTableListener {
                 visitsList.stream().forEach((visit) -> {
                     this.LOGGER.info("visit: " + visit);
 
-                    final String[] data = TableProxy.INSTANCE.getRightBufferFrom(visit, getPrivelegy(), this.dateFormat);
-                    if (visit.getDepartmentId() == getPrivelegy().getId()
-                            || getPrivelegy().getId() == Privelegy.Registratur.getId()
-                            || getPrivelegy().getId() == Privelegy.TicketWindow.getId()) {
+                    final String[] data = TableProxy.INSTANCE.getRightBufferFrom(visit, getPrivilege(), this.dateFormat);
+                    if (visit.getDepartmentId() == getPrivilege().getId()
+                            || getPrivilege().getId() == Privilege.Registratur.getId()
+                            || getPrivilege().getId() == Privilege.TicketWindow.getId()) {
                         getTableHolder().getModel().addRow(data);
                     }
                 });

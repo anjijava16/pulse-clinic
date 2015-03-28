@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+
+import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -39,7 +41,6 @@ import com.pulse.desktop.controller.SearchFieldFocusListener;
 import com.pulse.desktop.controller.ViewAnalysListener;
 import com.pulse.desktop.controller.ViewPatientAppointmentListener;
 import com.pulse.desktop.controller.ViewPatientRecordListener;
-import com.pulse.model.constant.Privelegy;
 
 
 /**
@@ -60,7 +61,7 @@ public class PhysiotherapyFrame extends AbstractTabledChildFrame {
     private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.Fizio;
+    private final Privilege privilege = Privilege.Fizio;
     
     private final JButton VIEW_PATIENT_FORM_BUTTON = new JButton("", new ImageIcon("./pic/patient_form.png"));
     private final JButton VIEW_PATIENT_APPOINTMENT_BUTTON = new JButton("", new ImageIcon("./pic/pills.png"));
@@ -74,29 +75,29 @@ public class PhysiotherapyFrame extends AbstractTabledChildFrame {
     
     private void buildActionListeners() {
         PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
-                privelegy, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
+                privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
         
         CommonSearchListener csl = new CommonSearchListener(
-                privelegy, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
+                privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
         
         SearchByDateListener sbdl = new SearchByDateListener(
-                privelegy, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
+                privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         
         ViewAnalysListener val = new ViewAnalysListener(
-                privelegy, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
+                privilege, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
         );
         
-        ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privelegy, this.TABLE_HOLDER); 
+        ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privilege, this.TABLE_HOLDER);
         
         SearchFieldFocusListener sfl = new SearchFieldFocusListener();
         
-        ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privelegy, this.TABLE_HOLDER);
+        ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privilege, this.TABLE_HOLDER);
         
-        SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privelegy, this.TABLE_HOLDER);
-        MarkAsViewedListener mavl = new MarkAsViewedListener(privelegy, this.TABLE_HOLDER);
+        SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privilege, this.TABLE_HOLDER);
+        MarkAsViewedListener mavl = new MarkAsViewedListener(privilege, this.TABLE_HOLDER);
         
         this.MARK_AS_HANDLED_BUTTON.addActionListener(mavl);
         this.SEARCH_PATTERN_FIELD.addFocusListener(sfl);
@@ -110,7 +111,7 @@ public class PhysiotherapyFrame extends AbstractTabledChildFrame {
     }
         
     public PhysiotherapyFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

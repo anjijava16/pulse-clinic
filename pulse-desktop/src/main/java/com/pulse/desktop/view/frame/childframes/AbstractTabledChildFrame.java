@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.desktop.controller.builder.ToolbarBuilder;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -40,7 +40,7 @@ public class AbstractTabledChildFrame {
 
     private List<JComponent> toolbarBtnList;    
     private TableHolder tableHolder;
-    private Privelegy privelegy;
+    private Privilege privilege;
     
     protected final JInternalFrame CHILD_FRAME = new JInternalFrame();
     protected final GridBagConstraints gbc = new GridBagConstraints();
@@ -83,8 +83,8 @@ public class AbstractTabledChildFrame {
     public AbstractTabledChildFrame() {        
     }
     
-    public void setPrivelegy(Privelegy privelegy) {
-        this.privelegy = privelegy;    
+    public void setPrivilege(Privilege privilege) {
+        this.privilege = privilege;
     }
     
     public void setTableHolder(TableHolder tableHolder) {
@@ -118,7 +118,7 @@ public class AbstractTabledChildFrame {
         this.CHILD_FRAME.setSize(this.width, this.height);
         this.CHILD_FRAME.add(this.ROOT_PANEL); 
         
-        this.CHILD_FRAME.setTitle(this.privelegy.getName());
+        this.CHILD_FRAME.setTitle(this.privilege.getName());
     }
     
     public void initFont() {
@@ -129,8 +129,8 @@ public class AbstractTabledChildFrame {
         }
     }
     
-    public Privelegy getPrivelegy() {
-        return this.privelegy;
+    public Privilege getPrivilege() {
+        return this.privilege;
     }
     
     public TableHolder getTableHolder() {

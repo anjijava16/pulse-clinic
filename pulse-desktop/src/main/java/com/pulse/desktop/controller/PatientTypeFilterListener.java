@@ -29,7 +29,7 @@ import java.util.List;
 import javax.swing.JComboBox;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,8 +52,8 @@ public class PatientTypeFilterListener extends AbstractTableListener {
 
     private SimpleDateFormat originFormat = new SimpleDateFormat("yyyy.MM.dd");
 
-    public PatientTypeFilterListener(Privelegy privelegy, JComboBox<String> filterList, TableService.TableHolder holder, SimpleDateFormat dateFormat, JDatePickerImpl calendar) {
-        super(privelegy, holder);
+    public PatientTypeFilterListener(Privilege privilege, JComboBox<String> filterList, TableService.TableHolder holder, SimpleDateFormat dateFormat, JDatePickerImpl calendar) {
+        super(privilege, holder);
         this.filterList = filterList;
         this.dateFormat = dateFormat;
         this.calendar = calendar;
@@ -111,11 +111,11 @@ public class PatientTypeFilterListener extends AbstractTableListener {
                 visitsList.stream().forEach((visit) -> {
                     this.LOGGER.info("visit: " + visit);
 
-                    final String[] data = TableProxy.INSTANCE.getRightBufferFrom(visit, getPrivelegy(), this.dateFormat);
+                    final String[] data = TableProxy.INSTANCE.getRightBufferFrom(visit, getPrivilege(), this.dateFormat);
 
-                    if (visit.getDepartmentId() == getPrivelegy().getId()
-                            || getPrivelegy().getId() == Privelegy.Registratur.getId()
-                            || getPrivelegy().getId() == Privelegy.TicketWindow.getId()) {
+                    if (visit.getDepartmentId() == getPrivilege().getId()
+                            || getPrivilege().getId() == Privilege.Registratur.getId()
+                            || getPrivilege().getId() == Privilege.TicketWindow.getId()) {
                         getTableHolder().getModel().addRow(data);
                     }
                 });

@@ -31,7 +31,7 @@ import com.pulse.desktop.controller.CreatePatientAppointmentListener;
 import com.pulse.desktop.controller.DeletePatientAppointmentListener;
 import com.pulse.desktop.controller.OpenPatientAppointmentListener;
 import com.pulse.model.Patient;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -46,7 +46,7 @@ public class PatientAppointmentFrame extends AbstractTabledChildFrame {
     
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.PatientAppointment;
+    private final Privilege privilege = Privilege.PatientAppointment;
     
     private final JButton CREATE_PATIENT_RECORD_BUTTON = new JButton("", new ImageIcon("./pic/form_creation.png"));
     private final JButton REMOVE_PATIENT_RECORD_BUTTON = new JButton("", new ImageIcon("./pic/form_removing.png"));
@@ -55,9 +55,9 @@ public class PatientAppointmentFrame extends AbstractTabledChildFrame {
     private Patient patient;
     
     private void buildActionListeners() {
-        CreatePatientAppointmentListener cerl = new CreatePatientAppointmentListener(this.privelegy, this.TABLE_HOLDER);
-        DeletePatientAppointmentListener dprc = new DeletePatientAppointmentListener(this.privelegy, this.TABLE_HOLDER);
-        OpenPatientAppointmentListener oprl = new OpenPatientAppointmentListener(this.privelegy, this.TABLE_HOLDER);
+        CreatePatientAppointmentListener cerl = new CreatePatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
+        DeletePatientAppointmentListener dprc = new DeletePatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
+        OpenPatientAppointmentListener oprl = new OpenPatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
         
         this.CREATE_PATIENT_RECORD_BUTTON.addActionListener(cerl);
         this.REMOVE_PATIENT_RECORD_BUTTON.addActionListener(dprc);
@@ -73,7 +73,7 @@ public class PatientAppointmentFrame extends AbstractTabledChildFrame {
     }    
     
     public PatientAppointmentFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

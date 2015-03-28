@@ -32,7 +32,7 @@ import com.pulse.desktop.controller.DeleteJournalListener;
 import com.pulse.desktop.controller.OpenJournalListener;
 import com.pulse.desktop.controller.UpdateJournalsListener;
 import com.pulse.model.Patient;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -47,7 +47,7 @@ public class JournalFrame extends AbstractTabledChildFrame {
     
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.Journal;
+    private final Privilege privilege = Privilege.Journal;
     
     private final JButton CREATE_PATIENT_RECORD_BUTTON = new JButton("", new ImageIcon("./pic/form_creation.png"));
     private final JButton REMOVE_PATIENT_RECORD_BUTTON = new JButton("", new ImageIcon("./pic/form_removing.png"));
@@ -58,11 +58,11 @@ public class JournalFrame extends AbstractTabledChildFrame {
     private Patient patient;
     
     private void buildActionListeners() {
-        CreateJournalListener cjl = new CreateJournalListener(this.privelegy, this.TABLE_HOLDER);
-        DeleteJournalListener djl = new DeleteJournalListener(this.privelegy, this.TABLE_HOLDER);
-        OpenJournalListener ojl = new OpenJournalListener(this.privelegy, this.TABLE_HOLDER);
+        CreateJournalListener cjl = new CreateJournalListener(this.privilege, this.TABLE_HOLDER);
+        DeleteJournalListener djl = new DeleteJournalListener(this.privilege, this.TABLE_HOLDER);
+        OpenJournalListener ojl = new OpenJournalListener(this.privilege, this.TABLE_HOLDER);
         
-        UpdateJournalsListener ujl = new UpdateJournalsListener(this.privelegy, this.TABLE_HOLDER);
+        UpdateJournalsListener ujl = new UpdateJournalsListener(this.privilege, this.TABLE_HOLDER);
         
         this.CREATE_PATIENT_RECORD_BUTTON.addActionListener(cjl);
         this.REMOVE_PATIENT_RECORD_BUTTON.addActionListener(djl);
@@ -79,7 +79,7 @@ public class JournalFrame extends AbstractTabledChildFrame {
     }    
     
     public JournalFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

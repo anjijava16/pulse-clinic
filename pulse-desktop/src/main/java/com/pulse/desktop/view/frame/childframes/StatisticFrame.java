@@ -29,7 +29,7 @@ import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.StatisticSearchListener;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -43,7 +43,7 @@ public class StatisticFrame extends AbstractTabledChildFrame {
     private final JComboBox<String> ORGANISATIONS_LIST = new JComboBox<>();
     private final JButton SEARCH_PATTERN_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
 
-    private final Privelegy privelegy = Privelegy.Statistic;
+    private final Privilege privilege = Privilege.Statistic;
 
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     private final JDatePickerImpl SEARCH_FROM_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));
@@ -54,14 +54,14 @@ public class StatisticFrame extends AbstractTabledChildFrame {
         this.SEARCH_UNTIL_DATE_PICKER.getJFormattedTextField().setText(this.FORMATTER.format(new Date()));
 
         StatisticSearchListener ssl = new StatisticSearchListener(
-                this.privelegy, this.TABLE_HOLDER, this.ORGANISATIONS_LIST, this.SEARCH_FROM_DATE_PICKER, this.SEARCH_UNTIL_DATE_PICKER
+                this.privilege, this.TABLE_HOLDER, this.ORGANISATIONS_LIST, this.SEARCH_FROM_DATE_PICKER, this.SEARCH_UNTIL_DATE_PICKER
         );
 
         this.SEARCH_PATTERN_BUTTON.addActionListener(ssl);
     }
 
     public StatisticFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
 
         buildActionListeners();

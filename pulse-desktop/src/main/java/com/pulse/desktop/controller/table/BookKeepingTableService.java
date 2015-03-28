@@ -26,11 +26,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.BonusStatus;
-import com.pulse.model.constant.VisitType;
-import com.pulse.model.constant.PaymentStatus;
-import com.pulse.model.constant.Privelegy;
-import com.pulse.model.constant.Status;
+import com.pulse.model.constant.*;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -61,8 +58,8 @@ public class BookKeepingTableService {
             final User account = UserFacade.INSTANCE.findBy(visit.getDoctorId());
 
             String department;
-            if (Privelegy.findById(visit.getDepartmentId()) != null) {
-                department = Privelegy.findById(visit.getDepartmentId()).getName();
+            if (Privilege.findById(visit.getDepartmentId()) != null) {
+                department = Privilege.findById(visit.getDepartmentId()).getName();
             } else {
                 department = Values.Unknown.getValue();
             }

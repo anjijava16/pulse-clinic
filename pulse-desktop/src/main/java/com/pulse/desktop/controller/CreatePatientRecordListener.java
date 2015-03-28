@@ -37,7 +37,7 @@ import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Patient;
 import com.pulse.model.Record;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
 import com.pulse.rest.client.RecordClient;
 import org.apache.commons.codec.binary.Base64;
@@ -52,7 +52,7 @@ public class CreatePatientRecordListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privelegy privelegy;
+    private Privilege privilege;
     private TableHolder tableHolder;
 
     private final RecordClient SERVICE_CLIENT = new RecordClient();
@@ -60,9 +60,9 @@ public class CreatePatientRecordListener extends AbstractTableListener {
 
     private PatientRecordTableService tableService;
 
-    public CreatePatientRecordListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
-        this.privelegy = privelegy;
+    public CreatePatientRecordListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
+        this.privilege = privilege;
         this.tableHolder = tableHolder;
         this.tableService = new PatientRecordTableService(tableHolder);
     }

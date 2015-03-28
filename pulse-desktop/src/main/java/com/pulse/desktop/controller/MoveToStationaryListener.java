@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import com.pulse.desktop.controller.builder.MessageBuilder;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
@@ -30,7 +30,7 @@ import com.pulse.desktop.view.util.Values;
 import com.pulse.model.PatientRoom;
 import com.pulse.model.User;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.Status;
 import com.pulse.rest.client.PatientRoomClient;
 import com.pulse.rest.client.VisitClient;
@@ -49,8 +49,8 @@ public class MoveToStationaryListener extends AbstractTableListener {
 
     private PatientRoomClient roomClient = new PatientRoomClient();
 
-    public MoveToStationaryListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public MoveToStationaryListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
     }
 
     private String getRoom() throws IOException {
@@ -112,7 +112,7 @@ public class MoveToStationaryListener extends AbstractTableListener {
                 visit.setDoctorId(account.getId());
                 visit.setFilename(Values.Empty.getValue());
                 visit.setFilepath(Values.Empty.getValue());
-                visit.setDepartmentId(Privelegy.Stationary.getId());
+                visit.setDepartmentId(Privilege.Stationary.getId());
                 visit.setAnalysName(Values.Unknown.getValue());
                 visit.setAnalysGroup(Values.Unknown.getValue());
                 visit.setTillDate(Values.Empty.getValue());

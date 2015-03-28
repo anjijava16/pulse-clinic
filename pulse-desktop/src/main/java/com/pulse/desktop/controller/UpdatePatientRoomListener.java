@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 import com.pulse.model.PatientRoom;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.PatientRoomClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,8 +40,8 @@ public class UpdatePatientRoomListener extends AbstractTableListener {
     private final PatientRoomClient ORGANISATION_SERVICE = new PatientRoomClient();
     private PatientRoomTableService tableService;
 
-    public UpdatePatientRoomListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public UpdatePatientRoomListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
         this.tableService = new PatientRoomTableService(tableHolder);
     }
 

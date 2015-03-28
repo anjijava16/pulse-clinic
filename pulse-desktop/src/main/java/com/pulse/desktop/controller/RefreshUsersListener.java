@@ -19,15 +19,12 @@ package com.pulse.desktop.controller;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.service.UserFacade;
-import com.pulse.desktop.controller.table.StationaryTableService;
-import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.desktop.controller.table.UsersTableService;
 import com.pulse.model.User;
-import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.UserClient;
-import com.pulse.rest.client.VisitClient;
+
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
@@ -45,8 +42,8 @@ public class RefreshUsersListener extends AbstractTableListener {
     private final UserClient visitClient = new UserClient();
     private UsersTableService tableService;
         
-    public RefreshUsersListener(Privelegy privelegy, TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public RefreshUsersListener(Privilege privilege, TableHolder tableHolder) {
+        super(privilege, tableHolder);
         this.tableService = new UsersTableService(tableHolder);
     }
 

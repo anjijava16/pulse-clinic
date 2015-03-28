@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 import com.pulse.model.Organisation;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
 import com.pulse.rest.client.PowerClient;
 import org.slf4j.Logger;
@@ -43,8 +43,8 @@ public class UpdateOrganisationsListener extends AbstractTableListener {
 
     private PowerClient powerClient = new PowerClient();
 
-    public UpdateOrganisationsListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public UpdateOrganisationsListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
         this.tableService = new OrganisationsTableService(tableHolder);
     }
 

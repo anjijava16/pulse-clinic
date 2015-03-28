@@ -26,7 +26,7 @@ import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.AddOrganisationListener;
 import com.pulse.desktop.controller.DeleteOrganisationListener;
 import com.pulse.desktop.controller.UpdateOrganisationsListener;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -43,12 +43,12 @@ public class OrganisationsFrame extends AbstractTabledChildFrame {
     private final JButton DELETE_ORGANISATION_BUTTON = new JButton("", new ImageIcon("./pic/form_removing.png"));
     private final JButton UPDATE_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));    
     
-    private final Privelegy privelegy = Privelegy.Organisation;
+    private final Privilege privilege = Privilege.Organisation;
     
     private void buildActionListeners() {
-        AddOrganisationListener aol = new AddOrganisationListener(this.privelegy, this.TABLE_HOLDER, this.ORGANISATION_NAME_FIELD);
-        DeleteOrganisationListener dol = new DeleteOrganisationListener(this.privelegy, this.TABLE_HOLDER);
-        UpdateOrganisationsListener uol = new UpdateOrganisationsListener(this.privelegy, this.TABLE_HOLDER);
+        AddOrganisationListener aol = new AddOrganisationListener(this.privilege, this.TABLE_HOLDER, this.ORGANISATION_NAME_FIELD);
+        DeleteOrganisationListener dol = new DeleteOrganisationListener(this.privilege, this.TABLE_HOLDER);
+        UpdateOrganisationsListener uol = new UpdateOrganisationsListener(this.privilege, this.TABLE_HOLDER);
         
         this.ADD_ORGANISATION_BUTTON.addActionListener(aol);
         this.DELETE_ORGANISATION_BUTTON.addActionListener(dol);
@@ -56,7 +56,7 @@ public class OrganisationsFrame extends AbstractTabledChildFrame {
     }
     
     public OrganisationsFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

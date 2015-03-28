@@ -16,7 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.PatientFacade;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
@@ -29,7 +28,7 @@ import java.util.List;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.Patient;
 import com.pulse.model.Record;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.RecordClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +47,8 @@ public class ViewPatientRecordListener extends AbstractTableListener {
 
     private PatientRecordTableService tableService;
 
-    public ViewPatientRecordListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public ViewPatientRecordListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
         this.tableHolder = tableHolder;
     }
 

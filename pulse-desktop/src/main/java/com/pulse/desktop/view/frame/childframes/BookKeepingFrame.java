@@ -26,13 +26,14 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+
+import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.SearchByDepartmentCheckBoxListener;
 import com.pulse.desktop.controller.SearchDepartmentsStatisticListener;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
 
 
 /**
@@ -43,7 +44,7 @@ public class BookKeepingFrame extends AbstractTabledChildFrame {
     private final TableService.TableHolder TABLE_HOLDER = TableService.INSTANCE.buildTable(TableService.BOOK_KEEPING_TABLE);
     private final List<JComponent> TOOLBAR_BTN_LIST = new ArrayList<>(10);    
     
-    private final Privelegy privelegy = Privelegy.BookKeeping;
+    private final Privilege privilege = Privilege.BookKeeping;
     
     private final JCheckBox SEARCH_BY_DEPARTMENT = new JCheckBox("");
     private final DefaultComboBoxModel<String> DOCTORS_LIST_MODEL = new DefaultComboBoxModel<>();
@@ -64,21 +65,21 @@ public class BookKeepingFrame extends AbstractTabledChildFrame {
         
         this.DEPARTMENTS_LIST.setEnabled(false);
         
-        Privelegy privelegies[] = Privelegy.values();
-        for (Privelegy privelegy : privelegies) {
-            if (privelegy.isDepartment()) {
-                this.DEPARTMENTS_LIST_MODEL.addElement(privelegy.getName());
+        Privilege privelegies[] = Privilege.values();
+        for (Privilege privilege : privelegies) {
+            if (privilege.isDepartment()) {
+                this.DEPARTMENTS_LIST_MODEL.addElement(privilege.getName());
             }
         }
         
         SearchByDepartmentCheckBoxListener sbdcbl = new SearchByDepartmentCheckBoxListener(
-                this.privelegy, this.SEARCH_BY_DEPARTMENT, this.DOCTORS_LIST, this.DEPARTMENTS_LIST
+                this.privilege, this.SEARCH_BY_DEPARTMENT, this.DOCTORS_LIST, this.DEPARTMENTS_LIST
         );
         this.SEARCH_BY_DEPARTMENT.addActionListener(sbdcbl);
         
         SearchDepartmentsStatisticListener sdsl = new SearchDepartmentsStatisticListener(
                 this.FORMATTER, 
-                this.privelegy, 
+                this.privilege,
                 this.TABLE_HOLDER, 
                 this.SEARCH_BY_DEPARTMENT, 
                 this.DOCTORS_LIST, 
@@ -90,7 +91,7 @@ public class BookKeepingFrame extends AbstractTabledChildFrame {
     }
             
     public BookKeepingFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         initialize();
@@ -112,7 +113,7 @@ public class BookKeepingFrame extends AbstractTabledChildFrame {
         if (user == null) return;
         if (user.getPrivelegy() <= 0) return;
         
-        if (Privelegy.findById(user.getPrivelegy()).isDepartment()) {
+        if (Privilege.findById(user.getPrivelegy()).isDepartment()) {
             this.DOCTORS_LIST_MODEL.addElement(user.getNfp());
         }
     }

@@ -23,7 +23,7 @@ import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +38,8 @@ public class DeleteVisitListener extends AbstractTableListener {
 
     private final VisitClient visitClient = new VisitClient();
 
-    public DeleteVisitListener(Privelegy privelegy, TableService.TableHolder holder) {
-        super(privelegy, holder);
+    public DeleteVisitListener(Privilege privilege, TableService.TableHolder holder) {
+        super(privilege, holder);
     }
 
     @Override

@@ -24,7 +24,7 @@ import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.AppointmentClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,16 +37,16 @@ public class DeletePatientAppointmentListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privelegy privelegy;
+    private Privilege privilege;
     private TableService.TableHolder tableHolder;
 
     private AppointmentClient appointmentClient = new AppointmentClient();
 
     private AppointmentTableService tableService;
 
-    public DeletePatientAppointmentListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
-        this.privelegy = privelegy;
+    public DeletePatientAppointmentListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
+        this.privilege = privilege;
         this.tableHolder = tableHolder;
         this.tableService = new AppointmentTableService(tableHolder);
     }

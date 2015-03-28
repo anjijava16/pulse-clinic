@@ -26,7 +26,7 @@ import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.CreatePatientRoomListener;
 import com.pulse.desktop.controller.DeletePatientRoomListener;
 import com.pulse.desktop.controller.UpdatePatientRoomListener;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -50,12 +50,12 @@ public class PatientRoomFrame extends AbstractTabledChildFrame {
     private final JButton UPDATE_CAPACITY_BUTTON = new JButton("", new ImageIcon("./pic/edit.png"));
     private final JButton CLEAR_CAPACITY_BUTTON = new JButton("", new ImageIcon("./pic/free.png"));
     
-    private final Privelegy privelegy = Privelegy.PatientRoom;
+    private final Privilege privilege = Privilege.PatientRoom;
     
     private void buildActionListeners() {
-        final CreatePatientRoomListener aol = new CreatePatientRoomListener(this.privelegy, this.TABLE_HOLDER, this.ORGANISATION_NAME_FIELD);
-        final DeletePatientRoomListener dol = new DeletePatientRoomListener(this.privelegy, this.TABLE_HOLDER);
-        final UpdatePatientRoomListener uol = new UpdatePatientRoomListener(this.privelegy, this.TABLE_HOLDER);
+        final CreatePatientRoomListener aol = new CreatePatientRoomListener(this.privilege, this.TABLE_HOLDER, this.ORGANISATION_NAME_FIELD);
+        final DeletePatientRoomListener dol = new DeletePatientRoomListener(this.privilege, this.TABLE_HOLDER);
+        final UpdatePatientRoomListener uol = new UpdatePatientRoomListener(this.privilege, this.TABLE_HOLDER);
         
         this.ADD_ORGANISATION_BUTTON.addActionListener(aol);
         this.DELETE_ORGANISATION_BUTTON.addActionListener(dol);
@@ -63,7 +63,7 @@ public class PatientRoomFrame extends AbstractTabledChildFrame {
     }
     
     public PatientRoomFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

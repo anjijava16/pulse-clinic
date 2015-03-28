@@ -22,11 +22,10 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JTextField;
 
-import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +43,8 @@ public class AddOrganisationListener extends AbstractTableListener {
 
     private JTextField nameField;
 
-    public AddOrganisationListener(Privelegy privelegy, TableService.TableHolder tableHolder, JTextField nameField) {
-        super(privelegy, tableHolder);
+    public AddOrganisationListener(Privilege privilege, TableService.TableHolder tableHolder, JTextField nameField) {
+        super(privilege, tableHolder);
         this.tableService = new OrganisationsTableService(tableHolder);
         this.nameField = nameField;
     }

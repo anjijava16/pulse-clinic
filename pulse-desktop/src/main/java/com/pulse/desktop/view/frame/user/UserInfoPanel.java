@@ -16,14 +16,12 @@
 package com.pulse.desktop.view.frame.user;
 
 
-import com.pulse.desktop.controller.CreateUserListener;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.SimpleDateFormat;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,6 +29,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
@@ -67,7 +66,7 @@ public class UserInfoPanel {
     public UserInfoPanel() {
         this.privelegyField = new JComboBox();
 
-        for (Privelegy p : Privelegy.values()) {
+        for (Privilege p : Privilege.values()) {
             if (p.isShowAsPrivelegy()) {
                 this.privelegyField.addItem(p.getName());
             }
@@ -94,7 +93,7 @@ public class UserInfoPanel {
         this.birthdayField.setText(sdf.format(user.getBirthday()));
         this.usernameField.setText(user.getUsername());
         this.passwordField.setText("********");
-        this.privelegyField.setSelectedItem(Privelegy.findById(user.getPrivelegy()).getName());
+        this.privelegyField.setSelectedItem(Privilege.findById(user.getPrivelegy()).getName());
     }
 
     public void clearAllFields() {

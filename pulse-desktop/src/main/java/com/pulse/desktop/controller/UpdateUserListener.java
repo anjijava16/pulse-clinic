@@ -18,11 +18,10 @@ package com.pulse.desktop.controller;
 
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.UserClient;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -54,8 +53,8 @@ public class UpdateUserListener extends AbstractTableListener {
     private JPasswordField passwordField;
     private JComboBox privelegyField;
         
-    public UpdateUserListener(Privelegy privelegy, TableHolder holder) {
-        super(privelegy, holder);
+    public UpdateUserListener(Privilege privilege, TableHolder holder) {
+        super(privilege, holder);
     }
 
     @Override
@@ -130,7 +129,7 @@ public class UpdateUserListener extends AbstractTableListener {
                 user.setBirthday(birthdayDate);
                 user.setPassword(base64Password);
                 user.setUsername(username);
-                user.setPrivelegy(Privelegy.findByName(privelegy).getId());
+                user.setPrivelegy(Privilege.findByName(privelegy).getId());
                 
                 userService.update(user);                
                 WindowManager.getInstance().getAccountChangingFrame().clear();

@@ -24,11 +24,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.pulse.model.constant.Privilege;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
 import com.pulse.rest.client.VisitClient;
 import com.pulse.desktop.view.manager.UIHandlerFacade;
 import com.pulse.desktop.controller.service.ResultToolbarService;
@@ -53,8 +53,8 @@ public class SearchByDateListener extends AbstractTableListener {
 
     private final SimpleDateFormat REQUEST_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-    public SearchByDateListener(Privelegy privelegy, JComboBox<String> filterList, JDatePickerImpl calendar, TableService.TableHolder holder, SimpleDateFormat originFormat) {
-        super(privelegy, holder);
+    public SearchByDateListener(Privilege privilege, JComboBox<String> filterList, JDatePickerImpl calendar, TableService.TableHolder holder, SimpleDateFormat originFormat) {
+        super(privilege, holder);
         this.filterList = filterList;
         this.calendar = calendar;
         this.originFormat = originFormat;
@@ -75,10 +75,10 @@ public class SearchByDateListener extends AbstractTableListener {
                 visitsList.stream().forEach((visit) -> {
                     this.LOGGER.debug("visit: " + visit);
 
-                    final String[] data = TableProxy.INSTANCE.getRightBufferFrom(visit, getPrivelegy(), this.originFormat);
-                    if (visit.getDepartmentId() == getPrivelegy().getId()
-                            || getPrivelegy().getId() == Privelegy.Registratur.getId()
-                            || getPrivelegy().getId() == Privelegy.TicketWindow.getId()) {
+                    final String[] data = TableProxy.INSTANCE.getRightBufferFrom(visit, getPrivilege(), this.originFormat);
+                    if (visit.getDepartmentId() == getPrivilege().getId()
+                            || getPrivilege().getId() == Privilege.Registratur.getId()
+                            || getPrivilege().getId() == Privilege.TicketWindow.getId()) {
                         getTableHolder().getModel().addRow(data);
                     }
                 });

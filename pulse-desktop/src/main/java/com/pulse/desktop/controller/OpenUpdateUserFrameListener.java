@@ -21,7 +21,7 @@ import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.UserClient;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -38,8 +38,8 @@ public class OpenUpdateUserFrameListener extends AbstractTableListener {
 
     private UserClient userService = new UserClient();
 
-    public OpenUpdateUserFrameListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public OpenUpdateUserFrameListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
     }
 
     @Override

@@ -24,7 +24,7 @@ import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,8 +40,8 @@ public class DeleteOrganisationListener extends AbstractTableListener {
 
     private OrganisationsTableService tableService;
 
-    public DeleteOrganisationListener(Privelegy privelegy, TableService.TableHolder holder) {
-        super(privelegy, holder);
+    public DeleteOrganisationListener(Privilege privilege, TableService.TableHolder holder) {
+        super(privilege, holder);
         this.tableService = new OrganisationsTableService(holder);
     }
 

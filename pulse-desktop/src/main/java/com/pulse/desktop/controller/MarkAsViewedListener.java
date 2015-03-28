@@ -24,7 +24,7 @@ import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.Status;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
@@ -38,14 +38,14 @@ public class MarkAsViewedListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privelegy privelegy;
+    private Privilege privilege;
     private TableService.TableHolder tableHolder;
 
     private VisitClient visitClient = new VisitClient();
 
-    public MarkAsViewedListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
-        this.privelegy = privelegy;
+    public MarkAsViewedListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
+        this.privilege = privilege;
         this.tableHolder = tableHolder;
     }
 

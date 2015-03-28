@@ -23,17 +23,15 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JTextField;
+
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.CreatePatientRecordListener;
 import com.pulse.desktop.controller.DeletePatientRecordListener;
 import com.pulse.desktop.controller.OpenPatientRecordListener;
-import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.Patient;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -47,7 +45,7 @@ public class PatientRecordFrame extends AbstractTabledChildFrame {
     
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
-    private final Privelegy privelegy = Privelegy.PatientRecord;
+    private final Privilege privilege = Privilege.PatientRecord;
     
     private final JButton CREATE_PATIENT_RECORD_BUTTON = new JButton("", new ImageIcon("./pic/form_creation.png"));
     private final JButton REMOVE_PATIENT_RECORD_BUTTON = new JButton("", new ImageIcon("./pic/form_removing.png"));
@@ -56,9 +54,9 @@ public class PatientRecordFrame extends AbstractTabledChildFrame {
     private Patient patient;
         
     private void buildActionListeners() {
-        CreatePatientRecordListener cerl = new CreatePatientRecordListener(this.privelegy, this.TABLE_HOLDER);
-        DeletePatientRecordListener dprc = new DeletePatientRecordListener(this.privelegy, this.TABLE_HOLDER);
-        OpenPatientRecordListener oprl = new OpenPatientRecordListener(this.privelegy, this.TABLE_HOLDER);
+        CreatePatientRecordListener cerl = new CreatePatientRecordListener(this.privilege, this.TABLE_HOLDER);
+        DeletePatientRecordListener dprc = new DeletePatientRecordListener(this.privilege, this.TABLE_HOLDER);
+        OpenPatientRecordListener oprl = new OpenPatientRecordListener(this.privilege, this.TABLE_HOLDER);
         
         this.CREATE_PATIENT_RECORD_BUTTON.addActionListener(cerl);
         this.REMOVE_PATIENT_RECORD_BUTTON.addActionListener(dprc);
@@ -74,7 +72,7 @@ public class PatientRecordFrame extends AbstractTabledChildFrame {
     }    
     
     public PatientRecordFrame() {
-        super.setPrivelegy(privelegy);
+        super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();

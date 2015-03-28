@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.List;
 import com.pulse.model.User;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +42,8 @@ public class UpdateStationaryVisitListener extends AbstractTableListener {
     private final VisitClient visitClient = new VisitClient();
     private StationaryTableService tableService;
 
-    public UpdateStationaryVisitListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public UpdateStationaryVisitListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
         this.tableService = new StationaryTableService(tableHolder);
     }
 
@@ -61,13 +61,13 @@ public class UpdateStationaryVisitListener extends AbstractTableListener {
                     return;
                 }
 
-                if (appUser.getPrivelegy() == Privelegy.Admin.getId()) {
+                if (appUser.getPrivelegy() == Privilege.Admin.getId()) {
                     doctor = 0;
                 } else {
                     doctor = appUser.getId();
                 }
 
-                List<Visit> list = this.visitClient.filterBy(Privelegy.Stationary.getId(), doctor);
+                List<Visit> list = this.visitClient.filterBy(Privilege.Stationary.getId(), doctor);
                 this.tableService.add(list);
                 
                 ResultToolbarService.INSTANCE.showSuccessStatus();

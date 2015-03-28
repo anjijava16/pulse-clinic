@@ -17,7 +17,6 @@ package com.pulse.desktop.controller;
 
 
 import com.google.common.io.Files;
-import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.PatientRecordTableService;
@@ -28,7 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Record;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
 import com.pulse.rest.client.RecordClient;
 import org.apache.commons.codec.binary.Base64;
@@ -43,7 +42,7 @@ public class OpenPatientRecordListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privelegy privelegy;
+    private Privilege privilege;
 
     private TableService.TableHolder tableHolder;
 
@@ -51,9 +50,9 @@ public class OpenPatientRecordListener extends AbstractTableListener {
 
     private PatientRecordTableService tableService;
 
-    public OpenPatientRecordListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
-        this.privelegy = privelegy;
+    public OpenPatientRecordListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
+        this.privilege = privilege;
         this.tableHolder = tableHolder;
         this.tableService = new PatientRecordTableService(tableHolder);
     }
@@ -97,7 +96,7 @@ public class OpenPatientRecordListener extends AbstractTableListener {
 
                     byte[] decodedBuffer = Base64.decodeBase64(record.getBinary());
 
-                    PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privelegy);
+                    PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privilege);
 
                     if (privelegyDir == null) {
                         return;

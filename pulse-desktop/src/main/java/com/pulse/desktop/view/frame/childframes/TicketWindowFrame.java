@@ -36,7 +36,7 @@ import com.pulse.desktop.controller.MarkAsDiscountPatientListener;
 import com.pulse.desktop.controller.MarkAsPayedBackListener;
 import com.pulse.desktop.controller.MarkAsUnpayListener;
 import com.pulse.desktop.controller.SearchByDateListener;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -48,7 +48,7 @@ public class TicketWindowFrame extends AbstractTabledChildFrame {
     
     private final List<JComponent> TOOLBAR_BTN_LIST = new ArrayList<>(10);
     
-    private Privelegy privelegy = Privelegy.TicketWindow;
+    private Privilege privilege = Privilege.TicketWindow;
     
     private final JButton MARK_AS_PAYED_BTN = new JButton("", new ImageIcon("./pic/pay.png"));
     private final JButton MARK_AS_UNPAYED_BTN = new JButton("", new ImageIcon("./pic/no_pay_btn.png")); 
@@ -68,7 +68,7 @@ public class TicketWindowFrame extends AbstractTabledChildFrame {
     private final JComboBox<String> PATIENT_LIST_BOX = new JComboBox<>(FILTER_BOX_MODEL);
     
     public TicketWindowFrame() {
-        super.setPrivelegy(Privelegy.TicketWindow);
+        super.setPrivilege(Privilege.TicketWindow);
         super.setTableHolder(this.TABLE_HOLDER);
         
         buildActionListeners();
@@ -118,7 +118,7 @@ public class TicketWindowFrame extends AbstractTabledChildFrame {
         mapbl.setTableHolder(this.TABLE_HOLDER);
         
         SearchByDateListener sbdl = new SearchByDateListener(
-                privelegy, this.PATIENT_LIST_BOX, this.SRCH_BY_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
+                privilege, this.PATIENT_LIST_BOX, this.SRCH_BY_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         this.DATE_FILTER_BUTTON.addActionListener(sbdl);
                         

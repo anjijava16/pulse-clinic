@@ -38,7 +38,7 @@ import javax.swing.border.TitledBorder;
 import com.pulse.desktop.view.frame.childframes.assignment.AssignmentService;
 import com.pulse.model.Organisation;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
 
 
@@ -105,18 +105,18 @@ public class VisitCoursePanel {
     private final OrganisationClient organisationClient = new OrganisationClient();
     
     public void fillDoctorsList(User user) {
-        if (user.getPrivelegy() == Privelegy.Ultrasound.getId()) this.ULTRASOUND_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Ginecology.getId()) this.GYNECOLOGY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Urology.getId()) this.UROLOGY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Stationary.getId()) this.STATIONARY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Hirurgiya.getId()) this.SURGERY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Okulist.getId()) this.OCULIST_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Fizio.getId()) this.PHYSIOTHERAPY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Terapevt.getId()) this.THERAPY_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Endokrinolog.getId()) this.ENDO_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Nevropatolog.getId()) this.NEUROLOGIST_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.Vertebrolog.getId()) this.VERTEBROLOGIST_DCM.addElement(user.getNfp());
-        if (user.getPrivelegy() == Privelegy.MagneticResonanceImaging.getId()) this.MRI_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Ultrasound.getId()) this.ULTRASOUND_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Ginecology.getId()) this.GYNECOLOGY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Urology.getId()) this.UROLOGY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Stationary.getId()) this.STATIONARY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Hirurgiya.getId()) this.SURGERY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Okulist.getId()) this.OCULIST_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Fizio.getId()) this.PHYSIOTHERAPY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Terapevt.getId()) this.THERAPY_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Endokrinolog.getId()) this.ENDO_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Nevropatolog.getId()) this.NEUROLOGIST_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.Vertebrolog.getId()) this.VERTEBROLOGIST_DCM.addElement(user.getNfp());
+        if (user.getPrivelegy() == Privilege.MagneticResonanceImaging.getId()) this.MRI_DCM.addElement(user.getNfp());
     }
     
     public VisitCoursePanel() {

@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.desktop.view.manager.WindowManager;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -34,8 +34,8 @@ public class AddUserListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
         
-    public AddUserListener(Privelegy privelegy, TableHolder tableHolder) {
-        super(privelegy, tableHolder);
+    public AddUserListener(Privilege privilege, TableHolder tableHolder) {
+        super(privilege, tableHolder);
     }
 
     @Override

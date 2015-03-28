@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JTextField;
 import com.pulse.model.PatientRoom;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.PatientRoomClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +42,8 @@ public class CreatePatientRoomListener extends AbstractTableListener {
 
     private JTextField nameField;
 
-    public CreatePatientRoomListener(Privelegy privelegy, TableService.TableHolder tableHolder, JTextField nameField) {
-        super(privelegy, tableHolder);
+    public CreatePatientRoomListener(Privilege privilege, TableService.TableHolder tableHolder, JTextField nameField) {
+        super(privilege, tableHolder);
         this.tableService = new PatientRoomTableService(tableHolder);
         this.nameField = nameField;
     }

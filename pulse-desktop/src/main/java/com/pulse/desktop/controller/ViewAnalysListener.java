@@ -16,7 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
@@ -30,7 +29,7 @@ import com.pulse.desktop.view.util.FileManager;
 import com.pulse.desktop.view.util.Settings;
 import com.pulse.desktop.view.util.Values;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
 import com.pulse.model.constant.Status;
 import com.pulse.rest.client.VisitClient;
@@ -53,11 +52,11 @@ public class ViewAnalysListener extends AbstractTableListener {
 
     private VisitClient visitClient = new VisitClient();
 
-    public ViewAnalysListener(Privelegy privelegy, TableService.TableHolder holder, SimpleDateFormat dateFormat) {
-        super(privelegy, holder);
+    public ViewAnalysListener(Privilege privilege, TableService.TableHolder holder, SimpleDateFormat dateFormat) {
+        super(privilege, holder);
         this.dateFormat = dateFormat;
 
-        this.privelegyDir = PrivelegyDir.getPathBy(privelegy);
+        this.privelegyDir = PrivelegyDir.getPathBy(privilege);
     }
 
     @Override

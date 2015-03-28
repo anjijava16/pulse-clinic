@@ -22,13 +22,13 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import com.pulse.desktop.controller.builder.MessageBuilder;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Journal;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
 import com.pulse.rest.client.JournalClient;
 import org.apache.commons.codec.binary.Base64;
@@ -43,7 +43,7 @@ public class OpenJournalListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privelegy privelegy;
+    private Privilege privilege;
 
     private TableService.TableHolder tableHolder;
 
@@ -51,9 +51,9 @@ public class OpenJournalListener extends AbstractTableListener {
 
     private JournalTableService journalService;
 
-    public OpenJournalListener(Privelegy privelegy, TableService.TableHolder tableHolder) {
-        super(privelegy, tableHolder);
-        this.privelegy = privelegy;
+    public OpenJournalListener(Privilege privilege, TableService.TableHolder tableHolder) {
+        super(privilege, tableHolder);
+        this.privilege = privilege;
         this.tableHolder = tableHolder;
         this.journalService = new JournalTableService(tableHolder);
     }
@@ -97,7 +97,7 @@ public class OpenJournalListener extends AbstractTableListener {
 
                     byte[] decodedBuffer = Base64.decodeBase64(journal.getBinary());
 
-                    PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privelegy);
+                    PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privilege);
 
                     if (privelegyDir == null) {
                         return;

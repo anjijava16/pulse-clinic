@@ -24,7 +24,7 @@ import java.util.List;
 
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
 
 
 /**
@@ -58,7 +58,7 @@ public class VisitTableService {
             
             ptr++;
             
-            data[ptr++] = Privelegy.findById(visit.getDepartmentId()).getName();
+            data[ptr++] = Privilege.findById(visit.getDepartmentId()).getName();
             
             data[ptr++] = visit.getAnalysGroup();
             data[ptr++] = visit.getAnalysName();

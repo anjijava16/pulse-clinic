@@ -17,12 +17,10 @@ package com.pulse.desktop.view.frame.user;
 
 
 import com.pulse.desktop.controller.CreateUserListener;
-import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.model.constant.Privelegy;
+import com.pulse.model.constant.Privilege;
+
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 
@@ -54,7 +52,7 @@ public final class AccountCreationFrame
     
     @Override
     public void addAllActionListeners() {
-        final CreateUserListener cul = new CreateUserListener(Privelegy.None, this.holder);
+        final CreateUserListener cul = new CreateUserListener(Privilege.None, this.holder);
         cul.setBirthdayField(USER_INFO_PANEL.getBirthdayField());
         cul.setFamilyNameField(USER_INFO_PANEL.getFamilyNameField());
         cul.setFatherNameField(USER_INFO_PANEL.getFatherNameField());
