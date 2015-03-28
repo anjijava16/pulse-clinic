@@ -24,14 +24,14 @@ import com.pulse.model.constant.Privilege;
 /**
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
-public enum PrivelegyService {
+public enum PrivilegeService {
     
     INSTANCE;
     
-    private PrivelegyService() {
+    private PrivilegeService() {
     }
     
-    public void enablePrivelegies(int privelegy) {
+    public void enablePrivileges(int privelegy) {
         switch (privelegy) {
             case Privelegies.ADMINISTRATOR:
             case Privelegies.DIRECTOR:

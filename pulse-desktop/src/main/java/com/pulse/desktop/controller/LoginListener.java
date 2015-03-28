@@ -22,7 +22,7 @@ import com.pulse.desktop.controller.service.UserFacade;
 
 import com.pulse.desktop.view.frame.AuthentificationFrame;
 import com.pulse.desktop.view.frame.MainFrame;
-import com.pulse.desktop.view.manager.PrivelegyService;
+import com.pulse.desktop.view.manager.PrivilegeService;
 import com.pulse.desktop.view.manager.WindowManager;
 
 import com.pulse.model.User;
@@ -102,7 +102,7 @@ public class LoginListener implements ActionListener {
 
                     WindowManager.getInstance().setMainFrame(mainFrame);
 
-                    PrivelegyService.INSTANCE.enablePrivelegies(user.getPrivelegy());
+                    PrivilegeService.INSTANCE.enablePrivileges(user.getPrivelegy());
 
                     mainFrame.setVisible(true);
                     
