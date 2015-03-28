@@ -31,8 +31,8 @@ public enum PrivilegeService {
     private PrivilegeService() {
     }
     
-    public void enablePrivileges(int privelegy) {
-        switch (privelegy) {
+    public void enablePrivileges(int privilege) {
+        switch (privilege) {
             case Privelegies.ADMINISTRATOR:
             case Privelegies.DIRECTOR:
                 break;
