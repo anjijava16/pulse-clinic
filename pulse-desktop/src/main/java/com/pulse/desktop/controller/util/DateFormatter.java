@@ -26,5 +26,5 @@ public enum DateFormatter {
 
     INSTANCE;
 
-    public SimpleDateFormat requestFormat = new SimpleDateFormat("yyyy.MM.dd");
+    public SimpleDateFormat generalDotFormatter = new SimpleDateFormat("yyyy.MM.dd");
 }
