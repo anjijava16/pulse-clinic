@@ -1,7 +1,8 @@
 # **pulse-clinic** #
 
+*About:*
 
-Clinic Management System
+The very first version of this project was done by my within 2 weeks
 
 
 *Requirements:*
@@ -13,3 +14,6 @@ Clinic Management System
 *Supported languages:*
 
 * Russian
+ 
+*TODO:*
+* XML/JSON based multi language support
