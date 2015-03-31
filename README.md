@@ -2,8 +2,17 @@
 
 *About:*
 
-The very first version of this project was done by my within 2 weeks
+The very first version of this project was done by me within 2 weeks. Time past and server side has been changed from
+ServerSocket and private binary protocol solution to ReST API and application server. Many parts of logic were changed
+and simplified but there are still many things to do.
 
+*TODO:*
+
+* Add multi-languages support
+* Add unit tests
+* Re factor maaaany parts, since they are really dirty ;)
+* Put more comments
+* Fix all warnings
 
 *Requirements:*
 
@@ -14,6 +23,3 @@ The very first version of this project was done by my within 2 weeks
 *Supported languages:*
 
 * Russian
- 
-*TODO:*
-* XML/JSON based multi language support
