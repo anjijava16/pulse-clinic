@@ -1,6 +1,6 @@
 # *pulse-clinic* #
 
-*About:*
+*History:*
 
 The very first version of this project was done by me in 2013 and within 2 weeks. Time past and server side has been changed
 from ServerSocket and private binary protocol solution to ReST API and application server. Many parts of logic were changed
