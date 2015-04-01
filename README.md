@@ -9,6 +9,7 @@ still many things to do and many things have to be improved and optimized.
 
 *TODO:*
 
+* Add more security features (Like READ-ONLY analysis and form for example)
 * Add multi-languages support
 * Add unit tests
 * Re factor maaaany parts, since they are really dirty ;)
