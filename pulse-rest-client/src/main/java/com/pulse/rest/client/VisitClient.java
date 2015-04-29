@@ -50,7 +50,7 @@ public class VisitClient {
     }
     
     public List<Visit> findByDate(String dateBuffer) throws IOException {
-        final String path = this.ENDPOINT.concat("bydate/");
+        final String path = this.ENDPOINT.concat("bydate/").concat(dateBuffer);
         
         return this.VISIT_CLIENT.list(path, Visit.class);
     }

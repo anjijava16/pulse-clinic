@@ -17,6 +17,7 @@ package com.pulse.desktop.view.registratur;
 
 
 import com.pulse.desktop.controller.service.UserFacade;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -35,6 +36,7 @@ import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+
 import com.pulse.desktop.view.frame.childframes.assignment.AssignmentService;
 
 import com.pulse.desktop.controller.service.ResultToolbarService;
@@ -51,6 +53,7 @@ import com.pulse.model.Visit;
 import com.pulse.model.constant.PaymentStatus;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
+
 import java.io.UnsupportedEncodingException;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
@@ -124,11 +127,11 @@ public final class PatientCommingRegistrationFrame {
     private final int MIN_STEP = 0;
 
     private final JPanel BUTTONS_PANEL = new JPanel(new FlowLayout());
-    
+
     private final JButton NEXT_BUTTON = new JButton(">");
     private final JButton SAVE_BUTTON = new JButton("Сохранить");
     private final JButton PREVIOUS_BUTTON = new JButton("<");
-   
+
     private final VisitClient visitClient = new VisitClient();
 
     public PatientCommingRegistrationFrame() {
@@ -161,11 +164,11 @@ public final class PatientCommingRegistrationFrame {
                 setFrameVisible(false);
             }
         });
-        
+
         this.BUTTONS_PANEL.add(this.PREVIOUS_BUTTON);
         this.BUTTONS_PANEL.add(this.SAVE_BUTTON);
         this.BUTTONS_PANEL.add(this.NEXT_BUTTON);
-        
+
         this.frame.add(this.ROOT_PANEL, BorderLayout.CENTER);
         this.frame.add(this.BUTTONS_PANEL, BorderLayout.SOUTH);
     }
@@ -190,7 +193,7 @@ public final class PatientCommingRegistrationFrame {
         JPanel searchWrapperPanel = new JPanel();
         searchWrapperPanel.setLayout(new FlowLayout());
         searchWrapperPanel.add(this.PATIENT_SEARCH_PANEL);
-        
+
         this.CARD_PANEL.setLayout(this.CARD_LAYOUT);
         this.CARD_PANEL.add(searchWrapperPanel, "0");
         this.CARD_PANEL.add(VISIT_COURSE_SELECTION_PANEL.getRootPanel(), "1");
@@ -224,207 +227,106 @@ public final class PatientCommingRegistrationFrame {
     }
 
     public void addAllActionListeners() {
-        this.NEXT_BUTTON.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {        
-                final Patient selectedPatient = SHOW_PATIENT_INFO_PANEL.getPatientInfoPanel().getCurrentPatient();
+        this.NEXT_BUTTON.addActionListener(ae -> {
+            final Patient selectedPatient = SHOW_PATIENT_INFO_PANEL.getPatientInfoPanel().getCurrentPatient();
 
-                if (selectedPatient == null) {
-                    ResultToolbarService.INSTANCE.showFailedStatus("Пациент не выбран");
-                    return;
-                }
-
-                if (step.incrementAndGet() >= MAX_STEP) {
-                    step.set(MAX_STEP);
-
-                    SAVE_BUTTON.setVisible(true);
-                }
-
-                CARD_LAYOUT.show(CARD_PANEL, String.valueOf(step));
+            if (selectedPatient == null) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Пациент не выбран");
+                return;
             }
+
+            if (step.incrementAndGet() >= MAX_STEP) {
+                step.set(MAX_STEP);
+
+                SAVE_BUTTON.setVisible(true);
+            }
+
+            CARD_LAYOUT.show(CARD_PANEL, String.valueOf(step));
         });
 
-        this.PREVIOUS_BUTTON.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {                
+        this.PREVIOUS_BUTTON.addActionListener(ae -> {
+            SAVE_BUTTON.setVisible(false);
+
+            if (step.decrementAndGet() <= MIN_STEP) {
+                step.set(MIN_STEP);
+            }
+
+            CARD_LAYOUT.show(CARD_PANEL, String.valueOf(step));
+        });
+
+        this.SAVE_BUTTON.addActionListener(ae -> {
+            if (UserFacade.INSTANCE.getApplicationUser() == null) return;
+
+            CARD_LAYOUT.show(CARD_PANEL, String.valueOf(0));
+
+            final String fromOrganisation = VISIT_COURSE_SELECTION_PANEL.getFromOrganisationList().getSelectedItem().toString();
+            final String fromDoctor = VISIT_COURSE_SELECTION_PANEL.getFromDoctorArea().getText();
+
+            final Patient selectedPatient = SHOW_PATIENT_INFO_PANEL.getPatientInfoPanel().getCurrentPatient();
+
+            if (selectedPatient == null) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Пациент не выбран");
+                return;
+            }
+
+            if (!VISIT_COURSE_SELECTION_PANEL.getLaboratoryCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getUltrasoundCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getGinecologyCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getUrologyCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getStationaryCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getHirurgiyaCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getOkulistCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getFiziCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getTeraCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getEndoCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getNevroCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getVerteCheckBox().isSelected()
+                    && !VISIT_COURSE_SELECTION_PANEL.getMriCheckBox().isSelected()) {
+
                 SAVE_BUTTON.setVisible(false);
 
-                if (step.decrementAndGet() <= MIN_STEP) {
-                    step.set(MIN_STEP);
-                }
-
-                CARD_LAYOUT.show(CARD_PANEL, String.valueOf(step));
+                return;
             }
-        });
 
-        this.SAVE_BUTTON.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (UserFacade.INSTANCE.getApplicationUser() == null) return;
-                
-                CARD_LAYOUT.show(CARD_PANEL, String.valueOf(0));
+            // Laboratory
+            if (VISIT_COURSE_SELECTION_PANEL.getLaboratoryCheckBox().isSelected()) {
+                HashMap<String, ArrayList<String>> selectedCourses
+                        = AssignmentService.INSTANCE.getLaboratoryFrame().getAnalysSelectionPanel().getAllSelectionData();
 
-                final String fromOrganisation = VISIT_COURSE_SELECTION_PANEL.getFromOrganisationList().getSelectedItem().toString();
-                final String fromDoctor = VISIT_COURSE_SELECTION_PANEL.getFromDoctorArea().getText();
+                Set<String> selectedGroups = selectedCourses.keySet();
+                for (String group : selectedGroups) {
+                    ArrayList<String> selectedAnalyses = selectedCourses.get(group);
+                    for (String analys : selectedAnalyses) {
+                        String hash = HashBuilder.INSTANCE.calculate();
+                        String extension = NameValidator.INSTANCE.getExtension(analys);
 
-                final Patient selectedPatient = SHOW_PATIENT_INFO_PANEL.getPatientInfoPanel().getCurrentPatient();
-
-                if (selectedPatient == null) {
-                    ResultToolbarService.INSTANCE.showFailedStatus("Пациент не выбран");
-                    return;
-                }
-                
-                if (!VISIT_COURSE_SELECTION_PANEL.getLaboratoryCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getUltrasoundCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getGinecologyCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getUrologyCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getStationaryCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getHirurgiyaCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getOkulistCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getFiziCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getTeraCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getEndoCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getNevroCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getVerteCheckBox().isSelected()
-                        && !VISIT_COURSE_SELECTION_PANEL.getMriCheckBox().isSelected()) {
-
-                    SAVE_BUTTON.setVisible(false);
-
-                    return;
-                }
-                                
-                // Laboratory
-                if (VISIT_COURSE_SELECTION_PANEL.getLaboratoryCheckBox().isSelected()) {
-                    HashMap<String, ArrayList<String>> selectedCourses
-                            = AssignmentService.INSTANCE.getLaboratoryFrame().getAnalysSelectionPanel().getAllSelectionData();
-
-                    Set<String> selectedGroups = selectedCourses.keySet();
-                    for (String group : selectedGroups) {
-                        ArrayList<String> selectedAnalyses = selectedCourses.get(group);
-                        for (String analys : selectedAnalyses) {
-                            String hash = HashBuilder.INSTANCE.calculate();
-                            String extension = NameValidator.INSTANCE.getExtension(analys);
-                            
-                            if (hash == null) {
-                                ResultToolbarService.INSTANCE.showFailedStatus("Кодировка не поддерживается");
-                                return;
-                            }
-                
-                            try {
-                                hash = HashBuilder.INSTANCE.token(hash.concat(analys));
-                            } catch (UnsupportedEncodingException uee) {
-                                ResultToolbarService.INSTANCE.showFailedStatus("Кодировка не поддерживается");
-                                return;
-                            }
-                            
-                            try {
-                                Visit visit = new Visit();
-                                visit.setDepartmentId(Privilege.Laboratory.getId());
-                                visit.setAnalysGroup(group);
-                                visit.setAnalysName(analys);
-                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                                visit.setPatientId(selectedPatient.getId());
-                                visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                                visit.setTillDate(Values.Empty.getValue());
-                                visit.setFromDoctor(fromDoctor);
-                                visit.setFromOrganisation(fromOrganisation);
-                                visit.setFilename(hash.concat(extension));
-                                visit.setFilepath(String.valueOf(Privilege.Laboratory.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
-
-                                visit.setVisitDate(new Date());
-                                visit.setVisitStatus(Settings.NOT_VISITED);
-                                visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                                visitClient.update(visit);
-                            } catch (IOException ioe) {
-                                ioe.printStackTrace();
-                            }
+                        if (hash == null) {
+                            ResultToolbarService.INSTANCE.showFailedStatus("Кодировка не поддерживается");
+                            return;
                         }
-                    }
 
-                    AssignmentService.INSTANCE.getLaboratoryFrame().getAnalysSelectionPanel().clearAllSelectionData();
-                }
+                        try {
+                            hash = HashBuilder.INSTANCE.token(hash.concat(analys));
+                        } catch (UnsupportedEncodingException uee) {
+                            ResultToolbarService.INSTANCE.showFailedStatus("Кодировка не поддерживается");
+                            return;
+                        }
 
-                // Urology
-                if (VISIT_COURSE_SELECTION_PANEL.getUrologyCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getUrologyDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Urology.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                }
-
-                // Ginecology
-                if (VISIT_COURSE_SELECTION_PANEL.getGinecologyCheckBox().isSelected()) {
-//                    HashMap<String, ArrayList<String>> selectedCourses = AssignmentService.INSTANCE.getGinecologyFrame().getAnalysSelectionPanel().getAllSelectionData();
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getGinecologyDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-
-//                    Set<String> selectedGroups = selectedCourses.keySet();
-//                    for (String group : selectedGroups) {
-//                        ArrayList<String> selectedAnalyses = selectedCourses.get(group);
-//                        for (String analys : selectedAnalyses) {
-//                            try {
-//                                Visit visit = new Visit();
-//                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privilege.Ginecology.getId());
-//                                visit.setAnalysGroup(group);
-//                                visit.setAnalysName(analys);
-//                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-//                                visit.setPatientId(selectedPatient.getId());
-//                                visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-//                                visit.setTillDate(Values.Empty.getValue());
-//                                visit.setFromDoctor(fromDoctor);
-//                                visit.setFromOrganisation(fromOrganisation);
-//                                visit.setFilename(hash.concat(PrivelegyDir.GINECOLOGY_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privilege.Ginecology.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
-//
-//                                visit.setVisitDate(new Date());
-//                                visit.setVisitStatus(Settings.NOT_VISITED);
-//                                visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-//
-//                                visitClient.update(visit);
-//                            } catch (IOException ioe) {
-//                                ioe.printStackTrace();
-//                            }
-//                        }
-//                    }
-
-//                    if (selectedGroups.size() == 0) {
                         try {
                             Visit visit = new Visit();
-                            visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privilege.Ginecology.getId());
-                            visit.setAnalysGroup(Values.Unknown.getValue());
-                            visit.setAnalysName(Values.Unknown.getValue());
+                            visit.setDepartmentId(Privilege.Laboratory.getId());
+                            visit.setAnalysGroup(group);
+                            visit.setAnalysName(analys);
                             visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
                             visit.setPatientId(selectedPatient.getId());
                             visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
                             visit.setTillDate(Values.Empty.getValue());
-                            visit.setFilename(Values.Empty.getValue());
-                            visit.setFilepath(Values.Empty.getValue());
-                            visit.setVisitDate(new Date());
                             visit.setFromDoctor(fromDoctor);
                             visit.setFromOrganisation(fromOrganisation);
+                            visit.setFilename(hash.concat(extension));
+                            visit.setFilepath(String.valueOf(Privilege.Laboratory.getId()).concat("/").concat(String.valueOf(selectedPatient.getId())).concat("/"));
+
+                            visit.setVisitDate(new Date());
                             visit.setVisitStatus(Settings.NOT_VISITED);
                             visit.setVisitType(Settings.VISIT_TYPE_CAMED);
 
@@ -432,377 +334,361 @@ public final class PatientCommingRegistrationFrame {
                         } catch (IOException ioe) {
                             ioe.printStackTrace();
                         }
-//                    }
-
-                    AssignmentService.INSTANCE.getGinecologyFrame().getAnalysSelectionPanel().clearAllSelectionData();
-                }
-
-                // Ultrasound
-                if (VISIT_COURSE_SELECTION_PANEL.getUltrasoundCheckBox().isSelected()) {
-//                    HashMap<String, ArrayList<String>> selectedCourses = AssignmentService.INSTANCE.getUltrasoundFrame().getAnalysSelectionPanel().getAllSelectionData();
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getUltraSoundDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-//                    Set<String> selectedGroups = selectedCourses.keySet();
-//                    for (String group : selectedGroups) {
-//                        ArrayList<String> selectedAnalyses = selectedCourses.get(group);
-//                        for (String analys : selectedAnalyses) {
-//                            try {
-//                                Visit visit = new Visit();
-//                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privilege.Ultrasound.getId());
-//                                visit.setAnalysGroup(group);
-//                                visit.setAnalysName(analys);
-//                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-//                                visit.setPatientId(selectedPatient.getId());
-//                                visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-//                                visit.setTillDate(Values.Empty.getValue());
-//                                visit.setFromDoctor(fromDoctor);
-//                                visit.setFromOrganisation(fromOrganisation);
-//                                visit.setFilename(hash.concat(PrivelegyDir.ULTRASOUND_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privilege.Ultrasound.getId()).concat("/")
-//                                        .concat(String.valueOf(selectedPatient.getId())).concat("/"));
-//
-//                                visit.setVisitDate(new Date());
-//                                visit.setVisitStatus(Settings.NOT_VISITED);
-//                                visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-//
-//                                visitClient.update(visit);
-//                            } catch (IOException ioe) {
-//                                ioe.printStackTrace();
-//                            }
-//                        }
-//                    }
-//
-//                    if (selectedGroups.size() == 0) {
-                        try {
-                            Visit visit = new Visit();
-                            visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privilege.Ultrasound.getId());
-                            visit.setAnalysGroup(Values.Unknown.getValue());
-                            visit.setAnalysName(Values.Unknown.getValue());
-                            visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                            visit.setPatientId(selectedPatient.getId());
-                            visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                            visit.setTillDate(Values.Empty.getValue());
-                            visit.setFilename(Values.Empty.getValue());
-                            visit.setFilepath(Values.Empty.getValue());
-                            visit.setVisitDate(new Date());
-                            visit.setFromDoctor(fromDoctor);
-                            visit.setFromOrganisation(fromOrganisation);
-                            visit.setVisitStatus(Settings.NOT_VISITED);
-                            visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                            visitClient.update(visit);
-                        } catch (IOException ioe) {
-                            ioe.printStackTrace();
-                        }
-//                    }
-
-                    AssignmentService.INSTANCE.getUltrasoundFrame().getAnalysSelectionPanel().clearAllSelectionData();
-                }
-
-                // Surgery
-                if (VISIT_COURSE_SELECTION_PANEL.getHirurgiyaCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getHirurgiyaDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Hirurgiya.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
                     }
                 }
 
-                // Oculist
-                if (VISIT_COURSE_SELECTION_PANEL.getOkulistCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getOkulistDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Okulist.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                }
-                
-                // Fizio
-                if (VISIT_COURSE_SELECTION_PANEL.getFiziCheckBox().isSelected()) {
-//                    HashMap<String, ArrayList<String>> selectedCourses = 
-//                            AssignmentService.INSTANCE.getPhysiotherapyFrame().getAnalysSelectionPanel().getAllSelectionData();
-                    
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getFizioDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-//                    Set<String> selectedGroups = selectedCourses.keySet();
-//                    for (String group : selectedGroups) {
-//                        ArrayList<String> selectedAnalyses = selectedCourses.get(group);
-//                        for (String analys : selectedAnalyses) {
-//                            try {
-//                                Visit visit = new Visit();
-//                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privilege.Fizio.getId());
-//                                visit.setAnalysGroup(group);
-//                                visit.setAnalysName(analys);
-//                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-//                                visit.setPatientId(selectedPatient.getId());
-//                                visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-//                                visit.setTillDate(Values.Empty.getValue());
-//                                visit.setFromDoctor(fromDoctor);
-//                                visit.setFromOrganisation(fromOrganisation);
-//                                visit.setFilename(hash.concat(PrivelegyDir.FIZIO_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privilege.Fizio.getId()).concat("/")
-//                                        .concat(String.valueOf(selectedPatient.getId())).concat("/"));
-//
-//                                visit.setVisitDate(new Date());
-//                                visit.setVisitStatus(Settings.NOT_VISITED);
-//                                visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-//
-//                                visitClient.update(visit);
-//                            } catch (IOException ioe) {
-//                                ioe.printStackTrace();
-//                            }
-//                        }
-//                    }
-//
-//                    if (selectedGroups.size() == 0) {
-                        try {
-                            Visit visit = new Visit();
-                            visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privilege.Fizio.getId());
-                            visit.setAnalysGroup(Values.Unknown.getValue());
-                            visit.setAnalysName(Values.Unknown.getValue());
-                            visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                            visit.setPatientId(selectedPatient.getId());
-                            visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                            visit.setTillDate(Values.Empty.getValue());
-                            visit.setFilename(Values.Empty.getValue());
-                            visit.setFilepath(Values.Empty.getValue());
-                            visit.setVisitDate(new Date());
-                            visit.setFromDoctor(fromDoctor);
-                            visit.setFromOrganisation(fromOrganisation);
-                            visit.setVisitStatus(Settings.NOT_VISITED);
-                            visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                            visitClient.update(visit);
-                        } catch (IOException ioe) {
-                            ioe.printStackTrace();
-                        }
-//                    }
-
-                    AssignmentService.INSTANCE.getPhysiotherapyFrame().getAnalysSelectionPanel().clearAllSelectionData();
-                }
-                                                
-                // Terapeutic
-                if (VISIT_COURSE_SELECTION_PANEL.getTeraCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getTerapevtDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Terapevt.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                }
-
-                // Endokrinolog
-                if (VISIT_COURSE_SELECTION_PANEL.getEndoCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getEndokriDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Endokrinolog.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                }
-
-                // Nevropatolog
-                if (VISIT_COURSE_SELECTION_PANEL.getNevroCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getNevroDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Nevropatolog.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                }
-
-                // Verte
-                if (VISIT_COURSE_SELECTION_PANEL.getVerteCheckBox().isSelected()) {
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getVerteDoctorsBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-                    try {
-                        Visit visit = new Visit();
-                        visit.setDoctorId(account.getId());
-                        visit.setDepartmentId(Privilege.Vertebrolog.getId());
-                        visit.setAnalysGroup(Values.Unknown.getValue());
-                        visit.setAnalysName(Values.Unknown.getValue());
-                        visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                        visit.setPatientId(selectedPatient.getId());
-                        visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                        visit.setTillDate(Values.Empty.getValue());
-                        visit.setFilename(Values.Empty.getValue());
-                        visit.setFilepath(Values.Empty.getValue());
-                        visit.setVisitDate(new Date());
-                        visit.setFromDoctor(fromDoctor);
-                        visit.setFromOrganisation(fromOrganisation);
-                        visit.setVisitStatus(Settings.NOT_VISITED);
-                        visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                        visitClient.update(visit);
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                }
-
-                // Mri
-                if (VISIT_COURSE_SELECTION_PANEL.getMriCheckBox().isSelected()) {
-//                    HashMap<String, ArrayList<String>> selectedCourses = 
-//                            AssignmentService.INSTANCE.getMriFrame().getAnalysSelectionPanel().getAllSelectionData();
-                    
-                    String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getMriSoundDoctorBox().getSelectedItem().toString();
-                    User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
-//                    Set<String> selectedGroups = selectedCourses.keySet();
-//                    for (String group : selectedGroups) {
-//                        ArrayList<String> selectedAnalyses = selectedCourses.get(group);
-//                        for (String analys : selectedAnalyses) {
-//                            try {
-//                                Visit visit = new Visit();
-//                                visit.setDoctorId(account.getId());
-//                                visit.setDepartmentId(Privilege.MagneticResonanceImaging.getId());
-//                                visit.setAnalysGroup(group);
-//                                visit.setAnalysName(analys);
-//                                visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-//                                visit.setPatientId(selectedPatient.getId());
-//                                visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-//                                visit.setTillDate(Values.Empty.getValue());
-//                                visit.setFromDoctor(fromDoctor);
-//                                visit.setFromOrganisation(fromOrganisation);
-//                                visit.setFilename(hash.concat(PrivelegyDir.FIZIO_PATH.getDocsTrailor()));
-//                                visit.setFilepath(String.valueOf(Privilege.Fizio.getId()).concat("/")
-//                                        .concat(String.valueOf(selectedPatient.getId())).concat("/"));
-//
-//                                visit.setVisitDate(new Date());
-//                                visit.setVisitStatus(Settings.NOT_VISITED);
-//                                visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-//
-//                                visitClient.update(visit);
-//                            } catch (IOException ioe) {
-//                                ioe.printStackTrace();
-//                            }
-//                        }
-//                    }
-//
-//                    if (selectedGroups.size() == 0) {
-                        try {
-                            Visit visit = new Visit();
-                            visit.setDoctorId(account.getId());
-                            visit.setDepartmentId(Privilege.MagneticResonanceImaging.getId());
-                            visit.setAnalysGroup(Values.Unknown.getValue());
-                            visit.setAnalysName(Values.Unknown.getValue());
-                            visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
-                            visit.setPatientId(selectedPatient.getId());
-                            visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
-                            visit.setTillDate(Values.Empty.getValue());
-                            visit.setFilename(Values.Empty.getValue());
-                            visit.setFilepath(Values.Empty.getValue());
-                            visit.setVisitDate(new Date());
-                            visit.setFromDoctor(fromDoctor);
-                            visit.setFromOrganisation(fromOrganisation);
-                            visit.setVisitStatus(Settings.NOT_VISITED);
-                            visit.setVisitType(Settings.VISIT_TYPE_CAMED);
-
-                            visitClient.update(visit);
-                        } catch (IOException ioe) {
-                            ioe.printStackTrace();
-                        }
-//                    }
-
-                    AssignmentService.INSTANCE.getMriFrame().getAnalysSelectionPanel().clearAllSelectionData();
-                }
-                
-                hidePanel();
+                AssignmentService.INSTANCE.getLaboratoryFrame().getAnalysSelectionPanel().clearAllSelectionData();
             }
+
+            // Urology
+            if (VISIT_COURSE_SELECTION_PANEL.getUrologyCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getUrologyDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Urology.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Ginecology
+            if (VISIT_COURSE_SELECTION_PANEL.getGinecologyCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getGinecologyDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Ginecology.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+
+                AssignmentService.INSTANCE.getGinecologyFrame().getAnalysSelectionPanel().clearAllSelectionData();
+            }
+
+            // Ultrasound
+            if (VISIT_COURSE_SELECTION_PANEL.getUltrasoundCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getUltraSoundDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Ultrasound.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+                AssignmentService.INSTANCE.getUltrasoundFrame().getAnalysSelectionPanel().clearAllSelectionData();
+            }
+
+            // Surgery
+            if (VISIT_COURSE_SELECTION_PANEL.getHirurgiyaCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getHirurgiyaDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Hirurgiya.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Oculist
+            if (VISIT_COURSE_SELECTION_PANEL.getOkulistCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getOkulistDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Okulist.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Fizio
+            if (VISIT_COURSE_SELECTION_PANEL.getFiziCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getFizioDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Fizio.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+
+                AssignmentService.INSTANCE.getPhysiotherapyFrame().getAnalysSelectionPanel().clearAllSelectionData();
+            }
+
+            // Terapeutic
+            if (VISIT_COURSE_SELECTION_PANEL.getTeraCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getTerapevtDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Terapevt.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Endokrinolog
+            if (VISIT_COURSE_SELECTION_PANEL.getEndoCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getEndokriDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Endokrinolog.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Nevropatolog
+            if (VISIT_COURSE_SELECTION_PANEL.getNevroCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getNevroDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Nevropatolog.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Verte
+            if (VISIT_COURSE_SELECTION_PANEL.getVerteCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getVerteDoctorsBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.Vertebrolog.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+
+            // Mri
+            if (VISIT_COURSE_SELECTION_PANEL.getMriCheckBox().isSelected()) {
+                String selectedDoctorNfp = VISIT_COURSE_SELECTION_PANEL.getMriSoundDoctorBox().getSelectedItem().toString();
+                User account = UserFacade.INSTANCE.findBy(selectedDoctorNfp);
+
+                if (account == null) return;
+
+                try {
+                    Visit visit = new Visit();
+                    visit.setDoctorId(account.getId());
+                    visit.setDepartmentId(Privilege.MagneticResonanceImaging.getId());
+                    visit.setAnalysGroup(Values.Unknown.getValue());
+                    visit.setAnalysName(Values.Unknown.getValue());
+                    visit.setCreatedBy(UserFacade.INSTANCE.getApplicationUser().getUsername());
+                    visit.setPatientId(selectedPatient.getId());
+                    visit.setPaymentStatus(PaymentStatus.NOT_PAYED.getId());
+                    visit.setTillDate(Values.Empty.getValue());
+                    visit.setFilename(Values.Empty.getValue());
+                    visit.setFilepath(Values.Empty.getValue());
+                    visit.setVisitDate(new Date());
+                    visit.setFromDoctor(fromDoctor);
+                    visit.setFromOrganisation(fromOrganisation);
+                    visit.setVisitStatus(Settings.NOT_VISITED);
+                    visit.setVisitType(Settings.VISIT_TYPE_CAMED);
+
+                    visitClient.update(visit);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+
+                AssignmentService.INSTANCE.getMriFrame().getAnalysSelectionPanel().clearAllSelectionData();
+            }
+
+            hidePanel();
         });
     }
 }

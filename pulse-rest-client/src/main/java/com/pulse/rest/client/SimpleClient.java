@@ -68,8 +68,6 @@ public class SimpleClient<T> {
             
             instream.close();
             properites.clear();
-        } catch (FileNotFoundException fnfe) {
-            REST_URL = String.format(REST_URL, "127.0.0.1", "pulse-rest-service/rest/");
         } catch (IOException ioe) {
             REST_URL = String.format(REST_URL, "127.0.0.1", "pulse-rest-service/rest/");
         }
@@ -99,7 +97,8 @@ public class SimpleClient<T> {
         
         return response;
     }
-    
+
+    @SuppressWarnings("unchecked")
     public T executeGetWithHeader(String link, Map<String, String> header, Class type) throws IOException {
         final CloseableHttpClient client = HttpClientBuilder.create().build();
         
@@ -127,7 +126,7 @@ public class SimpleClient<T> {
         final InputStream instream = entity.getContent();
         byte[] buffer = new byte[8*1024];
         
-        int wasread = -1;
+        int wasread;
         final StringBuilder jsonBuilder = new StringBuilder();
         
         while ((wasread = instream.read(buffer)) > 0) {
@@ -136,10 +135,8 @@ public class SimpleClient<T> {
         }
         
         client.close();
-        
-        T t = (T) this.MAPPER.readValue(jsonBuilder.toString(), type);
-        
-        return t;
+
+        return (T) this.MAPPER.readValue(jsonBuilder.toString(), type);
     }
     
     public HttpResponse executeGet(String link) throws IOException {
@@ -153,7 +150,8 @@ public class SimpleClient<T> {
         
         return response;
     }
-    
+
+    @SuppressWarnings("unchecked")
     public T executePojoGet(String link, Class type) throws IOException {
         final CloseableHttpClient client = HttpClientBuilder.create().build();
         
@@ -167,7 +165,7 @@ public class SimpleClient<T> {
         final InputStream instream = entity.getContent();
         byte[] buffer = new byte[8*1024];
         
-        int wasread = -1;
+        int wasread;
         final StringBuilder jsonBuilder = new StringBuilder();
         
         while ((wasread = instream.read(buffer)) > 0) {
@@ -176,10 +174,8 @@ public class SimpleClient<T> {
         }
         
         client.close();
-        
-        T t = (T) this.MAPPER.readValue(jsonBuilder.toString(), type);
-        
-        return t;
+
+        return (T) this.MAPPER.readValue(jsonBuilder.toString(), type);
     }
     
     public HttpResponse executePost(String link, T instance) throws IOException {
@@ -205,15 +201,12 @@ public class SimpleClient<T> {
                 
         final HttpGet request = new HttpGet(this.REST_URL.concat(link));
         final HttpResponse response = client.execute(request);
-                
+
         final String jsonBody = EntityUtils.toString(response.getEntity(), "UTF-8");
-                
-        List<T> recordsList = 
-                this.MAPPER.readValue(
-                        jsonBody, TypeFactory.defaultInstance().constructCollectionType(List.class, type)
-                );
-                
-        return recordsList;
+
+        return this.MAPPER.readValue(
+                jsonBody, TypeFactory.defaultInstance().constructCollectionType(List.class, type)
+        );
     }
     
     public List<T> listPost(String link, Object instance, Class type) throws IOException {        
@@ -229,12 +222,9 @@ public class SimpleClient<T> {
         final HttpResponse response = client.execute(request);
                 
         final String jsonBody = EntityUtils.toString(response.getEntity(), "UTF-8");
-                
-        List<T> recordsList = 
-                this.MAPPER.readValue(
-                        jsonBody, TypeFactory.defaultInstance().constructCollectionType(List.class, type)
-                );
-                
-        return recordsList;
+
+        return this.MAPPER.readValue(
+                jsonBody, TypeFactory.defaultInstance().constructCollectionType(List.class, type)
+        );
     }
 }

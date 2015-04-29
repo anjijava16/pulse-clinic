@@ -35,9 +35,6 @@ import org.slf4j.LoggerFactory;
 public enum LicenseHandler {
     INSTANCE;
 
-    private LicenseHandler() {
-    }
-
     public boolean isEnabled() throws IOException, ParseException {
         final FileInputStream instream = new FileInputStream(LICENSE_PATH);
         final BufferedReader reader = new BufferedReader(new InputStreamReader(instream));
@@ -52,10 +49,7 @@ public enum LicenseHandler {
         final Date now = new Date();
         final Date licenseDay = dateFormater.parse(decodedValue);
 
-        if (now.before(licenseDay))
-            return true;
-
-        return false;
+        return now.before(licenseDay);
     }
 
     private final String LICENSE_PATH = "./license";
