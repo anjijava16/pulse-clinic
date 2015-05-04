@@ -72,41 +72,6 @@ public class PatientInfoPanel {
     public PatientInfoPanel() {
         configurePanel();
     }
-        
-//    public void allowAll() {
-//        this.FAMILY_NAME_FIELD.setEnabled(true);
-//        this.FIRST_NAME_FIELD.setEnabled(true);
-//
-//        this.EMAIL_FIELD.setEnabled(true);
-//        this.MOBILE_PHONE_FIELD.setEnabled(true);
-//        this.CLIENT_TYPE_BOX.setEnabled(true);
-//        this.BIRTHDAY_FIELD.setEnabled(true);
-//        this.SEX_BOX.setEnabled(true);
-//
-//        denyEdit();
-//    }
-
-//    public void denyAll() {
-//        this.FAMILY_NAME_FIELD.setEnabled(false);
-//        this.FIRST_NAME_FIELD.setEnabled(false);
-//
-//        this.EMAIL_FIELD.setEnabled(false);
-//        this.MOBILE_PHONE_FIELD.setEnabled(false);
-//        this.CLIENT_TYPE_BOX.setEnabled(false);
-//        this.BIRTHDAY_FIELD.setEnabled(false);
-//        this.SEX_BOX.setEnabled(false);
-//    }
-
-//    public void allowEdit() {
-//        this.FAMILY_NAME_FIELD.setEditable(true);
-//        this.FIRST_NAME_FIELD.setEditable(true);
-//
-//        this.EMAIL_FIELD.setEditable(true);
-//        this.MOBILE_PHONE_FIELD.setEditable(true);
-//        this.CLIENT_TYPE_BOX.setEditable(true);
-//        this.BIRTHDAY_FIELD.setEditable(true);
-//        this.SEX_BOX.setEditable(true);
-//    }
 
     public void denyEdit() {
         this.FAMILY_NAME_FIELD.setEditable(false);
@@ -118,17 +83,6 @@ public class PatientInfoPanel {
         this.BIRTHDAY_FIELD.setEditable(false);
         this.SEX_BOX.setEditable(false);
     }
-
-//    public void clearAllData() {
-//        this.FAMILY_NAME_FIELD.setText("");
-//        this.FIRST_NAME_FIELD.setText("");
-//
-//        this.EMAIL_FIELD.setText("");
-//        this.MOBILE_PHONE_FIELD.setText("");
-//        this.CLIENT_TYPE_BOX.setSelectedIndex(0);
-//        this.BIRTHDAY_FIELD.setText("1900-01-01");
-//        this.SEX_BOX.setSelectedIndex(0);
-//    }
 
     public Patient findAndShowBy(String fullname) throws IOException {
         final String token = HashBuilder.INSTANCE.token(fullname);

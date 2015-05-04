@@ -50,9 +50,6 @@ public enum PrivilegeService {
                 if (UserFacade.INSTANCE.getApplicationUser().getPrivelegy() != Privilege.Statistic.getId())
                     WindowManager.getInstance().getMainFrame().enableStatisticFrame(false);
 
-//                if (UserFacade.INSTANCE.getApplicationUser().getPrivilege() != Privilege.Journal.getId())
-//                    WindowManager.getInstance().getMainFrame().enableJournalFrame(false);
-
                 WindowManager.getInstance().getMainFrame().enablePatientRoomFrame(false);
                                 
                 WindowManager.getInstance().getRegistryFrame().disableAccess();

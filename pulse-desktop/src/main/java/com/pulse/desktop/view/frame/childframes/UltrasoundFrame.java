@@ -128,8 +128,7 @@ public class UltrasoundFrame extends AbstractTabledChildFrame {
         this.VIEW_PATIENT_FORM_BUTTON.setToolTipText("Анкета");
         this.VIEW_PATIENT_APPOINTMENT_BUTTON.setToolTipText("Назначения");
         this.SAVE_SECOND_VISIT_BUTTON.setToolTipText("Приди проверься");
-        
-//        this.VIEW_ANALYS_BUTTON.setToolTipText("Анализы");
+
         this.SEARCH_PATTERN_BUTTON.setToolTipText("Поиск");
         this.DATE_FILTER_BUTTON.setToolTipText("Поиск");
         
@@ -141,7 +140,6 @@ public class UltrasoundFrame extends AbstractTabledChildFrame {
         this.TOOLBAR_BTN_LIST.add(this.MOVE_TO_HOSPITAL_BUTTON);
         
         this.TOOLBAR_BTN_LIST.add(this.MARK_AS_HANDLED_BUTTON);
-//        this.TOOLBAR_BTN_LIST.add(this.VIEW_ANALYS_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.VIEW_PATIENT_FORM_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.VIEW_PATIENT_APPOINTMENT_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.SAVE_SECOND_VISIT_BUTTON);

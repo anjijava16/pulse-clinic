@@ -300,7 +300,7 @@ public class VisitCoursePanel {
         this.gbc.gridwidth = 1;
         this.gbc.insets = new Insets(0, 0, 0, 0);
         visitCoursePanel.add(this.LABORATORY_CHECKBOX, this.gbc);
-//        
+
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.gridx = 0;
         this.gbc.gridy = 1;
@@ -330,7 +330,7 @@ public class VisitCoursePanel {
         this.gbc.gridwidth = 1;
         this.gbc.insets = new Insets(0, 0, 0, 0);
         visitCoursePanel.add(this.ULTRASOUND_DOCTOR_NAME_BOX, this.gbc);
-//        
+
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.gridx = 0;
         this.gbc.gridy = 2;
@@ -360,7 +360,7 @@ public class VisitCoursePanel {
         this.gbc.gridwidth = 1;
         this.gbc.insets = new Insets(0, 0, 0, 0);
         visitCoursePanel.add(this.UROLOGY_DOCTOR_NAME_BOX, this.gbc);
-//        
+
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.gridx = 0;
         this.gbc.gridy = 3;
@@ -732,244 +732,191 @@ public class VisitCoursePanel {
     }
     
     private void addAllActionListeners() {
-        this.MRI_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (MRI_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    MRI_DOCTOR_NAME_BOX.setEnabled(true);
-                                        
-//                    AssignmentService.INSTANCE.getMriFrame().getInternalFrame().setVisible(true);
-                } else {
-                    if (!STATIONARY_CHECKBOX.isSelected()) {
-                        FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                        SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    }
-                    
-                    MRI_DOCTOR_NAME_BOX.setEnabled(false);
-                                        
-//                    AssignmentService.INSTANCE.getMriFrame().getInternalFrame().setVisible(false);
+        this.MRI_CHECKBOX.addActionListener(ae -> {
+            if (MRI_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                MRI_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                if (!STATIONARY_CHECKBOX.isSelected()) {
+                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
                 }
+
+                MRI_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.LABORATORY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (LABORATORY_CHECKBOX.isSelected()) {
-                    AssignmentService.INSTANCE.getLaboratoryFrame().getInternalFrame().setVisible(true);
-                } else {
-                    AssignmentService.INSTANCE.getLaboratoryFrame().getInternalFrame().setVisible(false);
-                }
+        this.LABORATORY_CHECKBOX.addActionListener(ae -> {
+            if (LABORATORY_CHECKBOX.isSelected()) {
+                AssignmentService.INSTANCE.getLaboratoryFrame().getInternalFrame().setVisible(true);
+            } else {
+                AssignmentService.INSTANCE.getLaboratoryFrame().getInternalFrame().setVisible(false);
             }
         });
                 
-        this.ULTRASOUND_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (ULTRASOUND_CHECKBOX.isSelected()) {     
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    ULTRASOUND_DOCTOR_NAME_BOX.setEnabled(true);
-//                    AssignmentService.INSTANCE.getUltrasoundFrame().getInternalFrame().setVisible(true);
-                    
-                } else {                            
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    ULTRASOUND_DOCTOR_NAME_BOX.setEnabled(false);
-//                    AssignmentService.INSTANCE.getUltrasoundFrame().getInternalFrame().setVisible(false);
-                }
+        this.ULTRASOUND_CHECKBOX.addActionListener(ae -> {
+            if (ULTRASOUND_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                ULTRASOUND_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+                ULTRASOUND_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.UROLOGY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (GYNECOLOGY_CHECKBOX.isSelected()
-                        && UROLOGY_CHECKBOX.isSelected()) {
-                    ResultToolbarService.INSTANCE.showFailedStatus("Пациент не может быть направлен в гинекологию и урологию одновременно");
-                    
-                    UROLOGY_CHECKBOX.setSelected(false);
-                    UROLOGY_DOCTOR_NAME_BOX.setEnabled(false);
-                    return;
+        this.UROLOGY_CHECKBOX.addActionListener(ae -> {
+            if (GYNECOLOGY_CHECKBOX.isSelected()
+                    && UROLOGY_CHECKBOX.isSelected()) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Пациент не может быть направлен в гинекологию и урологию одновременно");
+
+                UROLOGY_CHECKBOX.setSelected(false);
+                UROLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+                return;
+            }
+
+            if (UROLOGY_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                UROLOGY_DOCTOR_NAME_BOX.setEnabled(true);
+
+            } else {
+                if (!GYNECOLOGY_CHECKBOX.isSelected()) {
+                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
                 }
+
+                UROLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+            }
+        });
+        
+        this.GYNECOLOGY_CHECKBOX.addActionListener(ae -> {
+            if (GYNECOLOGY_CHECKBOX.isSelected()
+                    && UROLOGY_CHECKBOX.isSelected()) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Пациент не может быть направлен в гинекологию и урологию одновременно");
+
+                GYNECOLOGY_CHECKBOX.setSelected(false);
+                GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+                return;
+            }
+
+            if (GYNECOLOGY_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                if (!UROLOGY_CHECKBOX.isSelected()) {
+                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+                }
+
+                GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
+            }
+        });
                 
-                if (UROLOGY_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    UROLOGY_DOCTOR_NAME_BOX.setEnabled(true);
-                    
-                } else {
-                    if (!GYNECOLOGY_CHECKBOX.isSelected()) {
-                        FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                        SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    }
-                    
-                    UROLOGY_DOCTOR_NAME_BOX.setEnabled(false);
-                }
+        this.SURGERY_CHECKBOX.addActionListener(ae -> {
+            if (SURGERY_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                SURGERY_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+
+                SURGERY_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.GYNECOLOGY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (GYNECOLOGY_CHECKBOX.isSelected()
-                        && UROLOGY_CHECKBOX.isSelected()) {
-                    ResultToolbarService.INSTANCE.showFailedStatus("Пациент не может быть направлен в гинекологию и урологию одновременно");
+        this.OCULIST_CHECKBOX.addActionListener(ae -> {
+            if (OCULIST_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                OCULIST_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-                    GYNECOLOGY_CHECKBOX.setSelected(false);
-                    GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
-                    return;
-                }
-
-                if (GYNECOLOGY_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(true);
-//                    AssignmentService.INSTANCE.getGinecologyFrame().getInternalFrame().setVisible(true);
-
-                } else {
-                    if (!UROLOGY_CHECKBOX.isSelected()) {
-                        FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                        SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    }
-
-                    GYNECOLOGY_DOCTOR_NAME_BOX.setEnabled(false);
-//                    AssignmentService.INSTANCE.getGinecologyFrame().getInternalFrame().setVisible(false);
-                }
-            }
-        });    
-                
-        this.SURGERY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (SURGERY_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SURGERY_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-
-                    SURGERY_DOCTOR_NAME_BOX.setEnabled(false);
-                }
+                OCULIST_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.OCULIST_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (OCULIST_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    OCULIST_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+        this.PHYSIOTHERAPY_CHECKBOX.addActionListener(ae -> {
+            if (PHYSIOTHERAPY_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-                    OCULIST_DOCTOR_NAME_BOX.setEnabled(false);
-                }
+                PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.PHYSIOTHERAPY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (PHYSIOTHERAPY_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(true);
+        this.THERAPY_CHECKBOX.addActionListener(ae -> {
+            if (THERAPY_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                THERAPY_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-//                    AssignmentService.INSTANCE.getPhysiotherapyFrame().getInternalFrame().setVisible(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-
-                    PHYSIOTHERAPY_DOCTOR_NAME_BOX.setEnabled(false);
-
-//                    AssignmentService.INSTANCE.getPhysiotherapyFrame().getInternalFrame().setVisible(false);
-                }
+                THERAPY_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.THERAPY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (THERAPY_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    THERAPY_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+        this.ENDO_CHECKBOX.addActionListener(ae -> {
+            if (ENDO_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                ENDO_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-                    THERAPY_DOCTOR_NAME_BOX.setEnabled(false);
-                }
+                ENDO_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.ENDO_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (ENDO_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    ENDO_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+        this.NEUROLOGIST_CHECKBOX.addActionListener(ae -> {
+            if (NEUROLOGIST_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-                    ENDO_DOCTOR_NAME_BOX.setEnabled(false);
-                }
+                NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.NEUROLOGIST_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (NEUROLOGIST_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+        this.VERTEBROLOGIST_CHECKBOX.addActionListener(ae -> {
+            if (VERTEBROLOGIST_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-                    NEUROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
-                }
+                VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
         
-        this.VERTEBROLOGIST_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (VERTEBROLOGIST_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
+        this.STATIONARY_CHECKBOX.addActionListener(ae -> {
+            if (STATIONARY_CHECKBOX.isSelected()) {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
+                STATIONARY_DOCTOR_NAME_BOX.setEnabled(true);
+            } else {
+                FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
+                SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
 
-                    VERTEBROLOGIST_DOCTOR_NAME_BOX.setEnabled(false);
-                }
-            }
-        });
-        
-        this.STATIONARY_CHECKBOX.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {    
-                if (STATIONARY_CHECKBOX.isSelected()) {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(true);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(true);
-                    STATIONARY_DOCTOR_NAME_BOX.setEnabled(true);
-                } else {
-                    FIRST_VISIT_RADIO_BUTTON.setEnabled(false);
-                    SECOND_VISIT_RADIO_BUTTON.setEnabled(false);
-                    
-                    STATIONARY_DOCTOR_NAME_BOX.setEnabled(false);
-                }                
+                STATIONARY_DOCTOR_NAME_BOX.setEnabled(false);
             }
         });
     }    

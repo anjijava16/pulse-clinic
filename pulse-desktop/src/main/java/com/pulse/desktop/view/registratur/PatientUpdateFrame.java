@@ -57,26 +57,11 @@ public final class PatientUpdateFrame {
     protected int height = 320;
     
     protected int maxChars = 13;
-    
-    protected final JToolBar TOOLBAR = new JToolBar(); 
-    
+
     public JInternalFrame getInternalFrame() {
         return this.frame;    
     }
-    
-    protected void setToolbarSettings() {
-        this.TOOLBAR.setFloatable(false);
-        this.TOOLBAR.setVisible(true);
-    }
-    
-    protected void addToolbarButton(JComponent toolbarButton, boolean addSeparator) {
-        this.TOOLBAR.add(toolbarButton);
-        
-        if (addSeparator) {
-            this.TOOLBAR.addSeparator();
-        }
-    }    
-    
+
     public boolean frameIsVisible() {
         return this.frame.isVisible();
     }
@@ -94,15 +79,7 @@ public final class PatientUpdateFrame {
         addAllActionListeners();
         intializeFrame();
     }
-        
-    public SearchPatientPanel getSearchPanel() {
-        return this.SHOW_PATIENT_INFO_PANEL.getSearchPatientPanel();
-    }
-    
-    public PatientInfoPanel getPatientInfoPanel() {
-        return this.SHOW_PATIENT_INFO_PANEL.getPatientInfoPanel();
-    }
-    
+
     public void intializeFrame() {
         initializeRootPanel();
         
@@ -155,8 +132,4 @@ public final class PatientUpdateFrame {
         
         this.UPDATE_BUTTON.addActionListener(upl);
     }
-    
-    public void removeLastSelectedPatientFromList(String oldNfp) {
-        this.SHOW_PATIENT_INFO_PANEL.removeLastSelectedPatientFromList(oldNfp);
-    }    
 }

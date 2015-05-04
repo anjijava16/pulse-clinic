@@ -129,7 +129,6 @@ public class PhysiotherapyFrame extends AbstractTabledChildFrame {
         this.MARK_AS_HANDLED_BUTTON.setToolTipText("Осмотрен");
         
         this.TOOLBAR_BTN_LIST.add(this.MARK_AS_HANDLED_BUTTON);
-//        this.TOOLBAR_BTN_LIST.add(this.VIEW_ANALYS_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.VIEW_PATIENT_FORM_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.VIEW_PATIENT_APPOINTMENT_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.SAVE_SECOND_VISIT_BUTTON);

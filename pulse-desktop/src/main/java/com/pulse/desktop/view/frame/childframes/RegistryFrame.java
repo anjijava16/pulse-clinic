@@ -57,8 +57,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
     private final JButton SEARCH_PATTERN_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
     private final JButton DATE_FILTER_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));    
     private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));  
-    
-    private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
     private final Privilege privilege = Privilege.Registratur;
@@ -109,11 +108,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
         this.SEARCH_PATTERN_BUTTON.addActionListener(csl);
         this.DATE_FILTER_BUTTON.addActionListener(sbdl);
     }
-    
-    public void hideRemovePatientButton() {
-        this.DELETE_PATIENT_BUTTON.setEnabled(false);
-    }
-    
+
     public RegistryFrame() {
         super.setPrivilege(privilege);
         super.setTableHolder(this.TABLE_HOLDER);

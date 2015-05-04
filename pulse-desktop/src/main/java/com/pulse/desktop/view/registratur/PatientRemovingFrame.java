@@ -94,15 +94,7 @@ public final class PatientRemovingFrame {
         addAllActionListeners();
         intializeFrame();
     }
-        
-    public SearchPatientPanel getSearchPanel() {
-        return this.SHOW_PATIENT_INFO_PANEL.getSearchPatientPanel();
-    }
-    
-    public PatientInfoPanel getPatientInfoPanel() {
-        return this.SHOW_PATIENT_INFO_PANEL.getPatientInfoPanel();
-    }
-    
+
     public void intializeFrame() {
         initializeRootPanel();
         
@@ -157,8 +149,4 @@ public final class PatientRemovingFrame {
         
         this.REMOVE_BUTTON.addActionListener(dpl);
     }
-    
-    public void removeLastSelectedPatientFromList(String oldNfp) {
-        this.SHOW_PATIENT_INFO_PANEL.removeLastSelectedPatientFromList(oldNfp);
-    }    
 }

@@ -78,10 +78,6 @@ final public class CreateVisitDateFrame {
         return this.frame;    
     }
 
-    public long getDoctorId() {
-        return doctorId;
-    }
-
     public void setDoctorId(long doctorId) {
         this.doctorId = doctorId;
     }    
@@ -90,15 +86,7 @@ final public class CreateVisitDateFrame {
         this.TOOLBAR.setFloatable(false);
         this.TOOLBAR.setVisible(true);
     }
-    
-    protected void addToolbarButton(JComponent toolbarButton, boolean addSeparator) {
-        this.TOOLBAR.add(toolbarButton);
-        
-        if (addSeparator) {
-            this.TOOLBAR.addSeparator();
-        }
-    }    
-    
+
     public boolean frameIsVisible() {
         return this.frame.isVisible();
     }
@@ -120,10 +108,6 @@ final public class CreateVisitDateFrame {
         setAllSettings();
         initializeTabel();
         intializeFrame();
-    }
-
-    public long getPatientId() {
-        return patientId;
     }
 
     public void setPatientId(long patientId) {
@@ -188,24 +172,21 @@ final public class CreateVisitDateFrame {
     }
 
     public void addAllActionListeners() {
-        this.CREATE_BUTTON.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                try {
-                    final NextVisit visit = new NextVisit();
-                    visit.setDoctorId(doctorId);
-                    visit.setPatientId(patientId);
-                    visit.setVisitDate(SDF.parse(calendar.getJFormattedTextField().getText()));
-                    
-                    visitClient.update(visit);
-                    
-                    setFrameVisible(false);
-                    ResultToolbarService.INSTANCE.showSuccessStatus();
-                } catch (ParseException ex) {
-                    ResultToolbarService.INSTANCE.showFailedStatus("Ошибка");
-                } catch (IOException ioe) {
-                    ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");
-                }                
+        this.CREATE_BUTTON.addActionListener(ae -> {
+            try {
+                final NextVisit visit = new NextVisit();
+                visit.setDoctorId(doctorId);
+                visit.setPatientId(patientId);
+                visit.setVisitDate(SDF.parse(calendar.getJFormattedTextField().getText()));
+
+                visitClient.update(visit);
+
+                setFrameVisible(false);
+                ResultToolbarService.INSTANCE.showSuccessStatus();
+            } catch (ParseException ex) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Ошибка");
+            } catch (IOException ioe) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");
             }
         });
     }

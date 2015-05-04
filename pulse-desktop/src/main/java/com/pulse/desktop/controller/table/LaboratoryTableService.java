@@ -75,7 +75,6 @@ public class LaboratoryTableService {
         data[ptr++] = Status.findBy(visit.getVisitStatus()).getName();
         data[ptr++] = visit.getFromOrganisation();
         data[ptr++] = visit.getFromDoctor();
-        //data[ptr++] = visit.getCreatedBy();
         
         return data;
     }

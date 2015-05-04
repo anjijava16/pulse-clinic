@@ -65,8 +65,8 @@ public class BookKeepingFrame extends AbstractTabledChildFrame {
         
         this.DEPARTMENTS_LIST.setEnabled(false);
         
-        Privilege privelegies[] = Privilege.values();
-        for (Privilege privilege : privelegies) {
+        final Privilege privileges[] = Privilege.values();
+        for (Privilege privilege : privileges) {
             if (privilege.isDepartment()) {
                 this.DEPARTMENTS_LIST_MODEL.addElement(privilege.getName());
             }

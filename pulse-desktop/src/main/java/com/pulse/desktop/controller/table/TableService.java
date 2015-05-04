@@ -68,16 +68,6 @@ public enum TableService {
         return holder;
     }
 
-    public int selectedRow(TableHolder holder) {
-        try {
-            TABLE_EDIT_LOCK.lock();
-
-            return holder.getTable().getSelectedRow();
-        } finally {
-            TABLE_EDIT_LOCK.unlock();
-        }
-    }
-
     public static Object getValueAt(TableHolder holder, int row, int column) {
         try {
             TABLE_EDIT_LOCK.lock();
@@ -103,47 +93,6 @@ public enum TableService {
         }
 
         return patient;
-    }
-
-    public Patient getSelectedPatient(TableHolder holder, int position) {
-        Patient patient = null;
-
-        final int row = holder.getTable().getSelectedRow();
-        if (row != -1) {
-            final String patientNfp = (String) getValueAt(holder, row, position);
-
-            if (patientNfp == null || patientNfp.isEmpty()) {
-                return null;
-            }
-
-            patient = PatientService.INSTANCE.getByName(patientNfp);
-        }
-
-        return patient;
-    }
-
-    public String getSelectedDoctor(TableHolder holder) {
-        final int row = holder.getTable().getSelectedRow();
-        if (row != -1) {
-            final String doctorNfp = (String) getValueAt(holder, row, REGISTRY_DOCTOR_NAME_FIELD);
-
-            return doctorNfp;
-        }
-
-        return null;
-    }
-
-    public void addRecordData(TableHolder holder, Record record, Patient patient) {
-        final String[] data = new String[PATIENT_RECORD_TABLE_HEADER.length];
-
-        int ptr = 0;
-        data[ptr++] = String.valueOf(record.getPatientId());
-        data[ptr++] = String.valueOf(record.getId());
-        data[ptr++] = String.valueOf(patient.getNfp());
-        data[ptr++] = String.valueOf(record.getName());
-        data[ptr++] = String.valueOf(record.getName());
-
-        holder.getModel().addRow(data);
     }
 
     public class TableHolder {
@@ -250,26 +199,7 @@ public enum TableService {
 
     }
 
-    public final static int REGISTRY_COMMING_DATE_FIELD = 0;
-    public final static int REGISTRY_VISIT_ID_FIELD = 1;
-    public final static int REGISTRY_PATIENT_ID_FIELD = 2;
     public final static int REGISTRY_PATIENT_NFP_FIELD = 3;
-    public final static int REGISTRY_BIRTHDAY_FIELD = 4;
-    public final static int REGISTRY_VISIT_COURSE_FIELD = 5;
-    public final static int REGISTRY_GROUP_FIELD = 6;
-    public final static int REGISTRY_ANALYS_FIELD = 7;
-    public final static int REGISTRY_DOCTOR_NAME_FIELD = 8;
-    public final static int REGISTRY_PAYING_STATUS_FIELD = 9;
-    public final static int REGISTRY_PATIENT_TYPE = 10;
-    public final static int REGISTRY_VISIT_TYPE_FIELD = 11;
-    public final static int REGISTRY_STATUS_FIELD = 12;
-    public final static int REGISTRY_FROM_ORGANISATION_FIELD = 13;
-    public final static int REGISTRY_FROM_DOCTOR_FIELD = 14;
-    public final static int REGISTRY_BONUS_FIELD = 15;
-    public final static int REGISTRY_TILL_DATE_FIELD = 16;
-    public final static int REGISTRY_CREATED_BY_FIELD = 17;
-
-    public final static int PATIENT_RECORD_PATIENT_NFP = 2;
 
     public final static int USER_ID_FIELD = 0;
     
@@ -278,16 +208,10 @@ public enum TableService {
     public final static int PATIENT_ID_FIELD = 2;
     public final static int PATIENT_NFP_FIELD = 3;
     public final static int BIRTHDAY_FIELD = 4;
-    public final static int VISIT_COURSE_FIELD = 5;
     public final static int GROUP_FIELD = 6;
     public final static int ANALYS_FIELD = 7;
     public final static int DOCTOR_NAME_FIELD = 8;
-    public final static int PAYING_STATUS_FIELD = 9;
-    public final static int PATIENT_TYPE = 10;
-    public final static int BONUS_VALUE = 11;
     public final static int VISIT_TYPE_FIELD = 12;
-    public final static int STATUS_FIELD = 12;
-    public final static int BONUS_FIELD = 13;
 
     public final static int PATIENT_ROOM_NAME_FIELD = 0;
     public final static int ORGANISATION_NAME_FIELD = 0;
@@ -295,7 +219,6 @@ public enum TableService {
     public final static int RECORD_ID_FIELD = 1;
 
     public final static int SIMPLE_TABLE = 1;
-    public final static int EXPANDED_TABLE = 3;
     public final static int STATIONARY_TABLE = 2;
     public final static int PATIENT_RECORD_TABLE = 4;
     public final static int ORGANISATION_TABLE = 5;
@@ -316,7 +239,7 @@ public enum TableService {
         "Приход id",
         "Пациент",
         "Отдел",
-        "Группа°",
+        "Группа",
         "Анализ",
         "Доктор",
         "От организации",

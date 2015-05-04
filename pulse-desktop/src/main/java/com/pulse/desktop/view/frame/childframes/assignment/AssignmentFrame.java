@@ -52,9 +52,7 @@ public final class AssignmentFrame {
     protected int height = 450;
     
     protected int maxChars = 13;
-    
-    protected final JToolBar TOOLBAR = new JToolBar(); 
-    
+
     public JInternalFrame getInternalFrame() {
         return this.frame;    
     }

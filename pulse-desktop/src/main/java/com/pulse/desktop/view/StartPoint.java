@@ -19,7 +19,7 @@ package com.pulse.desktop.view;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import com.pulse.desktop.view.frame.AuthentificationFrame;
+import com.pulse.desktop.view.frame.AuthenticationFrame;
 
 
 /**
@@ -43,7 +43,7 @@ public abstract class StartPoint {
         enableNimbusTheme();
         
         SwingUtilities.invokeLater(() -> {            
-            AuthentificationFrame authFrame = new AuthentificationFrame();
+            AuthenticationFrame authFrame = new AuthenticationFrame();
         });
     }
 }

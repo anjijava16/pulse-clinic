@@ -21,14 +21,14 @@ package com.pulse.model.constant;
  */
 public enum PrivelegyDir {
     
-    LABORATORY_PATH(Privilege.Laboratory, "data/laboratory/temporary/", "data/laboratory/templates/", "data/laboratory/analys/"),
-    GINECOLOGY_PATH(Privilege.Ginecology, "data/ginecology/temporary/", "data/ginecology/templates/", "data/ginecology/analys/"),
-    ULTRASOUND_PATH(Privilege.Ultrasound, "data/ultrasound/temporary/", "data/ultrasound/templates/", "data/ultrasound/analys/"),
-    FIZIO_PATH(Privilege.Fizio, "data/fizio/temporary/", "data/fizio/templates/", "data/fizio/analys/"),
-    MRI_PATH(Privilege.MagneticResonanceImaging, "data/mri/temporary/", "data/mri/templates/", "data/mri/analys/"),
-    RECORDS_PATH(Privilege.PatientRecord, "data/records/temporary/", "data/records/templates/", ""),
-    JOURNALS_PATH(Privilege.Journal, "data/journal/temporary/", "data/journal/templates/", "data/journal/analys/"),
-    APPOINTMENTS_PATH(Privilege.PatientAppointment, "data/appointment/temporary/", "data/appointment/templates/", "data/appointment/analys/");
+    LABORATORY_PATH  (Privilege.Laboratory,               "data/laboratory/temporary/",  "data/laboratory/templates/",  "data/laboratory/analys/" ),
+    GINECOLOGY_PATH  (Privilege.Ginecology,               "data/ginecology/temporary/",  "data/ginecology/templates/",  "data/ginecology/analys/" ),
+    ULTRASOUND_PATH  (Privilege.Ultrasound,               "data/ultrasound/temporary/",  "data/ultrasound/templates/",  "data/ultrasound/analys/" ),
+    FIZIO_PATH       (Privilege.Fizio,                    "data/fizio/temporary/",       "data/fizio/templates/",       "data/fizio/analys/"      ),
+    MRI_PATH         (Privilege.MagneticResonanceImaging, "data/mri/temporary/",         "data/mri/templates/",         "data/mri/analys/"        ),
+    RECORDS_PATH     (Privilege.PatientRecord,            "data/records/temporary/",     "data/records/templates/",     ""                        ),
+    JOURNALS_PATH    (Privilege.Journal,                  "data/journal/temporary/",     "data/journal/templates/",     "data/journal/analys/"    ),
+    APPOINTMENTS_PATH(Privilege.PatientAppointment,       "data/appointment/temporary/", "data/appointment/templates/", "data/appointment/analys/");
     
     private PrivelegyDir(Privilege privilege, String temporaryPath, String templatePath, String analysPath) {
         this.privilege = privilege;

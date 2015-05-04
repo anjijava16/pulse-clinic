@@ -78,25 +78,7 @@ public class FileManager {
             ioe.printStackTrace();
         }        
     }
-    
-    public void saveAnalys(byte[] buffer, String analysFilePath) {
-        try {
-            File file = new File(analysFilePath);
-            
-            FileOutputStream outstream = new FileOutputStream(file);
-            outstream.write(buffer);
-            outstream.flush();
-            outstream.close();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-    
-    public void deleteFile(String filename) {        
-        File file = new File(filename);        
-        FileUtils.deleteQuietly(file);
-    }
-    
+
     public byte[] readFile(String filename) {
         byte[] buffer = null;
         

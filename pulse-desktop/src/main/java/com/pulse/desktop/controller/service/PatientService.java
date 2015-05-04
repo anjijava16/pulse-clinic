@@ -36,32 +36,8 @@ public enum PatientService {
     }
     
     private LinkedBlockingQueue<Patient> patientsList 
-            = new LinkedBlockingQueue<Patient>();
-    
-    public LinkedBlockingQueue<Patient> getPatientList() {
-        return this.patientsList;
-    }
-    
-    public boolean exists(String nfp) {
-        for (Patient tempPatient : patientsList) {
-            if (tempPatient.getNfp().equals(nfp)) {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    public long getIdByName(String nfp) {
-        for (Patient tempPatient : this.patientsList) {
-            if (tempPatient.getNfp().equals(nfp)) {                
-                return tempPatient.getId();
-            }
-        }
-        
-        return 0;
-    }
-    
+            = new LinkedBlockingQueue<>();
+
     public Patient getByName(String nfp) {
         if (nfp == null || nfp.isEmpty()) return null;
         

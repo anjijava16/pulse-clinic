@@ -120,15 +120,7 @@ public class AbstractTabledChildFrame {
         
         this.CHILD_FRAME.setTitle(this.privilege.getName());
     }
-    
-    public void initFont() {
-        if (this.toolbarBtnList != null && ! this.toolbarBtnList.isEmpty()) {
-            for (JComponent component : toolbarBtnList) {
-                
-            }
-        }
-    }
-    
+
     public Privilege getPrivilege() {
         return this.privilege;
     }

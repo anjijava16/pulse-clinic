@@ -37,13 +37,7 @@ public class BookKeepingTableService {
     
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
     private TableHolder holder;
-    
-    /*
-     "Р”Р°С‚Р° РїСЂРёС…РѕРґР°", "РџСЂ.id", "РџР°.id", "Р¤Р?Рћ", "Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ",
-     "РќР°РїСЂР°РІР»РµРЅРёРµ", "Р“СЂСѓРїРїР°", "РђРЅР°-Р·/РћСЃРј-СЂ", "Р›РµС‡Р°С‰РёР№ РІСЂР°С‡", "РћРїР»Р°С‚РёР»",                                                       "РџР°С†РёРµРЅС‚",
-     "РўРёРї", "РЎС‚Р°С‚СѓСЃ", "РћС‚ РѕСЂРі-РёРё", "РћС‚ РІСЂР°С‡Р°", "РЎРѕР·РґР°Р»"};
-    */
-                
+
     public BookKeepingTableService(TableHolder holder) {
         this.holder = holder;
     }

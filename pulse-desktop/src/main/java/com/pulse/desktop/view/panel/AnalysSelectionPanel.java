@@ -87,18 +87,6 @@ public class AnalysSelectionPanel {
             String[] files = getDirectoriesName(this.service.getRoot() + dir + "/");
             
             for (String file : files) {
-//                if (file.endsWith(Settings.DOC_TRAILOR)) {
-//                    file = file.substring(0, file.indexOf(Settings.DOC_TRAILOR));
-//                } 
-//
-//                if (file.endsWith(Settings.OLD_DOC_TRAILOR)) {
-//                    file = file.substring(0, file.indexOf(Settings.OLD_DOC_TRAILOR));
-//                }
-//
-//                if (file.endsWith(Settings.XSL_TRAILOR)) {
-//                    file = file.substring(0, file.indexOf(Settings.XSL_TRAILOR));
-//                }
-                
                 if (file.equals(analysName)) {
                     return dir;
                 }
@@ -128,18 +116,6 @@ public class AnalysSelectionPanel {
         TreeSet<String> filesList = new TreeSet<String>();
         
         for (String file : files) {
-//           if (file.endsWith(Settings.DOC_TRAILOR)) {
-//               file = file.substring(0, file.indexOf(Settings.DOC_TRAILOR));
-//           } 
-//           
-//           if (file.endsWith(Settings.OLD_DOC_TRAILOR)) {
-//               file = file.substring(0, file.indexOf(Settings.OLD_DOC_TRAILOR));
-//           }
-//           
-//           if (file.endsWith(Settings.XSL_TRAILOR)) {
-//               file = file.substring(0, file.indexOf(Settings.XSL_TRAILOR));
-//           }
-           
            filesList.add(file);
         }
         
@@ -172,8 +148,8 @@ public class AnalysSelectionPanel {
         if (file.exists()) {
             files = file.listFiles();
             
-            TreeSet<File> filesList = new TreeSet<File>();
-            boolean addAll = filesList.addAll(Arrays.asList(files));
+            TreeSet<File> filesList = new TreeSet<>();
+            filesList.addAll(Arrays.asList(files));
 
             groupsList = new String[filesList.size()];
             for (int x=0;x<groupsList.length;x++) {

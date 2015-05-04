@@ -20,7 +20,7 @@ import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.service.UserFacade;
 
-import com.pulse.desktop.view.frame.AuthentificationFrame;
+import com.pulse.desktop.view.frame.AuthenticationFrame;
 import com.pulse.desktop.view.frame.MainFrame;
 import com.pulse.desktop.view.manager.PrivilegeService;
 import com.pulse.desktop.view.manager.WindowManager;
@@ -48,12 +48,12 @@ public class LoginListener implements ActionListener {
 
     private UserClient userClient = new UserClient();
 
-    private AuthentificationFrame authFrame;
+    private AuthenticationFrame authFrame;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JTextField serverIpField;
 
-    public LoginListener(JTextField usernameField, JPasswordField passwordField, JTextField serverIpField, AuthentificationFrame authFrame) {
+    public LoginListener(JTextField usernameField, JPasswordField passwordField, JTextField serverIpField, AuthenticationFrame authFrame) {
         this.usernameField = usernameField;
         this.passwordField = passwordField;
         this.serverIpField = serverIpField;

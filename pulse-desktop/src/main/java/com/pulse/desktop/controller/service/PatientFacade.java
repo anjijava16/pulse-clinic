@@ -41,14 +41,6 @@ public enum PatientFacade {
         this.lastSelectedPatient = lastSelectedPatient;
     }
 
-    public LinkedBlockingQueue<Patient> getPatientsList() {
-        return patientsList;
-    }
-
-    public void setPatientsList(LinkedBlockingQueue<Patient> patientsList) {
-        this.patientsList = patientsList;
-    }    
-            
     public void add(Patient patient) throws InterruptedException {
         this.patientsList.put(patient);
     }

@@ -62,20 +62,7 @@ public final class PatienCreationFrame  {
     public JInternalFrame getInternalFrame() {
         return this.frame;    
     }
-    
-    protected void setToolbarSettings() {
-        this.TOOLBAR.setFloatable(false);
-        this.TOOLBAR.setVisible(true);
-    }
-    
-    protected void addToolbarButton(JComponent toolbarButton, boolean addSeparator) {
-        this.TOOLBAR.add(toolbarButton);
-        
-        if (addSeparator) {
-            this.TOOLBAR.addSeparator();
-        }
-    }    
-    
+
     public boolean frameIsVisible() {
         return this.frame.isVisible();
     }
@@ -85,11 +72,7 @@ public final class PatienCreationFrame  {
     }
     
     private final PatientInfoPanel PATIENT_INFO_PANEL = new PatientInfoPanel();
-    
-    private final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
-        
-    private String lastSelectedPatientNfp;
-    
+
     private final JButton SAVE_PATIENT_BUTTON = new JButton("Сохранить");
     
     public PatienCreationFrame(String title) {        
@@ -98,11 +81,7 @@ public final class PatienCreationFrame  {
         addAllActionListeners();
         intializeFrame();
     }
-    
-    public String getLastSelectedPatientNfp() {
-        return this.lastSelectedPatientNfp;
-    }
-    
+
     public void hidePanel() {
         setFrameVisible(false);
         

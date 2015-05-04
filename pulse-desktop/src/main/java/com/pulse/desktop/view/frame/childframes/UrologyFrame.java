@@ -54,12 +54,10 @@ public class UrologyFrame extends AbstractTabledChildFrame {
     private final JComboBox<String> PATIENT_LIST_BOX = new JComboBox<>(FILTER_BOX_MODEL);  
     private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));  
     
-    private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
     private final Privilege privilege = Privilege.Urology;
-    
-//    private final JButton VIEW_ANALYS_BUTTON = new JButton(new ImageIcon("./pic/view.png"));
+
     private final JButton SEARCH_PATTERN_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
     private final JButton DATE_FILTER_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
     private final JButton VIEW_PATIENT_FORM_BUTTON = new JButton("", new ImageIcon("./pic/patient_form.png"));
@@ -88,11 +86,7 @@ public class UrologyFrame extends AbstractTabledChildFrame {
         SearchByDateListener sbdl = new SearchByDateListener(
                 privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
-        
-//        ViewAnalysListener val = new ViewAnalysListener(
-//                privilege, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
-//        );
-        
+
         ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privilege, this.TABLE_HOLDER);
         
         SearchFieldFocusListener sfl = new SearchFieldFocusListener();
@@ -108,7 +102,6 @@ public class UrologyFrame extends AbstractTabledChildFrame {
         this.PATIENT_LIST_BOX.addActionListener(ptfl);
         this.SEARCH_PATTERN_BUTTON.addActionListener(csl);
         this.DATE_FILTER_BUTTON.addActionListener(sbdl);
-//        this.VIEW_ANALYS_BUTTON.addActionListener(val);
         this.VIEW_PATIENT_APPOINTMENT_BUTTON.addActionListener(vpal);
         this.SAVE_SECOND_VISIT_BUTTON.addActionListener(ssvl);
         this.MARK_AS_HANDLED_BUTTON.addActionListener(mavl);

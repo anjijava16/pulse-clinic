@@ -43,16 +43,13 @@ import com.pulse.desktop.view.panel.ImagePanel;
 
 
 /**
- * This is login frame window. This window will be
- * the first, which user will see. It will be open
- * after launch "Prometheus" application. The main
- * purpose of this window is authentification in
+ * This is login frame window. This window will be the first, which user will see. It will be open
+ * after launch "Prometheus" application. The main purpose of this window is authentication in
  * the system.
  *
  * @author Vladimir Shin [vladimir.shin@gmail.com]
- *
  */
-public class AuthentificationFrame {
+public class AuthenticationFrame {
         
     private final String LOGIN_BCKG_PICTURE = "./bckg/login_bckg.png";
     
@@ -92,7 +89,7 @@ public class AuthentificationFrame {
      * This is the main constructor of LoginFrame. All initialization, 
      * setting frame settings, will be done here.
      */
-    public AuthentificationFrame() {        
+    public AuthenticationFrame() {
         try {
             setAllSettings();
         } catch (FontFormatException ex) {

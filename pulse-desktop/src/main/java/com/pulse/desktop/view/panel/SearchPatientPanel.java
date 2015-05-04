@@ -54,11 +54,7 @@ public final class SearchPatientPanel {
     public SearchPatientPanel() {
         initializeRootPanel();
     }
-    
-    public void addPatientToList(Patient patient) {
-        this.DLM.addElement(patient.getNfp());
-    }
-    
+
     public void removePatientFromList(String nfp) {
         this.DLM.removeElement(nfp);
     }       
