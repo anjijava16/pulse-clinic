@@ -27,9 +27,11 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
-import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
+import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.model.constant.Privilege;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.builder.FilterBoxBuilder;
 import com.pulse.desktop.controller.CommonSearchListener;
@@ -56,7 +58,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
 
     private final JButton SEARCH_PATTERN_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
     private final JButton DATE_FILTER_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));    
-    private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));  
+    private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
 
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
@@ -72,7 +74,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
         this.DELETE_PATIENT_BUTTON.setEnabled(false);
         this.DELETE_VISIT_BUTTON.setEnabled(false);
     }
-        
+
     private void buildActionListeners() {
         PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
                 privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER

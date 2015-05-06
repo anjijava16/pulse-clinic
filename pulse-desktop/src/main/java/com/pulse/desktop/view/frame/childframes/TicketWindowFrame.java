@@ -25,6 +25,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+
+import com.pulse.desktop.view.util.DateLabelFormatter;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -59,7 +61,7 @@ public class TicketWindowFrame extends AbstractTabledChildFrame {
     private final JButton PAYBACK_BUTTON = new JButton("", new ImageIcon("./pic/payback.png"));
     
     private final JButton DATE_FILTER_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
-    private final JDatePickerImpl SRCH_BY_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));
+    private final JDatePickerImpl SRCH_BY_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     
     private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");

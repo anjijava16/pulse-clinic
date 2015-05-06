@@ -24,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+
+import com.pulse.desktop.view.util.DateLabelFormatter;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -43,7 +45,7 @@ public class JournalFrame extends AbstractTabledChildFrame {
     private final TableService.TableHolder TABLE_HOLDER = TableService.INSTANCE.buildTable(TableService.JOURNALS_TABLE);
     private final List<JComponent> TOOLBAR_BTN_LIST = new ArrayList<>(10);    
     private final JTextField SEARCH_PATTERN_FIELD = new JTextField(this.maxChars);
-    private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));  
+    private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     
