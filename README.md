@@ -13,7 +13,7 @@ and optimized.
 * Add more security features (Like READ-ONLY analysis and form for example)
 * Add multi-languages support
 * Add unit tests
-* Re factor maaaany parts, since they are really dirty ;)
+* Re factor pulse-desktop module ;)
 * Put more comments
 * Fix all warnings
 
