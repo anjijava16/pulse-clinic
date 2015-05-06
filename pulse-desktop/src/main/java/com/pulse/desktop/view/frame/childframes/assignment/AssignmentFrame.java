@@ -21,7 +21,6 @@ import java.awt.GridBagConstraints;
 import javax.swing.BoxLayout;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -33,32 +32,29 @@ import com.pulse.desktop.view.panel.AnalysSelectionPanel;
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public final class AssignmentFrame {
-    
+
     private final boolean RESIZABLE   = false;
     private final boolean CLOSABLE    = true;
     private final boolean MAXIMIZABLE = false;
     private final boolean ICONFIABLE  = false;
-    
-    protected JInternalFrame frame = new JInternalFrame("",
-                                                        this.RESIZABLE,
-                                                        this.CLOSABLE,
-                                                        this.MAXIMIZABLE,
-                                                        this.ICONFIABLE);
+
+    private AnalysSelectionPanel analysSelectionPanel;
+
+    protected final JInternalFrame frame = new JInternalFrame(
+            "", this.RESIZABLE, this.CLOSABLE, this.MAXIMIZABLE, this.ICONFIABLE
+    );
 
     protected final GridBagConstraints gbc = new GridBagConstraints();
     protected final JPanel ROOT_PANEL = new JPanel();
     
     protected int width  = 340;
     protected int height = 450;
-    
     protected int maxChars = 13;
 
     public JInternalFrame getInternalFrame() {
-        return this.frame;    
+        return this.frame;
     }
-            
-    private AnalysSelectionPanel analysSelectionPanel;
-    
+
     public AssignmentFrame(TemplateService service, String title) {
         this.analysSelectionPanel = new AnalysSelectionPanel(service);
         
@@ -100,10 +96,9 @@ public final class AssignmentFrame {
             }
         });
     }
-    
-    public void addAllActionListeners() {
-        
-    }
 
+    /**
+     *
+     */
+    public void addAllActionListeners() {}
 }
-

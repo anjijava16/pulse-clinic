@@ -32,17 +32,17 @@ public enum AssignmentService {
     
     INSTANCE;
     
-    private TemplateService laboratoryTemlateService = new LaboratoryTemplateService();
-    private TemplateService ultrasoundTemlateService = new UltrasoundTemplateService();
-    private TemplateService ginecologyTemlateService = new GinecologyTemplateService();
-    private TemplateService physiotherapyTemlateService = new PhysiotherapyTemplateService();
-    private TemplateService mriTemlateService = new MriTemplateService();
+    private TemplateService laboratoryTemplateService = new LaboratoryTemplateService();
+    private TemplateService ultrasoundTemplateService = new UltrasoundTemplateService();
+    private TemplateService ginecologyTemplateService = new GinecologyTemplateService();
+    private TemplateService physiotherapyTemplateService = new PhysiotherapyTemplateService();
+    private TemplateService mriTemplateService = new MriTemplateService();
     
-    private AssignmentFrame laboratoryFrame = new AssignmentFrame(this.laboratoryTemlateService, Privilege.Laboratory.getName());
-    private AssignmentFrame ultrasoundFrame = new AssignmentFrame(this.ultrasoundTemlateService, Privilege.Ultrasound.getName());
-    private AssignmentFrame ginecologyFrame = new AssignmentFrame(this.ginecologyTemlateService, Privilege.Ginecology.getName());
-    private AssignmentFrame physiotherapyFrame = new AssignmentFrame(this.physiotherapyTemlateService, Privilege.Fizio.getName());
-    private AssignmentFrame mriFrame = new AssignmentFrame(this.mriTemlateService, Privilege.MagneticResonanceImaging.getName());
+    private AssignmentFrame laboratoryFrame = new AssignmentFrame(this.laboratoryTemplateService, Privilege.Laboratory.getName());
+    private AssignmentFrame ultrasoundFrame = new AssignmentFrame(this.ultrasoundTemplateService, Privilege.Ultrasound.getName());
+    private AssignmentFrame ginecologyFrame = new AssignmentFrame(this.ginecologyTemplateService, Privilege.Ginecology.getName());
+    private AssignmentFrame physiotherapyFrame = new AssignmentFrame(this.physiotherapyTemplateService, Privilege.Fizio.getName());
+    private AssignmentFrame mriFrame = new AssignmentFrame(this.mriTemplateService, Privilege.MagneticResonanceImaging.getName());
     
     private AssignmentService() {}
     
@@ -73,5 +73,4 @@ public enum AssignmentService {
     public AssignmentFrame getMriFrame() {
         return mriFrame;
     }
-        
 }

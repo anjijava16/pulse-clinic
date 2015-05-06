@@ -27,23 +27,28 @@ import com.pulse.desktop.view.frame.AuthenticationFrame;
  */
 public abstract class StartPoint {
 
+    /**
+     * This function is the start point.
+     * @param args - This is the command line arguments.
+     */
+    public static void main(String[] args) {        
+        // Change look and feel from default one to "Nimbus"
+        enableNimbusTheme();
+        
+        SwingUtilities.invokeLater(() -> {            
+            // We should show "Login" window first
+            final AuthenticationFrame authFrame = new AuthenticationFrame();
+        });
+    }
+
+    /**
+     * This function enables "Nimbus" look and feel.
+     */
     private static void enableNimbusTheme() {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch(Exception e) {
             e.printStackTrace();
         }
-    }
-    
-    /**
-     * This function is the start point.
-     * @param args - This is the command line arguments.
-     */
-    public static void main(String[] args) {        
-        enableNimbusTheme();
-        
-        SwingUtilities.invokeLater(() -> {            
-            AuthenticationFrame authFrame = new AuthenticationFrame();
-        });
     }
 }
