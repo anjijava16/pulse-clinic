@@ -42,9 +42,6 @@ public class UserInfoPanel {
     private final JPanel ROOT_PANEL = new JPanel();
     private final GridBagConstraints GBC = new GridBagConstraints();
 
-    private final JDatePickerImpl DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null));
-    private final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
-
     private final JLabel PERSON_NAME_LABEL = new JLabel("Имя:");
     private final JLabel PERSON_FAMILY_NAME_LABEL = new JLabel("Фамилия:");
     private final JLabel PERSON_FATHER_NAME_LABEL = new JLabel("Отчество:");

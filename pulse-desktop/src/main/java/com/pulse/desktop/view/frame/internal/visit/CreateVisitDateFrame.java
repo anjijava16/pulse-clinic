@@ -17,6 +17,7 @@ package com.pulse.desktop.view.frame.internal.visit;
 
 
 import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.view.util.DateLabelFormatter;
 import com.pulse.model.NextVisit;
 import com.pulse.rest.client.NextVisitClient;
 import java.awt.GridBagConstraints;
@@ -97,7 +98,7 @@ final public class CreateVisitDateFrame {
     
     private final JButton CREATE_BUTTON = new JButton("Создать");
     
-    private final JDatePickerImpl calendar = new JDatePickerImpl(new JDatePanelImpl(null));
+    private final JDatePickerImpl calendar = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     private final SimpleDateFormat SDF = new SimpleDateFormat("dd.MM.yyyy");
         
     private long patientId;
