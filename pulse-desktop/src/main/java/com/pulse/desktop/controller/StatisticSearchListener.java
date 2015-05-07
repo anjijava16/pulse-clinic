@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
+
+import com.pulse.desktop.view.util.ConstantValues;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.model.Organisation;
 import com.pulse.model.Visit;
@@ -54,7 +56,7 @@ public class StatisticSearchListener extends AbstractTableListener {
     
     private JComboBox<String> organisationsBox;
     
-    private final SimpleDateFormat ORIGINAL_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat ORIGINAL_FORMAT = new SimpleDateFormat(ConstantValues.SEARCH_DATE_FIELD_TEMPLATE);
     private final SimpleDateFormat REQUEST_FORMAT = new SimpleDateFormat("yyyy.MM.dd");
     
     private final JDatePickerImpl fromDatePicker;
@@ -94,8 +96,8 @@ public class StatisticSearchListener extends AbstractTableListener {
 
             if (name == null || name.isEmpty()) return;
             
-            Date originFromDate = this.ORIGINAL_FORMAT.parse(this.fromDatePicker.getJFormattedTextField().getText());
-            Date originUntilDate = this.ORIGINAL_FORMAT.parse(this.untilDatePicker.getJFormattedTextField().getText());          
+            final Date originFromDate = this.ORIGINAL_FORMAT.parse(this.fromDatePicker.getJFormattedTextField().getText());
+            final Date originUntilDate = this.ORIGINAL_FORMAT.parse(this.untilDatePicker.getJFormattedTextField().getText());
             
             final String fromDate = this.REQUEST_FORMAT.format(originFromDate);
             final String untilDate = this.REQUEST_FORMAT.format(originUntilDate);

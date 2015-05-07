@@ -26,6 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
 import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.desktop.view.util.ConstantValues;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
@@ -47,7 +48,7 @@ public class StatisticFrame extends AbstractTabledChildFrame {
 
     private final Privilege privilege = Privilege.Statistic;
 
-    private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat FORMATTER = new SimpleDateFormat(ConstantValues.SEARCH_DATE_FIELD_TEMPLATE);
     private final JDatePickerImpl SEARCH_FROM_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     private final JDatePickerImpl SEARCH_UNTIL_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
 

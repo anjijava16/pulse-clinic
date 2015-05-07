@@ -28,6 +28,7 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.desktop.view.util.ConstantValues;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -56,7 +57,7 @@ public class UrologyFrame extends AbstractTabledChildFrame {
     private final JComboBox<String> PATIENT_LIST_BOX = new JComboBox<>(FILTER_BOX_MODEL);  
     private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     
-    private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat FORMATTER = new SimpleDateFormat(ConstantValues.SEARCH_DATE_FIELD_TEMPLATE);
     
     private final Privilege privilege = Privilege.Urology;
 

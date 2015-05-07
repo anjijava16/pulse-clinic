@@ -73,14 +73,15 @@ public class PatientTypeFilterListener extends AbstractTableListener {
                 case "Все":
                     filterType = 0;
                     break;
-            //case "РџРѕ РїСЂРёС…РѕРґСѓ": filterType = 1; break;
-                //case "РџРѕ Р·Р°РїРёСЃРё": filterType = 1; break;
+
                 case "Осмотренные":
                     filterType = 2;
                     break;
+
                 case "Неосмотренные":
                     filterType = 2;
                     break;
+
                 default:
                     filterType = 0;
                     break;
@@ -89,15 +90,16 @@ public class PatientTypeFilterListener extends AbstractTableListener {
             switch (filterString) {
                 case "Все":
                     value = 0;
-                    break; // Doesnt matter
-                //case "РџРѕ РїСЂРёС…РѕРґСѓ": value = 0; break;
-                //case "РџРѕ Р·Р°РїРёСЃРё": value = 1; break;
+                    break;
+
                 case "Неосмотренные":
                     value = 0;
                     break;
+
                 case "Осмотренные":
                     value = 1;
                     break;
+
                 default:
                     value = 0;
                     break;
@@ -119,7 +121,6 @@ public class PatientTypeFilterListener extends AbstractTableListener {
                         getTableHolder().getModel().addRow(data);
                     }
                 });
-                //ResultToolbarService.INSTANCE.showSuccessStatus();
             } catch (IOException ioe) {
                 this.LOGGER.error("PatientTypeFilterListener: " + ioe.getMessage());
                 ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");

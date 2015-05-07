@@ -26,6 +26,7 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.desktop.view.util.ConstantValues;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import com.pulse.desktop.controller.table.TableService;
@@ -46,7 +47,7 @@ public class PatientAppointmentFrame extends AbstractTabledChildFrame {
     private final JTextField SEARCH_PATTERN_FIELD = new JTextField(this.maxChars);
     private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     
-    private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat FORMATTER = new SimpleDateFormat(ConstantValues.SEARCH_DATE_FIELD_TEMPLATE);
     
     private final Privilege privilege = Privilege.PatientAppointment;
     

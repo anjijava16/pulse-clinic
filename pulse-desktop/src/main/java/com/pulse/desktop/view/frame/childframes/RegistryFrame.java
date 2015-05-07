@@ -27,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
+import com.pulse.desktop.view.util.ConstantValues;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
@@ -60,7 +61,7 @@ public class RegistryFrame extends AbstractTabledChildFrame {
     private final JButton DATE_FILTER_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));    
     private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
 
-    private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat FORMATTER = new SimpleDateFormat(ConstantValues.SEARCH_DATE_FIELD_TEMPLATE);
     
     private final Privilege privilege = Privilege.Registratur;
     

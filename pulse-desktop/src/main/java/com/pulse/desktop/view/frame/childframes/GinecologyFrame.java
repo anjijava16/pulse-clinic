@@ -28,6 +28,7 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.model.constant.Privilege;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
@@ -60,8 +61,8 @@ public class GinecologyFrame extends AbstractTabledChildFrame {
     private final JButton DATE_FILTER_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));    
     private final JDatePickerImpl SRCH_DATE_PICKER = new JDatePickerImpl(new JDatePanelImpl(null), new DateLabelFormatter());
     
-    private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-    private final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    private final SimpleDateFormat VISIT_DATE_FORMATTER = new SimpleDateFormat(ConstantValues.VISIT_DATE_FIELD_TEMPLATE);
+    private final SimpleDateFormat FORMATTER = new SimpleDateFormat(ConstantValues.SEARCH_DATE_FIELD_TEMPLATE);
     
     private final Privilege privilege = Privilege.Ginecology;
     
