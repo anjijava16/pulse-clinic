@@ -22,8 +22,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +30,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -126,14 +123,14 @@ public final class PatientCommingRegistrationFrame {
 
         setAllSettings();
         addAllActionListeners();
-        intializeFrame();
+        initializeFrame();
     }
 
     public VisitCoursePanel getVisitCoursePanel() {
         return this.VISIT_COURSE_SELECTION_PANEL;
     }
 
-    public void intializeFrame() {
+    public void initializeFrame() {
         this.SAVE_BUTTON.setVisible(false);
 
         initializeRootPanel();

@@ -40,7 +40,7 @@ public final class AccountChangingFrame
         this.holder = holder;
 
         setAllSettings();
-        intializeFrame();
+        initializeFrame();
         addAllActionListeners();
     }
 
@@ -77,7 +77,7 @@ public final class AccountChangingFrame
     }
 
     @Override
-    public void intializeFrame() {
+    public void initializeFrame() {
         initializeRootPanel();
 
         this.width = 310;

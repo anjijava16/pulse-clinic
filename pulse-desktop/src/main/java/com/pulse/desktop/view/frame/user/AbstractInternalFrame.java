@@ -76,7 +76,7 @@ public abstract class AbstractInternalFrame {
         this.frame.setVisible(visibility);
     }
     
-    public abstract void intializeFrame();
+    public abstract void initializeFrame();
     public abstract void initializeRootPanel();
     public abstract void setAllSettings();
     public abstract void addAllActionListeners();

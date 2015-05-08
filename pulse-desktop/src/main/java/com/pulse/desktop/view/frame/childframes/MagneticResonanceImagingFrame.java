@@ -79,33 +79,30 @@ public class MagneticResonanceImagingFrame extends AbstractTabledChildFrame {
     }
     
     private void buildActionListeners() {
-        MoveToStationaryListener mtsl = new MoveToStationaryListener(privilege, this.TABLE_HOLDER);
+        final MoveToStationaryListener mtsl = new MoveToStationaryListener(privilege, this.TABLE_HOLDER);
         this.MOVE_TO_HOSPITAL_BUTTON.addActionListener(mtsl);
-        
-        PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
+
+        final PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
                 privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
-        
-        CommonSearchListener csl = new CommonSearchListener(
+
+        final CommonSearchListener csl = new CommonSearchListener(
                 privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
-        
-        SearchByDateListener sbdl = new SearchByDateListener(
+
+        final SearchByDateListener sbdl = new SearchByDateListener(
                 privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
-        
-        ViewAnalysListener val = new ViewAnalysListener(
+
+        final ViewAnalysListener val = new ViewAnalysListener(
                 privilege, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
         );
-        
-        ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privilege, this.TABLE_HOLDER);
-        
-        SearchFieldFocusListener sfl = new SearchFieldFocusListener();
-        
-        ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privilege, this.TABLE_HOLDER);
-        
-        SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privilege, this.TABLE_HOLDER);
-        MarkAsViewedListener mavl = new MarkAsViewedListener(privilege, this.TABLE_HOLDER);
+
+        final ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privilege, this.TABLE_HOLDER);
+        final SearchFieldFocusListener sfl = new SearchFieldFocusListener();
+        final ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privilege, this.TABLE_HOLDER);
+        final SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privilege, this.TABLE_HOLDER);
+        final MarkAsViewedListener mavl = new MarkAsViewedListener(privilege, this.TABLE_HOLDER);
         
         this.MARK_AS_HANDLED_BUTTON.addActionListener(mavl);
         this.SEARCH_PATTERN_FIELD.addFocusListener(sfl);
@@ -139,7 +136,6 @@ public class MagneticResonanceImagingFrame extends AbstractTabledChildFrame {
         
         this.TOOLBAR_BTN_LIST.add(this.MOVE_TO_HOSPITAL_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.MARK_AS_HANDLED_BUTTON);
-//        this.TOOLBAR_BTN_LIST.add(this.VIEW_ANALYS_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.VIEW_PATIENT_FORM_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.VIEW_PATIENT_APPOINTMENT_BUTTON);
         this.TOOLBAR_BTN_LIST.add(this.SAVE_SECOND_VISIT_BUTTON);

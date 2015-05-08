@@ -73,13 +73,13 @@ public class BookKeepingFrame extends AbstractTabledChildFrame {
                 this.DEPARTMENTS_LIST_MODEL.addElement(privilege.getName());
             }
         }
-        
-        SearchByDepartmentCheckBoxListener sbdcbl = new SearchByDepartmentCheckBoxListener(
+
+        final SearchByDepartmentCheckBoxListener sbdcbl = new SearchByDepartmentCheckBoxListener(
                 this.privilege, this.SEARCH_BY_DEPARTMENT, this.DOCTORS_LIST, this.DEPARTMENTS_LIST
         );
         this.SEARCH_BY_DEPARTMENT.addActionListener(sbdcbl);
-        
-        SearchDepartmentsStatisticListener sdsl = new SearchDepartmentsStatisticListener(
+
+        final SearchDepartmentsStatisticListener sdsl = new SearchDepartmentsStatisticListener(
                 this.FORMATTER, 
                 this.privilege,
                 this.TABLE_HOLDER, 

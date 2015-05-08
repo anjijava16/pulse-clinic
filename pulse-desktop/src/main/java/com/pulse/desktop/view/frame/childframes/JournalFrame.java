@@ -61,11 +61,10 @@ public class JournalFrame extends AbstractTabledChildFrame {
     private Patient patient;
     
     private void buildActionListeners() {
-        CreateJournalListener cjl = new CreateJournalListener(this.privilege, this.TABLE_HOLDER);
-        DeleteJournalListener djl = new DeleteJournalListener(this.privilege, this.TABLE_HOLDER);
-        OpenJournalListener ojl = new OpenJournalListener(this.privilege, this.TABLE_HOLDER);
-        
-        UpdateJournalsListener ujl = new UpdateJournalsListener(this.privilege, this.TABLE_HOLDER);
+        final CreateJournalListener cjl = new CreateJournalListener(this.privilege, this.TABLE_HOLDER);
+        final DeleteJournalListener djl = new DeleteJournalListener(this.privilege, this.TABLE_HOLDER);
+        final OpenJournalListener ojl = new OpenJournalListener(this.privilege, this.TABLE_HOLDER);
+        final UpdateJournalsListener ujl = new UpdateJournalsListener(this.privilege, this.TABLE_HOLDER);
         
         this.CREATE_PATIENT_RECORD_BUTTON.addActionListener(cjl);
         this.REMOVE_PATIENT_RECORD_BUTTON.addActionListener(djl);

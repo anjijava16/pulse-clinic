@@ -58,9 +58,9 @@ public class PatientAppointmentFrame extends AbstractTabledChildFrame {
     private Patient patient;
     
     private void buildActionListeners() {
-        CreatePatientAppointmentListener cerl = new CreatePatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
-        DeletePatientAppointmentListener dprc = new DeletePatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
-        OpenPatientAppointmentListener oprl = new OpenPatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
+        final CreatePatientAppointmentListener cerl = new CreatePatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
+        final DeletePatientAppointmentListener dprc = new DeletePatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
+        final OpenPatientAppointmentListener oprl = new OpenPatientAppointmentListener(this.privilege, this.TABLE_HOLDER);
         
         this.CREATE_PATIENT_RECORD_BUTTON.addActionListener(cerl);
         this.REMOVE_PATIENT_RECORD_BUTTON.addActionListener(dprc);

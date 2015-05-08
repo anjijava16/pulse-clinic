@@ -41,8 +41,8 @@ public class StationaryFrame extends AbstractTabledChildFrame {
     private final JButton UPDATE_BUTTON = new JButton("", new ImageIcon("./pic/update.png"));
     
     private void buildActionListeners() {
-        UpdateStationaryVisitListener usvl = new UpdateStationaryVisitListener(this.privilege, this.TABLE_HOLDER);
-        ReleasePatientListener rpl = new ReleasePatientListener(this.privilege, this.TABLE_HOLDER);
+        final UpdateStationaryVisitListener usvl = new UpdateStationaryVisitListener(this.privilege, this.TABLE_HOLDER);
+        final ReleasePatientListener rpl = new ReleasePatientListener(this.privilege, this.TABLE_HOLDER);
         
         this.SIGN_OUT_BUTTON.addActionListener(rpl);
         this.UPDATE_BUTTON.addActionListener(usvl);

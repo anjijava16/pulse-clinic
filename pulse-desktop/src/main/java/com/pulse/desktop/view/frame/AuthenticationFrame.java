@@ -16,7 +16,6 @@
 package com.pulse.desktop.view.frame;
 
 
-import com.pulse.desktop.controller.LoginListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,6 +38,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.commons.lang.exception.ExceptionUtils;
+
+import com.pulse.desktop.controller.LoginListener;
 import com.pulse.desktop.view.panel.ImagePanel;
 
 
@@ -50,7 +54,9 @@ import com.pulse.desktop.view.panel.ImagePanel;
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class AuthenticationFrame {
-        
+
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
     private final String LOGIN_BCKG_PICTURE = "./bckg/login_bckg.png";
     
     private final int MAX_CHARS = 11;            // This is the maximum chars number limit for the field.
@@ -93,9 +99,9 @@ public class AuthenticationFrame {
         try {
             setAllSettings();
         } catch (FontFormatException ex) {
-            ex.printStackTrace();
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ex));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ex));
         }
         
         initializeFrame();    
@@ -110,21 +116,21 @@ public class AuthenticationFrame {
 
     private BufferedImage getIconImage() {
         BufferedImage iconImage = null;
-        File iconFile = new File("bckg/icon.png");
+        final File iconFile = new File("bckg/icon.png");
         try {
             iconImage = ImageIO.read(iconFile);
         } catch (IOException ioe) {
-            //System.out.println("There is no icon.png");
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
         }
         return iconImage;
     }
     
     private String checkLastIp() {
-        File config = new File("data/config/config.ini");
+        final File config = new File("data/config/config.ini");
         if (config.exists()) {
             try {
-                FileInputStream instream = new FileInputStream(config);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(instream));
+                final FileInputStream instream = new FileInputStream(config);
+                final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(instream));
                 String stroke = "";
                 
                 while ((stroke = bufferedReader.readLine()) != null) {
@@ -135,10 +141,8 @@ public class AuthenticationFrame {
                     }
                 }
             } catch (IOException ioe) {
-                ioe.printStackTrace();
+                this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
             }
-        } else {
-            //config.mkdirs();
         }
         
         return null;
@@ -163,11 +167,11 @@ public class AuthenticationFrame {
      * 
      */
     private void addAllActionListeners() {
-        final LoginListener aeli = new LoginListener(
+        final LoginListener loginListener = new LoginListener(
                 this.USERNAME_FIELD, this.USER_PASSWORD_FIELD, this.SERVER_IP_FIELD, this
         );
         
-        this.LOGIN_BUTTON.addActionListener(aeli);
+        this.LOGIN_BUTTON.addActionListener(loginListener);
     }
     
     /**

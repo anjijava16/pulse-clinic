@@ -46,9 +46,9 @@ public class OrganisationsFrame extends AbstractTabledChildFrame {
     private final Privilege privilege = Privilege.Organisation;
     
     private void buildActionListeners() {
-        AddOrganisationListener aol = new AddOrganisationListener(this.privilege, this.TABLE_HOLDER, this.ORGANISATION_NAME_FIELD);
-        DeleteOrganisationListener dol = new DeleteOrganisationListener(this.privilege, this.TABLE_HOLDER);
-        UpdateOrganisationsListener uol = new UpdateOrganisationsListener(this.privilege, this.TABLE_HOLDER);
+        final AddOrganisationListener aol = new AddOrganisationListener(this.privilege, this.TABLE_HOLDER, this.ORGANISATION_NAME_FIELD);
+        final DeleteOrganisationListener dol = new DeleteOrganisationListener(this.privilege, this.TABLE_HOLDER);
+        final UpdateOrganisationsListener uol = new UpdateOrganisationsListener(this.privilege, this.TABLE_HOLDER);
         
         this.ADD_ORGANISATION_BUTTON.addActionListener(aol);
         this.DELETE_ORGANISATION_BUTTON.addActionListener(dol);

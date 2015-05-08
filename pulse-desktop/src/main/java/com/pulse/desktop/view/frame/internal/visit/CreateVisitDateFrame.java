@@ -106,7 +106,7 @@ final public class CreateVisitDateFrame {
         
         setAllSettings();
         initializeTabel();
-        intializeFrame();
+        initializeFrame();
     }
 
     public void setPatientId(long patientId) {
@@ -120,7 +120,7 @@ final public class CreateVisitDateFrame {
         setToolbarSettings();
     }
     
-    public void intializeFrame() {
+    public void initializeFrame() {
         initializeRootPanel();
         
         this.frame.add(this.ROOT_PANEL);

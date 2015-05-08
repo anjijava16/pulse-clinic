@@ -56,9 +56,9 @@ public class PatientRecordFrame extends AbstractTabledChildFrame {
     private Patient patient;
         
     private void buildActionListeners() {
-        CreatePatientRecordListener cerl = new CreatePatientRecordListener(this.privilege, this.TABLE_HOLDER);
-        DeletePatientRecordListener dprc = new DeletePatientRecordListener(this.privilege, this.TABLE_HOLDER);
-        OpenPatientRecordListener oprl = new OpenPatientRecordListener(this.privilege, this.TABLE_HOLDER);
+        final CreatePatientRecordListener cerl = new CreatePatientRecordListener(this.privilege, this.TABLE_HOLDER);
+        final DeletePatientRecordListener dprc = new DeletePatientRecordListener(this.privilege, this.TABLE_HOLDER);
+        final OpenPatientRecordListener oprl = new OpenPatientRecordListener(this.privilege, this.TABLE_HOLDER);
         
         this.CREATE_PATIENT_RECORD_BUTTON.addActionListener(cerl);
         this.REMOVE_PATIENT_RECORD_BUTTON.addActionListener(dprc);

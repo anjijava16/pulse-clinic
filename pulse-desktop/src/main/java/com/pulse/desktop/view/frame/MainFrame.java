@@ -22,7 +22,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -88,7 +87,7 @@ public class MainFrame {
     private final Font FRAME_FONT = new Font("Dialog", Font.BOLD, this.FRAME_FONT_SIZE);
             
     public MainFrame() {        
-        intializeFrame();
+        initializeFrame();
         
         intializeMenu();
         intializeToolBar();
@@ -228,267 +227,201 @@ public class MainFrame {
     }
     
     private void addAllActionListeners() {
-        this.PATIENT_ROOM_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getPatientRoomFrame().isVisible()) {
-                    WINDOW_MANAGER.getPatientRoomFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getPatientRoomFrame().setVisible(false);
-                }
+        this.PATIENT_ROOM_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getPatientRoomFrame().isVisible()) {
+                WINDOW_MANAGER.getPatientRoomFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getPatientRoomFrame().setVisible(false);
             }
         });
         
-        this.ORGANISATIONS_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getOrganisationsFrame().isVisible()) {
-                    WINDOW_MANAGER.getOrganisationsFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getOrganisationsFrame().setVisible(false);
-                }
+        this.ORGANISATIONS_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getOrganisationsFrame().isVisible()) {
+                WINDOW_MANAGER.getOrganisationsFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getOrganisationsFrame().setVisible(false);
             }
         });
         
-        this.REGISTRY_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getRegistryFrame().isVisible()) {
-                    WINDOW_MANAGER.getRegistryFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getRegistryFrame().setVisible(false);
-                }
+        this.REGISTRY_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getRegistryFrame().isVisible()) {
+                WINDOW_MANAGER.getRegistryFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getRegistryFrame().setVisible(false);
             }
         });
 
-        this.ADMIN_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getAccountInternalFrame().isVisible()) {
-                    WINDOW_MANAGER.getAccountInternalFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getAccountInternalFrame().setVisible(false);
-                }
+        this.ADMIN_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getAccountInternalFrame().isVisible()) {
+                WINDOW_MANAGER.getAccountInternalFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getAccountInternalFrame().setVisible(false);
             }
         });
         
-        this.UROLOGY_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getUrologyFrame().isVisible()) {
-                    WINDOW_MANAGER.getUrologyFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getUrologyFrame().setVisible(false);
-                }
+        this.UROLOGY_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getUrologyFrame().isVisible()) {
+                WINDOW_MANAGER.getUrologyFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getUrologyFrame().setVisible(false);
             }
         });
         
-        this.GINECOLOGY_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getGinecologyFrame().isVisible()) {
-                    WINDOW_MANAGER.getGinecologyFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getGinecologyFrame().setVisible(false);
-                }
+        this.GINECOLOGY_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getGinecologyFrame().isVisible()) {
+                WINDOW_MANAGER.getGinecologyFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getGinecologyFrame().setVisible(false);
             }
         });
 
-        this.LABORATORY_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (!WINDOW_MANAGER.getLaboratoryFrame().isVisible()) {
-                    WINDOW_MANAGER.getLaboratoryFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getLaboratoryFrame().setVisible(false);
-                }
+        this.LABORATORY_M_ITEM.addActionListener(ae -> {
+            if (!WINDOW_MANAGER.getLaboratoryFrame().isVisible()) {
+                WINDOW_MANAGER.getLaboratoryFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getLaboratoryFrame().setVisible(false);
             }
         });
                 
-        this.ULTRASOUND_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {                
-                if (! WINDOW_MANAGER.getUltrasoundFrame().isVisible()) {
-                    WINDOW_MANAGER.getUltrasoundFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getUltrasoundFrame().setVisible(false);
-                }
+        this.ULTRASOUND_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getUltrasoundFrame().isVisible()) {
+                WINDOW_MANAGER.getUltrasoundFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getUltrasoundFrame().setVisible(false);
             }
         });
         
-        this.JOURNAL_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getJournalFrame().isVisible()) {
-                    WINDOW_MANAGER.getJournalFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getJournalFrame().setVisible(false);
-                }
+        this.JOURNAL_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getJournalFrame().isVisible()) {
+                WINDOW_MANAGER.getJournalFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getJournalFrame().setVisible(false);
             }
         });
         
-        this.CHECK_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getVisitFrame().isVisible()) {
-                    WINDOW_MANAGER.getVisitFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getVisitFrame().setVisible(false);
-                }
+        this.CHECK_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getVisitFrame().isVisible()) {
+                WINDOW_MANAGER.getVisitFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getVisitFrame().setVisible(false);
             }
         });
         
-        this.HOSPITAL_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getStationaryFrame().isVisible()) {
-                    WINDOW_MANAGER.getStationaryFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getStationaryFrame().setVisible(false);
-                }
+        this.HOSPITAL_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getStationaryFrame().isVisible()) {
+                WINDOW_MANAGER.getStationaryFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getStationaryFrame().setVisible(false);
             }
         });
         
-        this.PAYMONT_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (!  WINDOW_MANAGER.getTicketWindowFrame().isVisible()) {
-                    WINDOW_MANAGER.getTicketWindowFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getTicketWindowFrame().setVisible(false);
-                }
+        this.PAYMONT_M_ITEM.addActionListener(ae -> {
+            if (!  WINDOW_MANAGER.getTicketWindowFrame().isVisible()) {
+                WINDOW_MANAGER.getTicketWindowFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getTicketWindowFrame().setVisible(false);
             }
         });
         
-        this.HIRURGIYA_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getSurgeryFrame().isVisible()) {
-                    WINDOW_MANAGER.getSurgeryFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getSurgeryFrame().setVisible(false);
-                }
+        this.HIRURGIYA_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getSurgeryFrame().isVisible()) {
+                WINDOW_MANAGER.getSurgeryFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getSurgeryFrame().setVisible(false);
             }
         });
         
-        this.OCULIST_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getOculistFrame().isVisible()) {
-                    WINDOW_MANAGER.getOculistFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getOculistFrame().setVisible(false);
-                }
+        this.OCULIST_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getOculistFrame().isVisible()) {
+                WINDOW_MANAGER.getOculistFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getOculistFrame().setVisible(false);
             }
         });
         
-        this.FIZIO_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getPhysiotherapyFrame().isVisible()) {
-                    WINDOW_MANAGER.getPhysiotherapyFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getPhysiotherapyFrame().setVisible(false);
-                }
+        this.FIZIO_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getPhysiotherapyFrame().isVisible()) {
+                WINDOW_MANAGER.getPhysiotherapyFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getPhysiotherapyFrame().setVisible(false);
             }
         });
         
-        this.TERAPEVT_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getTherapeuticFrame().isVisible()) {
-                    WINDOW_MANAGER.getTherapeuticFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getTherapeuticFrame().setVisible(false);
-                }
+        this.TERAPEVT_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getTherapeuticFrame().isVisible()) {
+                WINDOW_MANAGER.getTherapeuticFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getTherapeuticFrame().setVisible(false);
             }
         });
         
-        this.ENDOKRINOLOG_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getEndoFrame().isVisible()) {
-                    WINDOW_MANAGER.getEndoFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getEndoFrame().setVisible(false);
-                }
+        this.ENDOKRINOLOG_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getEndoFrame().isVisible()) {
+                WINDOW_MANAGER.getEndoFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getEndoFrame().setVisible(false);
             }
         });
                 
-        this.NEVROPATOLOG_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getNeurologistFrame().isVisible()) {
-                    WINDOW_MANAGER.getNeurologistFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getNeurologistFrame().setVisible(false);
-                }
+        this.NEVROPATOLOG_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getNeurologistFrame().isVisible()) {
+                WINDOW_MANAGER.getNeurologistFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getNeurologistFrame().setVisible(false);
             }
         });
         
-        this.VERTEBROLOG_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getVertebrologistFrame().isVisible()) {
-                    WINDOW_MANAGER.getVertebrologistFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getVertebrologistFrame().setVisible(false);
-                }
+        this.VERTEBROLOG_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getVertebrologistFrame().isVisible()) {
+                WINDOW_MANAGER.getVertebrologistFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getVertebrologistFrame().setVisible(false);
             }
         });
         
-        this.STATISTIC_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getStatisticFrame().isVisible()) {
-                    WINDOW_MANAGER.getStatisticFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getStatisticFrame().setVisible(false);
-                }
+        this.STATISTIC_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getStatisticFrame().isVisible()) {
+                WINDOW_MANAGER.getStatisticFrame().setVisible(true);
             }
-        });   
-        
-        this.MRI_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getMriFrame().isVisible()) {
-                    WINDOW_MANAGER.getMriFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getMriFrame().setVisible(false);
-                }
+            else {
+                WINDOW_MANAGER.getStatisticFrame().setVisible(false);
             }
-        });        
+        });
         
-        this.MONEY_M_ITEM.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (! WINDOW_MANAGER.getBookKeepingFrame().isVisible()) {
-                    WINDOW_MANAGER.getBookKeepingFrame().setVisible(true);
-                }
-                else {
-                    WINDOW_MANAGER.getBookKeepingFrame().setVisible(false);
-                }
+        this.MRI_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getMriFrame().isVisible()) {
+                WINDOW_MANAGER.getMriFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getMriFrame().setVisible(false);
+            }
+        });
+        
+        this.MONEY_M_ITEM.addActionListener(ae -> {
+            if (! WINDOW_MANAGER.getBookKeepingFrame().isVisible()) {
+                WINDOW_MANAGER.getBookKeepingFrame().setVisible(true);
+            }
+            else {
+                WINDOW_MANAGER.getBookKeepingFrame().setVisible(false);
             }
         });
     }
@@ -577,7 +510,7 @@ public class MainFrame {
         this.MRI_M_ITEM.setFont(this.FRAME_FONT);
     }
 
-    private void intializeFrame() {
+    private void initializeFrame() {
         this.mainFrame = new JFrame(Settings.APPLICATION_VERSION);
         setIcon();
         

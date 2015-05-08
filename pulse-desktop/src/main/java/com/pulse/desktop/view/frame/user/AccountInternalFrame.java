@@ -50,7 +50,7 @@ public final class AccountInternalFrame
         this.frame.setMaximizable(true);
                 
         setAllSettings();        
-        intializeFrame();
+        initializeFrame();
     }
     
     public TableHolder getTableHolder() {
@@ -72,7 +72,7 @@ public final class AccountInternalFrame
     }
     
     @Override
-    public void intializeFrame() {
+    public void initializeFrame() {
         initializeRootPanel();
         
         this.width = 800;

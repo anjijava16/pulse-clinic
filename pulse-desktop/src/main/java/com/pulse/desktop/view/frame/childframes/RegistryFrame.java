@@ -77,22 +77,20 @@ public class RegistryFrame extends AbstractTabledChildFrame {
     }
 
     private void buildActionListeners() {
-        PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
+        final PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
                 privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
-                        
-        SearchByDateListener sbdl = new SearchByDateListener(
+
+        final SearchByDateListener sbdl = new SearchByDateListener(
                 privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
-        
-        SearchFieldFocusListener sfl = new SearchFieldFocusListener();
-        
-        ShowCreatePatientListener cpl = new ShowCreatePatientListener(privilege, this.TABLE_HOLDER);
-        EditPatientListener epl = new EditPatientListener(privilege, this.TABLE_HOLDER);
-        ShowDeletePatientListener dpl = new ShowDeletePatientListener(privilege, this.TABLE_HOLDER);
-        
-        CreateVisitListener cvl = new CreateVisitListener(privilege, this.TABLE_HOLDER);
-        DeleteVisitListener dvl = new DeleteVisitListener(privilege, this.TABLE_HOLDER);
+
+        final SearchFieldFocusListener sfl = new SearchFieldFocusListener();
+        final ShowCreatePatientListener cpl = new ShowCreatePatientListener(privilege, this.TABLE_HOLDER);
+        final EditPatientListener epl = new EditPatientListener(privilege, this.TABLE_HOLDER);
+        final ShowDeletePatientListener dpl = new ShowDeletePatientListener(privilege, this.TABLE_HOLDER);
+        final CreateVisitListener cvl = new CreateVisitListener(privilege, this.TABLE_HOLDER);
+        final DeleteVisitListener dvl = new DeleteVisitListener(privilege, this.TABLE_HOLDER);
         
         this.SEARCH_PATTERN_FIELD.addFocusListener(sfl);
         
@@ -104,8 +102,8 @@ public class RegistryFrame extends AbstractTabledChildFrame {
         this.DELETE_VISIT_BUTTON.addActionListener(dvl);
         
         this.PATIENT_LIST_BOX.addActionListener(ptfl);
-        
-        CommonSearchListener csl = new CommonSearchListener(
+
+        final CommonSearchListener csl = new CommonSearchListener(
                 privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
         this.SEARCH_PATTERN_BUTTON.addActionListener(csl);

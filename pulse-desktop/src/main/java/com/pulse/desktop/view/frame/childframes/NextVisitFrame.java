@@ -49,7 +49,7 @@ public class NextVisitFrame extends AbstractTabledChildFrame {
     private final Privilege privilege = Privilege.NextVisit;
     
     private void buildActionListeners() {
-        SearchNextVisitByDateListener sbdl = new SearchNextVisitByDateListener(
+        final SearchNextVisitByDateListener sbdl = new SearchNextVisitByDateListener(
                 privilege, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         

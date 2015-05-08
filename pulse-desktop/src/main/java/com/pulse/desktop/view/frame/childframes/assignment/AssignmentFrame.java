@@ -62,14 +62,14 @@ public final class AssignmentFrame {
         this.frame.setTitle(title);
         setAllSettings();       
         addAllActionListeners();
-        intializeFrame();
+        initializeFrame();
     }
     
     public AnalysSelectionPanel getAnalysSelectionPanel() {
         return this.analysSelectionPanel;
     }
     
-    public void intializeFrame() {
+    public void initializeFrame() {
         initializeRootPanel();
         
         this.width = 1100;

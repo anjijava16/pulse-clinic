@@ -99,11 +99,8 @@ public class VertebrologistFrame extends AbstractTabledChildFrame {
         );
 
         final ViewPatientRecordListener vpfl = new ViewPatientRecordListener(privilege, this.TABLE_HOLDER);
-
         final SearchFieldFocusListener sfl = new SearchFieldFocusListener();
-
         final ViewPatientAppointmentListener vpal = new ViewPatientAppointmentListener(privilege, this.TABLE_HOLDER);
-
         final SaveSecondVisitListener ssvl = new SaveSecondVisitListener(privilege, this.TABLE_HOLDER);
         final MarkAsViewedListener mavl = new MarkAsViewedListener(privilege, this.TABLE_HOLDER);
         

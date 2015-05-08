@@ -18,8 +18,6 @@ package com.pulse.desktop.view.registratur;
 
 import com.pulse.desktop.controller.CreatePatientListener;
 import java.awt.GridBagConstraints;
-import java.text.SimpleDateFormat;
-import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -79,7 +77,7 @@ public final class PatienCreationFrame  {
         this.frame.setTitle(title);
         setAllSettings();       
         addAllActionListeners();
-        intializeFrame();
+        initializeFrame();
     }
 
     public void hidePanel() {
@@ -95,7 +93,7 @@ public final class PatienCreationFrame  {
         this.PATIENT_INFO_PANEL.getMobileField().setText("");
     }
                     
-    public void intializeFrame() {
+    public void initializeFrame() {
         initializeRootPanel();
         
         this.width = 440;

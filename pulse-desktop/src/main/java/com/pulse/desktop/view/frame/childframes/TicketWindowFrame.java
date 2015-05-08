@@ -101,25 +101,25 @@ public class TicketWindowFrame extends AbstractTabledChildFrame {
     }
     
     private void buildActionListeners() {
-        MarkAsPayListener pbl = new MarkAsPayListener();
+        final MarkAsPayListener pbl = new MarkAsPayListener();
         pbl.setTableHolder(this.TABLE_HOLDER);
-        
-        MarkAsUnpayListener upbl = new MarkAsUnpayListener();
+
+        final MarkAsUnpayListener upbl = new MarkAsUnpayListener();
         upbl.setTableHolder(this.TABLE_HOLDER);
-        
-        MarkAsDebtListener dpbl = new MarkAsDebtListener();
+
+        final MarkAsDebtListener dpbl = new MarkAsDebtListener();
         dpbl.setTableHolder(this.TABLE_HOLDER);
-        
-        MarkAsDiscountPatientListener mdpbl = new MarkAsDiscountPatientListener();
+
+        final MarkAsDiscountPatientListener mdpbl = new MarkAsDiscountPatientListener();
         mdpbl.setTableHolder(this.TABLE_HOLDER);
-        
-        DemarkAsDiscountPatientListener dadpl = new DemarkAsDiscountPatientListener();
+
+        final DemarkAsDiscountPatientListener dadpl = new DemarkAsDiscountPatientListener();
         dadpl.setTableHolder(this.TABLE_HOLDER);
-        
-        MarkAsPayedBackListener mapbl = new MarkAsPayedBackListener();
+
+        final MarkAsPayedBackListener mapbl = new MarkAsPayedBackListener();
         mapbl.setTableHolder(this.TABLE_HOLDER);
-        
-        SearchByDateListener sbdl = new SearchByDateListener(
+
+        final SearchByDateListener sbdl = new SearchByDateListener(
                 privilege, this.PATIENT_LIST_BOX, this.SRCH_BY_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
         this.DATE_FILTER_BUTTON.addActionListener(sbdl);

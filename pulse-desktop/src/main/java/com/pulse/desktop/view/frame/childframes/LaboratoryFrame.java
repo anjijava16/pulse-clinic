@@ -62,23 +62,23 @@ public class LaboratoryFrame extends AbstractTabledChildFrame {
     private final Privilege privilege = Privilege.Laboratory;
     
     private void buildActionListeners() {
-        PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
+        final PatientTypeFilterListener ptfl = new PatientTypeFilterListener(
                 privilege, this.PATIENT_LIST_BOX, this.TABLE_HOLDER, this.FORMATTER, this.SRCH_DATE_PICKER
         );
-        
-        CommonSearchListener csl = new CommonSearchListener(
+
+        final CommonSearchListener csl = new CommonSearchListener(
                 privilege, this.TABLE_HOLDER, this.SEARCH_PATTERN_FIELD, this.FORMATTER
         );
-        
-        SearchByDateListener sbdl = new SearchByDateListener(
+
+        final SearchByDateListener sbdl = new SearchByDateListener(
                 privilege, this.PATIENT_LIST_BOX, this.SRCH_DATE_PICKER, this.TABLE_HOLDER, this.FORMATTER
         );
-        
-        ViewAnalysListener val = new ViewAnalysListener(
+
+        final ViewAnalysListener val = new ViewAnalysListener(
                 privilege, this.TABLE_HOLDER, this.VISIT_DATE_FORMATTER
         );
-        
-        SearchFieldFocusListener sfl = new SearchFieldFocusListener();
+
+        final SearchFieldFocusListener sfl = new SearchFieldFocusListener();
         
         this.SEARCH_PATTERN_FIELD.addFocusListener(sfl);
         

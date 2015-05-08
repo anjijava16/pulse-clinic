@@ -56,7 +56,7 @@ public class StatisticFrame extends AbstractTabledChildFrame {
         this.SEARCH_FROM_DATE_PICKER.getJFormattedTextField().setText(this.FORMATTER.format(new Date()));
         this.SEARCH_UNTIL_DATE_PICKER.getJFormattedTextField().setText(this.FORMATTER.format(new Date()));
 
-        StatisticSearchListener ssl = new StatisticSearchListener(
+        final StatisticSearchListener ssl = new StatisticSearchListener(
                 this.privilege, this.TABLE_HOLDER, this.ORGANISATIONS_LIST, this.SEARCH_FROM_DATE_PICKER, this.SEARCH_UNTIL_DATE_PICKER
         );
 

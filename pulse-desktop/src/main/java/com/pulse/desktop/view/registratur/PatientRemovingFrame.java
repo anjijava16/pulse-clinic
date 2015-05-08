@@ -26,9 +26,9 @@ import javax.swing.JToolBar;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import com.pulse.desktop.view.panel.PatientInfoPanel;
+
 import com.pulse.desktop.view.panel.SearchAndShowPatientInfoPanel;
-import com.pulse.desktop.view.panel.SearchPatientPanel;
+
 import javax.swing.JButton;
 
 
@@ -92,10 +92,10 @@ public final class PatientRemovingFrame {
         this.frame.setTitle(title);
         setAllSettings();       
         addAllActionListeners();
-        intializeFrame();
+        initializeFrame();
     }
 
-    public void intializeFrame() {
+    public void initializeFrame() {
         initializeRootPanel();
         
         this.width = 470;
