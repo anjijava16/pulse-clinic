@@ -29,7 +29,7 @@ public class CheckListRenderer
     extends JCheckBox
     implements ListCellRenderer {
     
-    private static final long serialVersionUID = 233265411268587L;
+    private static final long serialVersionUID = 1L;
     
     @Override
     public Component getListCellRendererComponent(JList list, 

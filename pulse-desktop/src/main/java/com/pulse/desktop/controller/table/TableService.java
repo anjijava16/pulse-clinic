@@ -162,7 +162,7 @@ public enum TableService {
             }
 
             this.table = new JTable(this.model) {
-                private static final long serialVersionUID = 5888611849826987986L;
+                private static final long serialVersionUID = 1L;
 
                 @Override
                 public boolean isCellEditable(int row, int column) {
