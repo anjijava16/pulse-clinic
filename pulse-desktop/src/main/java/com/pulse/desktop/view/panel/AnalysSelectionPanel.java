@@ -42,16 +42,16 @@ import java.awt.Dimension;
 /**
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
+@SuppressWarnings("unchecked")
 public class AnalysSelectionPanel {
     
     private final JPanel ROOT_PANEL = new JPanel();
-    
+
     private final DefaultListModel<CheckListItem> ANALYS_GROUP_DLM = new DefaultListModel<>();
-    private final JList ANALYS_GROUP = new JList<CheckListItem>(this.ANALYS_GROUP_DLM);
+    private final JList<CheckListItem> ANALYS_GROUP = new JList(this.ANALYS_GROUP_DLM);
     private final JScrollPane ANALYS_GROUP_SCROLL_PANE = new JScrollPane(this.ANALYS_GROUP);
-    
     private final DefaultListModel ANALYS_DLM = new DefaultListModel();
-    private final JList ANALYS = new JList<CheckListItem>(this.ANALYS_DLM);
+    private final JList<CheckListItem> ANALYS = new JList<>(this.ANALYS_DLM);
     private final JScrollPane ANALYS_SRCOLL_PANE = new JScrollPane(this.ANALYS);   
     
     private CheckListItem[] analysesGroupNames;
@@ -102,23 +102,20 @@ public class AnalysSelectionPanel {
     
     public void clearAllSelectionData() {
         this.groupToAnalysMap.clear();
-        
-        for (int x=0; x<this.analysesGroupNames.length; x++) {
-            this.analysesGroupNames[x].setSelected(false);
-        }   
-        
+
+        for (final CheckListItem item : this.analysesGroupNames) {
+            item.setSelected(false);
+        }
+
         this.ANALYS_DLM.removeAllElements();
     }
     
     public void fillList(DefaultListModel<CheckListItem> dlm, String groupName) {
         String[] files = getDirectoriesName(this.service.getRoot().concat(groupName).concat("/"));
                 
-        TreeSet<String> filesList = new TreeSet<String>();
-        
-        for (String file : files) {
-           filesList.add(file);
-        }
-        
+        final TreeSet<String> filesList = new TreeSet<>();
+        filesList.addAll(Arrays.asList(files));
+
         analysesNames = new CheckListItem[filesList.size()];
         int ptr = 0;
         
@@ -140,28 +137,35 @@ public class AnalysSelectionPanel {
         filesList.clear();
     }
     
-    private String[] getDirectoriesName(String fileName) {
-        File file = new File(fileName);
-        File[] files = null;
+    private String[] getDirectoriesName(final String fileName) {
+        if (fileName == null) {
+            throw new IllegalArgumentException("fileName can't be null");
+        }
+
+        final File file = new File(fileName);
+        File[] files;
         String[] groupsList = null;
         
         if (file.exists()) {
             files = file.listFiles();
-            
-            TreeSet<File> filesList = new TreeSet<>();
-            filesList.addAll(Arrays.asList(files));
 
-            groupsList = new String[filesList.size()];
-            for (int x=0;x<groupsList.length;x++) {
-                groupsList[x] = filesList.pollFirst().getName().toString();
+            if (files != null) {
+                final TreeSet<File> filesList = new TreeSet<>();
+                filesList.addAll(Arrays.asList(files));
+
+                groupsList = new String[filesList.size()];
+                for (int x = 0; x < groupsList.length; x++) {
+                    groupsList[x] = filesList.pollFirst().getName();
+                }
+
+                filesList.clear();
             }
-
-            filesList.clear();
         }
                         
         return groupsList;
     }
-    
+
+    @SuppressWarnings("unchecked")
     private void configurePanel() {       
         for (CheckListItem item : analysesGroupNames) {
             this.ANALYS_GROUP_DLM.addElement(item);
@@ -173,31 +177,28 @@ public class AnalysSelectionPanel {
         this.ANALYS_GROUP.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                JList list = (JList) event.getSource();
-                int index = list.locationToIndex(event.getPoint());
+                final JList list = (JList) event.getSource();
+                final int index = list.locationToIndex(event.getPoint());
                 
                 if (index >= 0) {
-                    CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
+                    final CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
                     item.setSelected(!item.isSelected());
                     list.repaint(list.getCellBounds(index, index));
-                    
-                    String analysesGroupName = item.toString();
+
                     clearList(ANALYS_DLM);       
                     
                     for (int x=0;x<list.getModel().getSize();x++) {
-                        CheckListItem tmpItem = (CheckListItem) list.getModel().getElementAt(x);
-                        analysesGroupName = tmpItem.toString();
+                        final CheckListItem tmpItem = (CheckListItem) list.getModel().getElementAt(x);
+                        final String analysesGroupName = tmpItem.toString();
                         
                         if (tmpItem.isSelected()) {                        
                             if (!groupToAnalysMap.containsKey(analysesGroupName)) {                            
-                                groupToAnalysMap.put(analysesGroupName, new ArrayList<String>());
+                                groupToAnalysMap.put(analysesGroupName, new ArrayList<>());
                             } else {
                                 tmpItem.setSelected(true);
                             }
 
                             fillList(ANALYS_DLM, analysesGroupName);
-                        } else {
-
                         }
                     }
                 }
@@ -210,20 +211,19 @@ public class AnalysSelectionPanel {
         this.ANALYS.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {                
-                JList list = (JList) event.getSource();
-                int index = list.locationToIndex(event.getPoint());
+                final JList list = (JList) event.getSource();
+                final int index = list.locationToIndex(event.getPoint());
                 
                 if (index >= 0) {
-                    CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
+                    final CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
                     item.setSelected(!item.isSelected());
                     list.repaint(list.getCellBounds(index, index));
 
-                    String analysesGroupName = item.toString();
+                    final String analysesGroupName = item.toString();
+                    final Set<String> selectedGroupsSet = groupToAnalysMap.keySet();
+                    final String belongsTo = getGroupNameForAnalys(selectedGroupsSet, analysesGroupName);
+                    final ArrayList<String> analysesList = groupToAnalysMap.get(belongsTo);
 
-                    analysesGroupName = item.toString();
-                    Set<String> selectedGroupsSet = groupToAnalysMap.keySet();                        
-                    String belongsTo = getGroupNameForAnalys(selectedGroupsSet, analysesGroupName);
-                    ArrayList<String> analysesList = groupToAnalysMap.get(belongsTo);
                     if (item.isSelected()) {
                         if (!analysesList.contains(analysesGroupName)) {
                             analysesList.add(analysesGroupName);
@@ -240,14 +240,17 @@ public class AnalysSelectionPanel {
         this.ROOT_PANEL.setLayout(new BorderLayout());        
         this.ANALYS_GROUP_SCROLL_PANE.setMinimumSize(new Dimension(600, 100));
         
-        JPanel panel1 = new JPanel();
+        final JPanel panel1 = new JPanel();
         panel1.setLayout(new BorderLayout());
         panel1.add(this.ANALYS_GROUP_SCROLL_PANE);
-        JPanel panel2 = new JPanel();
+
+        final JPanel panel2 = new JPanel();
         panel1.setLayout(new BorderLayout());
         panel2.add(this.ANALYS_SRCOLL_PANE);
         
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, ANALYS_GROUP_SCROLL_PANE, ANALYS_SRCOLL_PANE);
+        final JSplitPane splitPane = new JSplitPane(
+            JSplitPane.HORIZONTAL_SPLIT, ANALYS_GROUP_SCROLL_PANE, ANALYS_SRCOLL_PANE
+        );
         
         this.ROOT_PANEL.add(splitPane);
     }

@@ -59,7 +59,8 @@ public class UserInfoPanel {
     private final JComboBox privelegyField;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
+
+    @SuppressWarnings("unchecked")
     public UserInfoPanel() {
         this.privelegyField = new JComboBox();
 
