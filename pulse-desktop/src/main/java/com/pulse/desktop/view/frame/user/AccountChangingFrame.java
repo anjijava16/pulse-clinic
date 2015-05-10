@@ -16,11 +16,12 @@
 package com.pulse.desktop.view.frame.user;
 
 
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+
 import com.pulse.desktop.controller.UpdateUserListener;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.model.constant.Privilege;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
 
 
 /**

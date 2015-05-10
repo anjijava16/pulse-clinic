@@ -16,14 +16,14 @@
 package com.pulse.desktop.controller.table;
 
 
+import java.util.List;
+
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.view.util.ConstantValues;
-import com.pulse.model.Visit;
-import java.util.List;
-
 import com.pulse.model.Patient;
 import com.pulse.model.User;
+import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 
 

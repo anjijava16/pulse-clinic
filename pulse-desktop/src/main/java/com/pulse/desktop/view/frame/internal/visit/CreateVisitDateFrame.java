@@ -16,11 +16,6 @@
 package com.pulse.desktop.view.frame.internal.visit;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
-import com.pulse.desktop.view.util.DateLabelFormatter;
-import com.pulse.desktop.view.util.ConstantValues;
-import com.pulse.model.NextVisit;
-import com.pulse.rest.client.NextVisitClient;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -37,8 +32,15 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.view.util.ConstantValues;
+import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.model.NextVisit;
+import com.pulse.rest.client.NextVisitClient;
 
 
 /**

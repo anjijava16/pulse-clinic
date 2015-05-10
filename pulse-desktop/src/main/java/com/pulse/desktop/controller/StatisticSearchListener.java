@@ -16,11 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.table.OrganisationsTableService;
-import com.pulse.desktop.controller.table.TableService;
-import com.pulse.desktop.controller.table.VisitTableService;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.text.ParseException;
@@ -29,15 +24,21 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
 
-import com.pulse.desktop.view.util.ConstantValues;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.table.OrganisationsTableService;
+import com.pulse.desktop.controller.table.TableService;
+import com.pulse.desktop.controller.table.VisitTableService;
+import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.model.Organisation;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
 import com.pulse.rest.client.VisitClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -76,9 +77,7 @@ public class StatisticSearchListener extends AbstractTableListener {
         
         try {
             List<Organisation> organisationsList = this.ORGANISATION_SERVICE.listAll();
-            organisationsList.stream().forEach((organistaion) -> {
-                this.organisationsBox.addItem(organistaion.getName());
-            });
+            organisationsList.stream().forEach((organistaion) -> this.organisationsBox.addItem(organistaion.getName()));
         } catch (IOException ioe) {
             this.LOGGER.error(ioe.getMessage());
         } 
@@ -92,7 +91,7 @@ public class StatisticSearchListener extends AbstractTableListener {
             
             if (this.organisationsBox.getSelectedItem() == null) return;
             
-            String name = this.organisationsBox.getSelectedItem().toString();
+            final String name = this.organisationsBox.getSelectedItem().toString();
 
             if (name == null || name.isEmpty()) return;
             
@@ -101,10 +100,7 @@ public class StatisticSearchListener extends AbstractTableListener {
             
             final String fromDate = this.REQUEST_FORMAT.format(originFromDate);
             final String untilDate = this.REQUEST_FORMAT.format(originUntilDate);
-            
-            if (fromDate == null) return;
-            if (untilDate == null) return;
-            
+
             if (fromDate.equals(untilDate)) {
                 ResultToolbarService.INSTANCE.showFailedStatus("Даты совпадают. Временной "
                         + "промежуток должен быть больше одного дня.");

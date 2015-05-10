@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+
 import com.pulse.desktop.view.frame.childframes.template.TemplateService;
 import com.pulse.desktop.view.panel.AnalysSelectionPanel;
 

@@ -16,18 +16,20 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.PatientRoomTableService;
 import com.pulse.desktop.controller.table.TableService;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.List;
 import com.pulse.model.PatientRoom;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.PatientRoomClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -51,11 +53,9 @@ public class UpdatePatientRoomListener extends AbstractTableListener {
             try {
                 getTableHolder().clear();
 
-                List<PatientRoom> list = this.ORGANISATION_SERVICE.listAll();
+                final List<PatientRoom> list = this.ORGANISATION_SERVICE.listAll();
+                list.stream().forEach(this.tableService::add);
 
-                list.stream().forEach((organisation) -> {
-                    this.tableService.add(organisation);
-                });
                 ResultToolbarService.INSTANCE.showSuccessStatus();
             } catch (IOException ioe) {
                 this.LOGGER.error(ioe.getMessage());

@@ -16,15 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.table.TableService;
-import com.pulse.desktop.controller.table.UsersTableService;
-import com.pulse.desktop.view.manager.WindowManager;
-import com.pulse.model.User;
-import com.pulse.model.constant.Privilege;
-import com.pulse.rest.client.UserClient;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.text.ParseException;
@@ -33,9 +24,19 @@ import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.table.TableService;
+import com.pulse.desktop.controller.table.UsersTableService;
+import com.pulse.desktop.view.manager.WindowManager;
+import com.pulse.model.User;
+import com.pulse.model.constant.Privilege;
+import com.pulse.rest.client.UserClient;
 
 
 /**

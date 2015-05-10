@@ -27,23 +27,23 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
-import com.pulse.desktop.view.util.ConstantValues;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
-import com.pulse.desktop.view.util.DateLabelFormatter;
-import com.pulse.model.constant.Privilege;
-import com.pulse.desktop.controller.table.TableService;
-import com.pulse.desktop.controller.builder.FilterBoxBuilder;
 import com.pulse.desktop.controller.CommonSearchListener;
-import com.pulse.desktop.controller.ShowCreatePatientListener;
 import com.pulse.desktop.controller.CreateVisitListener;
-import com.pulse.desktop.controller.ShowDeletePatientListener;
 import com.pulse.desktop.controller.DeleteVisitListener;
 import com.pulse.desktop.controller.EditPatientListener;
 import com.pulse.desktop.controller.PatientTypeFilterListener;
 import com.pulse.desktop.controller.SearchByDateListener;
 import com.pulse.desktop.controller.SearchFieldFocusListener;
+import com.pulse.desktop.controller.ShowCreatePatientListener;
+import com.pulse.desktop.controller.ShowDeletePatientListener;
+import com.pulse.desktop.controller.builder.FilterBoxBuilder;
+import com.pulse.desktop.controller.table.TableService;
+import com.pulse.desktop.view.util.ConstantValues;
+import com.pulse.desktop.view.util.DateLabelFormatter;
+import com.pulse.model.constant.Privilege;
 
 
 /**

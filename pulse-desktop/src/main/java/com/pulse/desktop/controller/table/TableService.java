@@ -16,8 +16,6 @@
 package com.pulse.desktop.controller.table;
 
 
-import com.pulse.desktop.controller.service.PatientService;
-import com.pulse.model.Record;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.concurrent.locks.Lock;
@@ -28,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.model.Patient;
 
 
@@ -37,23 +36,6 @@ import com.pulse.model.Patient;
 public enum TableService {
 
     INSTANCE;
-
-    private TableService() {
-    }
-
-    /**
-     *
-     */
-    public void clearTable(TableHolder holder) {
-        try {
-            TABLE_EDIT_LOCK.lock();
-
-            holder.getModel().getDataVector().removeAllElements();
-            holder.getModel().fireTableDataChanged();
-        } finally {
-            TABLE_EDIT_LOCK.unlock();
-        }
-    }
 
     /**
      * This function will return new instance of JTable and associated JPanel
@@ -171,7 +153,7 @@ public enum TableService {
 
                 @Override
                 public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
-                    JComponent c = (JComponent) super.prepareRenderer(renderer, row, col);
+                    final JComponent c = (JComponent) super.prepareRenderer(renderer, row, col);
                     c.setBackground(Color.LIGHT_GRAY);
                     c.setOpaque(true);
 

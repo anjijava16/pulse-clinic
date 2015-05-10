@@ -16,11 +16,12 @@
 package com.pulse.desktop.controller.service;
 
 
-import com.pulse.desktop.view.util.HashBuilder;
+import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import com.pulse.desktop.view.util.HashBuilder;
 import com.pulse.model.Patient;
 import com.pulse.rest.client.PatientClient;
-import java.io.IOException;
 
 
 /**
@@ -30,18 +31,14 @@ public enum PatientService {
     
     INSTANCE;
     
-    private PatientClient patientService = new PatientClient();
-    
-    private PatientService() {
-    }
-    
-    private LinkedBlockingQueue<Patient> patientsList 
-            = new LinkedBlockingQueue<>();
+    private final PatientClient patientService = new PatientClient();
+
+    private final LinkedBlockingQueue<Patient> patientsList = new LinkedBlockingQueue<>();
 
     public Patient getByName(String nfp) {
         if (nfp == null || nfp.isEmpty()) return null;
         
-        for (Patient tempPatient : this.patientsList) {
+        for (final Patient tempPatient : this.patientsList) {
             if (tempPatient.getNfp().equals(nfp)) {                
                 return  tempPatient;
             }
@@ -56,7 +53,7 @@ public enum PatientService {
     }
     
     public Patient getById(long id) {
-        for (Patient tempPatient : this.patientsList) {
+        for (final Patient tempPatient : this.patientsList) {
             if (tempPatient.getId() == id) {                
                 return  tempPatient;
             }

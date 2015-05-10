@@ -21,9 +21,10 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import com.pulse.desktop.controller.table.TableService;
+
 import com.pulse.desktop.controller.ReleasePatientListener;
 import com.pulse.desktop.controller.UpdateStationaryVisitListener;
+import com.pulse.desktop.controller.table.TableService;
 import com.pulse.model.constant.Privilege;
 
 

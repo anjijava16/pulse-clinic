@@ -16,23 +16,25 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.Files;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.PatientRecordTableService;
 import com.pulse.desktop.controller.table.TableService;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Record;
-import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.RecordClient;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

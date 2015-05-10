@@ -16,6 +16,16 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.view.manager.WindowManager;
@@ -26,15 +36,6 @@ import com.pulse.model.Patient;
 import com.pulse.model.constant.PatientSex;
 import com.pulse.model.constant.PatientType;
 import com.pulse.rest.client.PatientClient;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -108,15 +109,28 @@ public class CreatePatientListener implements ActionListener {
                     ResultToolbarService.INSTANCE.showFailedStatus("Данный пациент уже существует");
                     return;
                 }
+
+                final PatientSex sex = PatientSex.getBy(this.patientInfoPanel.getSexBox().getSelectedItem().toString());
+                final PatientType patientType = PatientType.getBy(this.patientInfoPanel.getClientTypeBox().getSelectedItem().toString());
+
+                if (sex == null) {
+                    ResultToolbarService.INSTANCE.showFailedStatus("Пол указан неверно");
+                    return;
+                }
+
+                if (patientType == null) {
+                    ResultToolbarService.INSTANCE.showFailedStatus("Неизвестный тип пациента");
+                    return;
+                }
                 
                 patient = new Patient();
                 patient.setBirthday(birthdayDate);
                 patient.setEmail(email);
                 patient.setMobile(mobile);
                 patient.setNfp(nfp);
-                patient.setSex(PatientSex.getBy(this.patientInfoPanel.getSexBox().getSelectedItem().toString()).getId());
+                patient.setSex(sex.getId());
                 patient.setToken(token);
-                patient.setType(PatientType.getBy(this.patientInfoPanel.getClientTypeBox().getSelectedItem().toString()).getId());
+                patient.setType(patientType.getId());
                 
                 this.patientService.update(patient);
                 ResultToolbarService.INSTANCE.showSuccessStatus();

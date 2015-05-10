@@ -16,11 +16,9 @@
 package com.pulse.desktop.controller.table;
 
 
-import com.pulse.model.Appointment;
 import java.text.SimpleDateFormat;
 
-import com.pulse.desktop.controller.table.TableService;
-
+import com.pulse.model.Appointment;
 import com.pulse.model.Patient;
 
 
@@ -46,13 +44,13 @@ public class AppointmentTableService {
         
         data[ptr++] = formatter.format(record.getCreatedDate());
             
-        data[ptr++] = record.getName();
+        data[ptr] = record.getName();
 
         holder.getModel().addRow(data);
     }
 
     public void deleteById(long id) {
-        int rowCount = holder.getModel().getRowCount();
+        final int rowCount = holder.getModel().getRowCount();
         for (int x = 0; x < rowCount; x++) {
             if (holder.getModel().getValueAt(x, TableService.RECORD_ID_FIELD).equals(String.valueOf(id))) {
                 holder.getModel().removeRow(x);

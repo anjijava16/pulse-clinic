@@ -16,11 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.service.UserFacade;
-import com.pulse.desktop.controller.table.BookKeepingTableService;
-import com.pulse.desktop.controller.table.TableService.TableHolder;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.text.ParseException;
@@ -30,13 +25,20 @@ import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
-import com.pulse.model.constant.Privilege;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import com.pulse.model.FilteredVisit;
-import com.pulse.model.Visit;
-import com.pulse.rest.client.VisitClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.service.UserFacade;
+import com.pulse.desktop.controller.table.BookKeepingTableService;
+import com.pulse.desktop.controller.table.TableService.TableHolder;
+import com.pulse.model.FilteredVisit;
+import com.pulse.model.User;
+import com.pulse.model.Visit;
+import com.pulse.model.constant.Privilege;
+import com.pulse.rest.client.VisitClient;
 
 
 /**
@@ -98,12 +100,6 @@ public class SearchDepartmentsStatisticListener extends AbstractTableListener {
                 final String fromDate = this.requestFormat.format(originFromDate);
                 final String untilDate = this.requestFormat.format(originUntilDate);
 
-                if (fromDate == null) {
-                    return;
-                }
-                if (untilDate == null) {
-                    return;
-                }
                 if (selectedDoctor == null) {
                     return;
                 }
@@ -123,22 +119,28 @@ public class SearchDepartmentsStatisticListener extends AbstractTableListener {
                     return;
                 }
 
-                int department = Privilege.findByName(selectedDepartment).getId();
-                long doctorId = UserFacade.INSTANCE.findBy(selectedDoctor).getId();
+                final Privilege privilege = Privilege.findByName(selectedDepartment);
+                final User user = UserFacade.INSTANCE.findBy(selectedDoctor);
 
-                FilteredVisit visit = new FilteredVisit();
+                if (privilege == null || user == null) {
+                    ResultToolbarService.INSTANCE.showFailedStatus("Пользователь не найден");
+                    return;
+                }
+
+                final int department = privilege.getId();
+                final long doctorId = user.getId();
+
+                final FilteredVisit visit = new FilteredVisit();
                 visit.setDepartmentId(department);
                 visit.setDoctorId(doctorId);
                 visit.setFromDate(fromDate);
                 visit.setUntilDate(untilDate);
                 visit.setSearchByDepartment(this.enableSearchByDepartment.isSelected());
 
-                List<Visit> list = this.visitClient.filterBy(visit);
+                final List<Visit> list = this.visitClient.filterBy(visit);
                 tableService.proxyFrom(list);
-            } catch (IOException ioe) {
-                this.LOGGER.error(getClass() + ": " + ioe.getMessage());
-            } catch (ParseException pe) {
-                this.LOGGER.error(getClass() + ": " + pe.getMessage());
+            } catch (IOException | ParseException e) {
+                this.LOGGER.error(getClass() + ": " + e.getMessage());
             }
         });
     }

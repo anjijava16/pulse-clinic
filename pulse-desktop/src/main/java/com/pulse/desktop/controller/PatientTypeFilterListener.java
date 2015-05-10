@@ -16,10 +16,6 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.table.TableProxy;
-import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,12 +23,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.table.TableProxy;
+import com.pulse.desktop.controller.table.TableService;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

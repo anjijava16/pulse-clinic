@@ -16,13 +16,15 @@
 package com.pulse.desktop.view.panel;
 
 
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.LoadPatientsListListener;
 import com.pulse.desktop.controller.SearchAndShowPatientListener;
 import com.pulse.desktop.controller.ShowSelectedPatientInfoListener;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

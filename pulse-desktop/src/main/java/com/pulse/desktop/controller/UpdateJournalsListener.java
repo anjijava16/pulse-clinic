@@ -16,17 +16,19 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.table.JournalTableService;
-import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.table.JournalTableService;
+import com.pulse.desktop.controller.table.TableService;
 import com.pulse.model.Journal;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.JournalClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -50,11 +52,8 @@ public class UpdateJournalsListener extends AbstractTableListener {
             try {
                 getTableHolder().clear();
 
-                List<Journal> list = this.ORGANISATION_SERVICE.list();
-
-                list.stream().forEach((journal) -> {
-                    this.tableService.add(journal);
-                });
+                final List<Journal> list = this.ORGANISATION_SERVICE.list();
+                list.stream().forEach(this.tableService::add);
             } catch (IOException ioe) {
                 this.LOGGER.error(ioe.getMessage());
             }

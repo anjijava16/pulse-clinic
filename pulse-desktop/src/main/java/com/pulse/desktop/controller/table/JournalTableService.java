@@ -16,8 +16,9 @@
 package com.pulse.desktop.controller.table;
 
 
-import com.pulse.model.Journal;
 import java.text.SimpleDateFormat;
+
+import com.pulse.model.Journal;
 
 
 /**
@@ -36,16 +37,15 @@ public class JournalTableService {
         final String[] data = new String[3];
         int ptr = 0;
 
-        //final Account account = AccountsManagementFacade.getInstance().findAccountById(record.getCreatedBy());
         data[ptr++] = formatter.format(record.getCreatedDate());
         data[ptr++] = String.valueOf(record.getId());
-        data[ptr++] = record.getName();
+        data[ptr] = record.getName();
 
         holder.getModel().addRow(data);
     }
 
     public void deleteById(long id) {
-        int rowCount = holder.getModel().getRowCount();
+        final int rowCount = holder.getModel().getRowCount();
         for (int x = 0; x < rowCount; x++) {
             if (holder.getModel().getValueAt(x, TableService.RECORD_ID_FIELD).equals(String.valueOf(id))) {
                 holder.getModel().removeRow(x);

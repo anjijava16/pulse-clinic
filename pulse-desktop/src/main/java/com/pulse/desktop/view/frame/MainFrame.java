@@ -16,12 +16,11 @@
 package com.pulse.desktop.view.frame;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -34,7 +33,13 @@ import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.view.frame.childframes.assignment.AssignmentService;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.desktop.view.util.Settings;
@@ -44,7 +49,9 @@ import com.pulse.desktop.view.util.Settings;
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class MainFrame {
-    
+
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
     private final WindowManager WINDOW_MANAGER = WindowManager.getInstance();
         
     private JFrame mainFrame;
@@ -112,10 +119,14 @@ public class MainFrame {
 
     private BufferedImage getIconImage() {
         BufferedImage iconImage = null;
-        File iconFile = new File("bckg/icon.png");
+        final File iconFile = new File("bckg/icon.png");
+
         try {
             iconImage = ImageIO.read(iconFile);
-        } catch (IOException ioe) {}
+        } catch (IOException ioe) {
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
+        }
+
         return iconImage;
     }
     
@@ -429,28 +440,28 @@ public class MainFrame {
     private void intializeMenu() {
         this.MENU_BAR.setVisible(true);
         
-        this.CHECK_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-        this.ADMIN_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-        this.REGISTRY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        this.JOURNAL_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.CTRL_MASK));
-        this.PAYMONT_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
-        this.MONEY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
-        this.LABORATORY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-        this.UROLOGY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
-        this.GINECOLOGY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
-        this.ULTRASOUND_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-        this.HOSPITAL_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-        this.HIRURGIYA_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
-        this.OCULIST_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
-        this.FIZIO_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
-        this.TERAPEVT_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-        this.ENDOKRINOLOG_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        this.NEVROPATOLOG_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
-        this.VERTEBROLOG_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-        this.MRI_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-        this.ORGANISATIONS_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
-        this.PATIENT_ROOM_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
-        this.STATISTIC_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+        this.CHECK_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
+        this.ADMIN_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+        this.REGISTRY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+        this.JOURNAL_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_MASK));
+        this.PAYMONT_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+        this.MONEY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK));
+        this.LABORATORY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
+        this.UROLOGY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK));
+        this.GINECOLOGY_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
+        this.ULTRASOUND_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+        this.HOSPITAL_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+        this.HIRURGIYA_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_MASK));
+        this.OCULIST_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_MASK));
+        this.FIZIO_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
+        this.TERAPEVT_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
+        this.ENDOKRINOLOG_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+        this.NEVROPATOLOG_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, InputEvent.CTRL_MASK));
+        this.VERTEBROLOG_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
+        this.MRI_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
+        this.ORGANISATIONS_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
+        this.PATIENT_ROOM_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK));
+        this.STATISTIC_M_ITEM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
         
         this.ADMIN_BRANCH.add(this.ADMIN_M_ITEM);
         this.ADMIN_BRANCH.add(this.ORGANISATIONS_M_ITEM);
@@ -516,7 +527,7 @@ public class MainFrame {
         
         frameToScreenCenter();
         
-        this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.mainFrame.setLayout(new BorderLayout());
                         
         addInternalFrame(this.WINDOW_MANAGER.getAccountChangingFrame().getInternalFrame());

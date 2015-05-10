@@ -16,22 +16,24 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.service.PatientFacade;
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.AppointmentTableService;
 import com.pulse.desktop.controller.table.TableService;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.List;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.Appointment;
 import com.pulse.model.Patient;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.AppointmentClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -69,9 +71,9 @@ public class ViewPatientAppointmentListener extends AbstractTableListener {
             if (!WindowManager.getInstance().getAppointmentFrame().isVisible()) {
                 WindowManager.getInstance().getAppointmentFrame().setVisible(true);
 
-                String patientIdBuffer = getTableHolder().getTable().getValueAt(row, TableService.PATIENT_ID_FIELD).toString();
-                String doctorNfp = getTableHolder().getTable().getValueAt(row, TableService.DOCTOR_NAME_FIELD).toString();
-                Patient patient = PatientService.INSTANCE.getById(Long.valueOf(patientIdBuffer));
+                final String patientIdBuffer = getTableHolder().getTable().getValueAt(row, TableService.PATIENT_ID_FIELD).toString();
+//                String doctorNfp = getTableHolder().getTable().getValueAt(row, TableService.DOCTOR_NAME_FIELD).toString();
+                final Patient patient = PatientService.INSTANCE.getById(Long.valueOf(patientIdBuffer));
 
                 if (patient == null) {
                     this.LOGGER.error(getClass() + ": Patient instance is null");
@@ -83,9 +85,7 @@ public class ViewPatientAppointmentListener extends AbstractTableListener {
                 try {
                     final List<Appointment> recordsList = this.appointmentClient.listBy(patient.getId());
                     if (recordsList != null && !recordsList.isEmpty()) {
-                        recordsList.stream().forEach((appointment) -> {
-                            this.tableService.add(appointment, patient);
-                        });
+                        recordsList.stream().forEach((appointment) -> this.tableService.add(appointment, patient));
                     }
                 } catch (IOException ioe) {
                     this.LOGGER.error(getClass() + ": " + ioe.getMessage());

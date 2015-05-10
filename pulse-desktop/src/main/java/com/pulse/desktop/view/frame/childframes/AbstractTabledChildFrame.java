@@ -23,8 +23,9 @@ import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import com.pulse.desktop.controller.table.TableService.TableHolder;
+
 import com.pulse.desktop.controller.builder.ToolbarBuilder;
+import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.model.constant.Privilege;
 
 

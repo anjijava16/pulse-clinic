@@ -17,8 +17,8 @@ package com.pulse.desktop.controller;
 
 
 import java.awt.event.ActionEvent;
-import org.slf4j.Logger;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pulse.desktop.controller.service.ThreadPoolService;

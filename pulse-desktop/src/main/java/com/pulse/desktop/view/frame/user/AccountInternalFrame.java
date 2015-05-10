@@ -16,17 +16,17 @@
 package com.pulse.desktop.view.frame.user;
 
 
-import com.pulse.desktop.controller.AddUserListener;
-import com.pulse.desktop.controller.DeleteUserListener;
-import com.pulse.desktop.controller.RefreshUsersListener;
-import com.pulse.desktop.controller.OpenUpdateUserFrameListener;
-import com.pulse.desktop.controller.table.TableService;
-import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.model.constant.Privilege;
-
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import com.pulse.desktop.controller.AddUserListener;
+import com.pulse.desktop.controller.DeleteUserListener;
+import com.pulse.desktop.controller.OpenUpdateUserFrameListener;
+import com.pulse.desktop.controller.RefreshUsersListener;
+import com.pulse.desktop.controller.table.TableService;
+import com.pulse.desktop.controller.table.TableService.TableHolder;
+import com.pulse.model.constant.Privilege;
 
 
 /**

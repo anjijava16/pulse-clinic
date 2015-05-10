@@ -16,26 +16,27 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.table.TableService;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.desktop.view.util.FileManager;
 import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Visit;
-import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
+import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.Status;
 import com.pulse.rest.client.VisitClient;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -125,12 +126,12 @@ public class ViewAnalysListener extends AbstractTableListener {
                         appPath = Settings.E_OFFICE_PATH;
                     }
 
-                    Process process = Runtime.getRuntime().exec(appPath + " " + privelegyDir.getTemporaryPath() + analysName);
+                    final Process process = Runtime.getRuntime().exec(appPath + " " + privelegyDir.getTemporaryPath() + analysName);
                     process.waitFor();
 
-                    byte[] buffer = FILEMANAGER.readFile(privelegyDir.getTemporaryPath() + analysName);
+                    final byte[] buffer = FILEMANAGER.readFile(privelegyDir.getTemporaryPath() + analysName);
 
-                    Visit visit = visitClient.getBy(visitId);
+                    final Visit visit = visitClient.getBy(visitId);
                     if (visit != null) {
                         visit.setVisitStatus(Settings.STATUS_TYPE_VIEW);
                         visit.setBinary(new String(Base64.encodeBase64(buffer), "UTF-8"));
@@ -149,14 +150,15 @@ public class ViewAnalysListener extends AbstractTableListener {
                     final Visit visit = visitClient.getWithBinaryBy(visitId);
 
                     if (visit == null) {
-                        throw new NullPointerException("visit is null");
+                        ResultToolbarService.INSTANCE.showFailedStatus("Информация о визите не найдена");
+                        return;
                     }
 
-                    byte[] decodedBuffer = Base64.decodeBase64(visit.getBinary());
+                    final byte[] decodedBuffer = Base64.decodeBase64(visit.getBinary());
 
                     LOGGER.info("visit.getFilename(): " + visit.getFilename());
 
-                    FileOutputStream outstream = new FileOutputStream(privelegyDir.getTemporaryPath() + visit.getFilename());
+                    final FileOutputStream outstream = new FileOutputStream(privelegyDir.getTemporaryPath() + visit.getFilename());
                     outstream.write(decodedBuffer);
                     outstream.flush();
                     outstream.close();
@@ -168,11 +170,11 @@ public class ViewAnalysListener extends AbstractTableListener {
                         appPath = Settings.E_OFFICE_PATH;
                     }
 
-                    Process process = Runtime.getRuntime().exec(appPath + " "
+                    final Process process = Runtime.getRuntime().exec(appPath + " "
                             + privelegyDir.getTemporaryPath() + visit.getFilename());
                     process.waitFor();
 
-                    byte[] buffer = FILEMANAGER.readFile(privelegyDir.getTemporaryPath() + visit.getFilename());
+                    final byte[] buffer = FILEMANAGER.readFile(privelegyDir.getTemporaryPath() + visit.getFilename());
 
                     visit.setVisitStatus(Settings.STATUS_TYPE_VIEW);
                     visit.setBinary(new String(Base64.encodeBase64(buffer), "UTF-8"));

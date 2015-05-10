@@ -16,6 +16,16 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.Files;
 import com.pulse.desktop.controller.service.PatientFacade;
 import com.pulse.desktop.controller.service.ResultToolbarService;
@@ -23,25 +33,16 @@ import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.controller.table.AppointmentTableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.model.Appointment;
-import com.pulse.rest.client.AppointmentClient;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import javax.swing.JOptionPane;
-
 import com.pulse.desktop.view.util.FileManager;
 import com.pulse.desktop.view.util.HashBuilder;
 import com.pulse.desktop.view.util.NameValidator;
 import com.pulse.desktop.view.util.Settings;
+import com.pulse.model.Appointment;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.pulse.model.constant.Privilege;
+import com.pulse.rest.client.AppointmentClient;
 
 
 /**
@@ -74,16 +75,9 @@ public class CreatePatientAppointmentListener extends AbstractTableListener {
         if (recordsFolder.exists()) {
             final String[] recordsNames = recordsFolder.list();
 
-            final String selectedTemplate = (String) JOptionPane.showInputDialog(
-                    null,
-                    "Выберете шаблон",
-                    "Шаблоны",
-                    JOptionPane.NO_OPTION,
-                    null,
-                    recordsNames,
-                    null);
-
-            return selectedTemplate;
+            return (String) JOptionPane.showInputDialog(
+                null, "Выберете шаблон", "Шаблоны", JOptionPane.ERROR_MESSAGE, null, recordsNames, null
+            );
         }
 
         return null;
@@ -110,11 +104,16 @@ public class CreatePatientAppointmentListener extends AbstractTableListener {
                 final String applicationUsername = UserFacade.INSTANCE.getApplicationUser().getNfp();
                 final User applicationUser = UserFacade.INSTANCE.findBy(applicationUsername);
 
+                if (applicationUser == null) {
+                    ResultToolbarService.INSTANCE.showFailedStatus("Пользователь не найден");
+                    return;
+                }
+
                 FILE_MANAGER.copyFile(PrivelegyDir.APPOINTMENTS_PATH.getTemplatePath() + templateName,
                         PrivelegyDir.APPOINTMENTS_PATH.getTemporaryPath() + templateName);
 
                 try {
-                    File file = new File(PrivelegyDir.APPOINTMENTS_PATH.getTemporaryPath() + templateName);
+                    final File file = new File(PrivelegyDir.APPOINTMENTS_PATH.getTemporaryPath() + templateName);
 
                     if (file.exists()) {
                         String appPath;
@@ -124,12 +123,12 @@ public class CreatePatientAppointmentListener extends AbstractTableListener {
                             appPath = Settings.E_OFFICE_PATH;
                         }
 
-                        Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
-                        int result = process.waitFor();
+                        final Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
+                        process.waitFor();
 
                         byte[] buffer = Files.toByteArray(file);
 
-                        String hash = HashBuilder.INSTANCE.calculate();
+                        final String hash = HashBuilder.INSTANCE.calculate();
 
                         final Appointment record = new Appointment();
                         record.setCreatedBy(applicationUser.getId());

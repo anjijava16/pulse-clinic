@@ -37,10 +37,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.commons.lang.exception.ExceptionUtils;
 
 import com.pulse.desktop.controller.LoginListener;
 import com.pulse.desktop.view.panel.ImagePanel;
@@ -98,17 +99,15 @@ public class AuthenticationFrame {
     public AuthenticationFrame() {
         try {
             setAllSettings();
-        } catch (FontFormatException ex) {
-            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ex));
-        } catch (IOException ex) {
+        } catch (FontFormatException | IOException ex) {
             this.LOGGER.error(ExceptionUtils.getFullStackTrace(ex));
         }
-        
+
         initializeFrame();    
     }
     
     private void setIcon() {
-        BufferedImage appIcon = getIconImage();
+        final BufferedImage appIcon = getIconImage();
         if (appIcon != null) {
             this.MAIN_FRAME.setIconImage(appIcon);
         }
@@ -131,7 +130,7 @@ public class AuthenticationFrame {
             try {
                 final FileInputStream instream = new FileInputStream(config);
                 final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(instream));
-                String stroke = "";
+                String stroke;
                 
                 while ((stroke = bufferedReader.readLine()) != null) {
                     if (stroke.contains("server_ip:")) {
@@ -214,7 +213,7 @@ public class AuthenticationFrame {
         
         this.MAIN_FRAME.setUndecorated(this.NO_BORDER);
         this.MAIN_FRAME.setLayout(new BorderLayout());
-        this.MAIN_FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.MAIN_FRAME.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         this.MAIN_FRAME.add(this.MAIN_PANEL, BorderLayout.CENTER);
         

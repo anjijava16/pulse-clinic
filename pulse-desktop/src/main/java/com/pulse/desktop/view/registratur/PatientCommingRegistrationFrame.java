@@ -16,13 +16,12 @@
 package com.pulse.desktop.view.registratur;
 
 
-import com.pulse.desktop.controller.service.UserFacade;
-
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,25 +32,25 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-
-import com.pulse.desktop.view.frame.childframes.assignment.AssignmentService;
+import javax.swing.WindowConstants;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 import com.pulse.desktop.controller.service.ResultToolbarService;
+import com.pulse.desktop.controller.service.UserFacade;
+import com.pulse.desktop.view.frame.childframes.assignment.AssignmentService;
 import com.pulse.desktop.view.panel.SearchAndShowPatientInfoPanel;
 import com.pulse.desktop.view.panel.VisitCoursePanel;
-
-import com.pulse.desktop.view.util.*;
+import com.pulse.desktop.view.util.ConstantValues;
+import com.pulse.desktop.view.util.HashBuilder;
+import com.pulse.desktop.view.util.NameValidator;
+import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.PaymentStatus;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
-
-import java.io.UnsupportedEncodingException;
-import javax.swing.WindowConstants;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 
 
 /**

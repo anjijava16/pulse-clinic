@@ -28,14 +28,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
-import com.pulse.model.Visit;
-import com.pulse.model.constant.Privilege;
-import com.pulse.rest.client.VisitClient;
-import com.pulse.desktop.view.manager.UIHandlerFacade;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableProxy;
 import com.pulse.desktop.controller.table.TableService;
+import com.pulse.desktop.view.manager.UIHandlerFacade;
+import com.pulse.model.Visit;
+import com.pulse.model.constant.Privilege;
+import com.pulse.rest.client.VisitClient;
 
 
 /**

@@ -18,6 +18,7 @@ package com.pulse.desktop.view.panel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -32,11 +33,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.ListSelectionModel;
+
 import com.pulse.desktop.view.frame.childframes.template.TemplateService;
 import com.pulse.desktop.view.model.CheckListItem;
 import com.pulse.desktop.view.model.CheckListRenderer;
-import com.pulse.desktop.view.util.Settings;
-import java.awt.Dimension;
 
 
 /**

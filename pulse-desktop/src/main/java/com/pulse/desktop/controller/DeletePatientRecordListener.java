@@ -16,19 +16,21 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.PatientRecordTableService;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import javax.swing.JOptionPane;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.RecordClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

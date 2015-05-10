@@ -16,8 +16,6 @@
 package com.pulse.desktop.view.frame.user;
 
 
-import com.pulse.model.User;
-import com.pulse.model.constant.Privilege;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -30,8 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import com.pulse.model.User;
+import com.pulse.model.constant.Privilege;
 
 
 /**

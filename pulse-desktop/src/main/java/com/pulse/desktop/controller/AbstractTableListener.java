@@ -18,6 +18,7 @@ package com.pulse.desktop.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.model.constant.Privilege;
 

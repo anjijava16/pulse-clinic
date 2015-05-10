@@ -16,9 +16,9 @@
 package com.pulse.desktop.view.registratur;
 
 
-import com.pulse.desktop.controller.DeletePatientListener;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -27,9 +27,8 @@ import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import com.pulse.desktop.controller.DeletePatientListener;
 import com.pulse.desktop.view.panel.SearchAndShowPatientInfoPanel;
-
-import javax.swing.JButton;
 
 
 /**

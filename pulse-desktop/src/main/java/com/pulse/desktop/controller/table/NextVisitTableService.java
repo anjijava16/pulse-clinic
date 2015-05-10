@@ -16,11 +16,12 @@
 package com.pulse.desktop.controller.table;
 
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.model.NextVisit;
-import java.text.SimpleDateFormat;
-import java.util.List;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
 
@@ -38,7 +39,7 @@ public class NextVisitTableService {
         this.holder = holder;        
     }
     
-    public void add(List<NextVisit> list) {
+    public void add(final List<NextVisit> list) {
         final String[] data = new String[TableService.INSTANCE.NEXT_VISIT_TABLE_HEADER.length];
         
         list.stream().forEach((visit) -> {
@@ -46,12 +47,16 @@ public class NextVisitTableService {
             
             final Patient patient = PatientService.INSTANCE.getById(visit.getPatientId());
             final User account = UserFacade.INSTANCE.findBy(visit.getDoctorId());
-            
+
+            if (patient == null || account == null) {
+                throw new NullPointerException("Patient or account is null");
+            }
+
             data[ptr++] = FORMATTER.format(visit.getVisitDate());            
             data[ptr++] = String.valueOf(visit.getId());            
             data[ptr++] = patient.getNfp();
             data[ptr++] = account.getNfp();
-            data[ptr++] = patient.getMobile();
+            data[ptr] = patient.getMobile();
             
             holder.getModel().addRow(data);
         });

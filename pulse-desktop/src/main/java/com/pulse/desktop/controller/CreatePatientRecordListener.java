@@ -16,6 +16,16 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.Files;
 import com.pulse.desktop.controller.service.PatientFacade;
 import com.pulse.desktop.controller.service.ResultToolbarService;
@@ -24,12 +34,6 @@ import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.controller.table.PatientRecordTableService;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import javax.swing.JOptionPane;
-
 import com.pulse.desktop.view.util.FileManager;
 import com.pulse.desktop.view.util.HashBuilder;
 import com.pulse.desktop.view.util.NameValidator;
@@ -37,12 +41,9 @@ import com.pulse.desktop.view.util.Settings;
 import com.pulse.model.Patient;
 import com.pulse.model.Record;
 import com.pulse.model.User;
-import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
+import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.RecordClient;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -75,16 +76,9 @@ public class CreatePatientRecordListener extends AbstractTableListener {
         if (recordsFolder.exists()) {
             final String[] recordsNames = recordsFolder.list();
 
-            final String selectedTemplate = (String) JOptionPane.showInputDialog(
-                    null,
-                    "Выберите шаблон из списка",
-                    "Анкета",
-                    JOptionPane.NO_OPTION,
-                    null,
-                    recordsNames,
-                    null);
-
-            return selectedTemplate;
+            return (String) JOptionPane.showInputDialog(
+                null, "Выберите шаблон из списка", "Анкета", JOptionPane.ERROR_MESSAGE, null, recordsNames, null
+            );
         } else {
             ResultToolbarService.INSTANCE.showFailedStatus("Папка с шаблонами не найдена");
         }
@@ -111,10 +105,15 @@ public class CreatePatientRecordListener extends AbstractTableListener {
                 final String applicationUsername = UserFacade.INSTANCE.getApplicationUser().getNfp();
                 final User applicationUser = UserFacade.INSTANCE.findBy(applicationUsername);
 
+                if (applicationUser == null) {
+                    ResultToolbarService.INSTANCE.showFailedStatus("Пользователь не найден");
+                    return;
+                }
+
                 FILE_MANAGER.copyFile(PrivelegyDir.RECORDS_PATH.getTemplatePath() + templateName, PrivelegyDir.RECORDS_PATH.getTemporaryPath() + templateName);
 
                 try {
-                    File file = new File(PrivelegyDir.RECORDS_PATH.getTemporaryPath() + templateName);
+                    final File file = new File(PrivelegyDir.RECORDS_PATH.getTemporaryPath() + templateName);
 
                     if (file.exists()) {
                         String appPath;
@@ -124,12 +123,11 @@ public class CreatePatientRecordListener extends AbstractTableListener {
                             appPath = Settings.E_OFFICE_PATH;
                         }
 
-                        Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
-                        int result = process.waitFor();
+                        final Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
+                        process.waitFor();
 
-                        byte[] buffer = Files.toByteArray(file);
-
-                        String hash = HashBuilder.INSTANCE.calculate();
+                        final byte[] buffer = Files.toByteArray(file);
+                        final String hash = HashBuilder.INSTANCE.calculate();
 
                         final Record record = new Record();
                         record.setCreatedBy(applicationUser.getId());
@@ -142,15 +140,13 @@ public class CreatePatientRecordListener extends AbstractTableListener {
 
                         this.SERVICE_CLIENT.updateRecord(record);
                         this.tableService.add(record, patient);
+
                         ResultToolbarService.INSTANCE.showSuccessStatus();
                     } else {
                         ResultToolbarService.INSTANCE.showFailedStatus("Файл не найден");
                     }
-                } catch (IOException ioe) {
+                } catch (IOException | InterruptedException ioe) {
                     LOGGER.error(getClass().getName() + ": " + ioe.getMessage());
-                    ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");
-                } catch (InterruptedException ie) {
-                    LOGGER.error(getClass().getName() + ": " + ie.getMessage());
                     ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");
                 }
             }

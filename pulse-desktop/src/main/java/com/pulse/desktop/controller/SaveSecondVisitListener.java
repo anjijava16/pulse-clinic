@@ -16,16 +16,18 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.controller.table.TableService;
-import java.awt.event.ActionEvent;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.User;
 import com.pulse.model.constant.Privilege;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -53,10 +55,14 @@ public class SaveSecondVisitListener extends AbstractTableListener {
                 return;
             }
 
-            String doctorNfp = UserFacade.INSTANCE.getApplicationUser().getNfp();
-            long patientId = Long.valueOf(getTableHolder().getTable().getValueAt(row, TableService.PATIENT_ID_FIELD).toString());
+            final String doctorNfp = UserFacade.INSTANCE.getApplicationUser().getNfp();
+            final long patientId = Long.valueOf(getTableHolder().getTable().getValueAt(row, TableService.PATIENT_ID_FIELD).toString());
+            final User account = UserFacade.INSTANCE.findBy(doctorNfp);
 
-            User account = UserFacade.INSTANCE.findBy(doctorNfp);
+            if (account == null) {
+                ResultToolbarService.INSTANCE.showFailedStatus("Пользователь не найден");
+                return;
+            }
 
             WindowManager.getInstance().getCreateVisitDateFrame().setPatientId(patientId);
 

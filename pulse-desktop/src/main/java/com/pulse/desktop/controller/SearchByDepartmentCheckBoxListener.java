@@ -16,12 +16,12 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.model.constant.Privilege;
-
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.model.constant.Privilege;
 
 
 /**

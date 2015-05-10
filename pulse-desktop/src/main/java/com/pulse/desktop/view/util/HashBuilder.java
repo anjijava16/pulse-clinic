@@ -17,6 +17,7 @@ package com.pulse.desktop.view.util;
 
 
 import java.io.UnsupportedEncodingException;
+
 import org.apache.commons.codec.binary.Base64;
 
 
@@ -27,11 +28,8 @@ public enum HashBuilder {
 
     INSTANCE;
 
-    private HashBuilder() {
-    }
-
     public String calculate() {
-        String hash = null;
+        String hash;
         
         try {
             hash = new String(
@@ -51,10 +49,8 @@ public enum HashBuilder {
     }
     
     public String token(String fullname) throws UnsupportedEncodingException {
-        String token = String.valueOf(Base64.encodeBase64String(fullname.getBytes("UTF-8")));
-        
-        token = token.replaceAll("/", "_");
-        
-        return token;
+        final String token = String.valueOf(Base64.encodeBase64String(fullname.getBytes("UTF-8")));
+
+        return token.replaceAll("/", "_");
     }
 }

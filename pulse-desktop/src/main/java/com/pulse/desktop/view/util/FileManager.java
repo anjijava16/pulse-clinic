@@ -18,9 +18,10 @@ package com.pulse.desktop.view.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,13 +32,10 @@ import org.slf4j.LoggerFactory;
 public class FileManager {
     
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-    
-    public FileManager() {
-    }
-    
+
     public void copyFile(String from, String to) {        
         // Current parent path
-        File root = new File("");
+        final File root = new File("");
         
         final String sourceRoot = root.getAbsolutePath() + "/" + from;
         final String destRoot = root.getAbsolutePath() + "/" + to;
@@ -53,13 +51,13 @@ public class FileManager {
                 FileUtils.copyFile(sourceFile, destFile);
             }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
         }        
     }
     
     public void copyToTemp(String fromDir, String toDir, String filename) {        
         // Current parent path
-        File root = new File("");
+        final File root = new File("");
         
         final String sourceRoot = root.getAbsolutePath()+ File.separator + fromDir + filename;
         final String destRoot = root.getAbsolutePath()+ File.separator + toDir + filename;
@@ -75,26 +73,25 @@ public class FileManager {
                 FileUtils.copyFile(sourceFile, destFile);
             }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
         }        
     }
 
-    public byte[] readFile(String filename) {
+    public byte[] readFile(final String filename) {
         byte[] buffer = null;
         
         try {
-            File file = new File(filename);
+            final File file = new File(filename);
             if (file.exists()) {
-                long size = file.length();
+                final long size = file.length();
                 buffer = new byte[(int) size];
                 
-                FileInputStream instream = new FileInputStream(file);
+                final FileInputStream instream = new FileInputStream(file);
                 instream.read(buffer);
                 instream.close();
-                return buffer;
             }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
         }
             
         return buffer;

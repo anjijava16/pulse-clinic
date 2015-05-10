@@ -16,14 +16,15 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.view.panel.PatientInfoPanel;
 import com.pulse.desktop.view.panel.SearchPatientPanel;
 import com.pulse.model.Patient;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
 
 
 /**
@@ -65,26 +66,21 @@ public class ShowSelectedPatientInfoListener implements MouseListener {
                 this.patientInfo.setCurrentPatient(patient);
             } catch (IOException ioe) {
                 ResultToolbarService.INSTANCE.showFailedStatus("Пациент был удален");
-                return;
             }
         });
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-    }
+    public void mouseExited(MouseEvent e) {}
 
     public void setPatientInfo(PatientInfoPanel patientInfo) {
         this.patientInfo = patientInfo;

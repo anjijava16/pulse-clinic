@@ -16,12 +16,9 @@
 package com.pulse.desktop.view.panel;
 
 
-import com.pulse.desktop.controller.service.ResultToolbarService;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -35,6 +32,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.view.frame.childframes.assignment.AssignmentService;
 import com.pulse.model.Organisation;
 import com.pulse.model.User;
@@ -46,7 +49,9 @@ import com.pulse.rest.client.OrganisationClient;
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
 public class VisitCoursePanel {
-    
+
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
     private final JPanel ROOT_PANEL = new JPanel();
     private GridBagConstraints gbc = new GridBagConstraints();
     
@@ -147,10 +152,9 @@ public class VisitCoursePanel {
         
         try {
             List<Organisation> organisationsList = this.organisationClient.listAll();
-            organisationsList.stream().forEach((organisation) -> {
-                this.FROM_ORG_AREA.addItem(organisation.getName());
-            });
-        } catch (IOException ioe) {  
+            organisationsList.stream().forEach((organisation) -> this.FROM_ORG_AREA.addItem(organisation.getName()));
+        } catch (IOException ioe) {
+            this.LOGGER.error(ExceptionUtils.getFullStackTrace(ioe));
         }
         
         configurePanel();

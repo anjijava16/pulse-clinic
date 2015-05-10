@@ -16,27 +16,26 @@
 package com.pulse.desktop.controller;
 
 
-import com.pulse.desktop.controller.builder.MessageBuilder;
-import com.pulse.desktop.controller.service.ThreadPoolService;
-import com.pulse.desktop.controller.service.UserFacade;
-
-import com.pulse.desktop.view.frame.AuthenticationFrame;
-import com.pulse.desktop.view.frame.MainFrame;
-import com.pulse.desktop.view.manager.PrivilegeService;
-import com.pulse.desktop.view.manager.WindowManager;
-
-import com.pulse.model.User;
-import com.pulse.rest.client.UserClient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import org.apache.commons.codec.binary.Base64;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.pulse.desktop.controller.builder.MessageBuilder;
+import com.pulse.desktop.controller.service.ThreadPoolService;
+import com.pulse.desktop.controller.service.UserFacade;
+import com.pulse.desktop.view.frame.AuthenticationFrame;
+import com.pulse.desktop.view.frame.MainFrame;
+import com.pulse.desktop.view.manager.PrivilegeService;
+import com.pulse.desktop.view.manager.WindowManager;
+import com.pulse.model.User;
+import com.pulse.rest.client.UserClient;
 
 
 /**
@@ -79,13 +78,13 @@ public class LoginListener implements ActionListener {
             final String password = String.valueOf(this.passwordField.getPassword()).trim();
             final String serverIp = this.serverIpField.getText().trim();
 
-            if (username == null || username.isEmpty()) {
+            if (username.isEmpty()) {
                 return;
             }
-            if (password == null || password.isEmpty()) {
+            if (password.isEmpty()) {
                 return;
             }
-            if (serverIp == null || serverIp.isEmpty()) {
+            if (serverIp.isEmpty()) {
                 return;
             }
 
@@ -110,7 +109,9 @@ public class LoginListener implements ActionListener {
                     usersList.stream().forEach((User usr) -> {
                         try {
                             UserFacade.INSTANCE.add(usr);
-                        } catch (InterruptedException ie) {}
+                        } catch (InterruptedException ie) {
+                            this.LOGGER.error(ie.getMessage());
+                        }
                         
                         WindowManager.getInstance().getPatientCommingRegistrationFrame().getVisitCoursePanel().fillDoctorsList(usr);
                         WindowManager.getInstance().getBookKeepingFrame().addDoctor(usr);

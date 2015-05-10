@@ -16,15 +16,16 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.List;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.view.panel.SearchPatientPanel;
 import com.pulse.model.Patient;
 import com.pulse.rest.client.PatientClient;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.List;
 
 
 /**
@@ -32,7 +33,7 @@ import java.util.List;
  */
 public class LoadPatientsListListener implements ActionListener {
 
-    private PatientClient patientService = new PatientClient();
+    private final PatientClient patientService = new PatientClient();
     
     private SearchPatientPanel searchPatientPanel;
 
@@ -48,14 +49,11 @@ public class LoadPatientsListListener implements ActionListener {
             try {
                 final List<Patient> list = this.patientService.list();
                 
-                list.stream().forEach((patient) -> {
-                    this.searchPatientPanel.getDefaultListModel().addElement(patient.getNfp());
-                });
+                list.stream().forEach((patient) -> this.searchPatientPanel.getDefaultListModel().addElement(patient.getNfp()));
                 
                 ResultToolbarService.INSTANCE.showSuccessStatus();
             } catch (IOException ioe) {
                 ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");
-                return;
             }
         });
     }

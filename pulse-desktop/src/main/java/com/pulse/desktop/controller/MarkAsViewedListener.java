@@ -19,6 +19,10 @@ package com.pulse.desktop.controller;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
@@ -27,8 +31,6 @@ import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.Status;
 import com.pulse.rest.client.VisitClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

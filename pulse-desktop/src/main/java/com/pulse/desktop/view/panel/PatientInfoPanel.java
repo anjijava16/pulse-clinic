@@ -19,17 +19,18 @@ package com.pulse.desktop.view.panel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
 import com.pulse.desktop.view.util.HashBuilder;
 import com.pulse.model.Patient;
 import com.pulse.rest.client.PatientClient;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 
 /**

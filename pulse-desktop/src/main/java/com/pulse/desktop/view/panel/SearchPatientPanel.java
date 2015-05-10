@@ -19,7 +19,9 @@ package com.pulse.desktop.view.panel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -27,11 +29,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
 import com.pulse.desktop.view.util.Settings;
-import com.pulse.model.Patient;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 
 
 /**

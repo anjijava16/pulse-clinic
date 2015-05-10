@@ -16,13 +16,14 @@
 package com.pulse.desktop.controller.table;
 
 
-import com.pulse.desktop.controller.service.PatientService;
-import com.pulse.desktop.controller.service.UserFacade;
-import com.pulse.model.Visit;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import com.pulse.desktop.controller.service.PatientService;
+import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
+import com.pulse.model.Visit;
 import com.pulse.model.constant.BonusStatus;
 import com.pulse.model.constant.PaymentStatus;
 
@@ -47,14 +48,18 @@ public class StationaryTableService {
             
             final Patient patient = PatientService.INSTANCE.getById(visit.getPatientId());
             final User account = UserFacade.INSTANCE.findBy(visit.getDoctorId());
-            
+
+            if (patient == null || account == null) {
+                throw new NullPointerException("Patient or account is null");
+            }
+
             data[ptr++] = SDF.format(visit.getVisitDate());            
             data[ptr++] = String.valueOf(visit.getId());   
             data[ptr++] = account.getNfp();
             data[ptr++] = patient.getNfp();
             data[ptr++] = visit.getRoom();
             data[ptr++] = PaymentStatus.findBy(visit.getPaymentStatus()).getName();
-            data[ptr++] = BonusStatus.findBy(visit.getDiscount()).getName();
+            data[ptr] = BonusStatus.findBy(visit.getDiscount()).getName();
             
             holder.getModel().addRow(data);
         }        

@@ -16,8 +16,9 @@
 package com.pulse.desktop.controller.builder;
 
 
-import com.pulse.model.constant.Filter;
 import javax.swing.DefaultComboBoxModel;
+
+import com.pulse.model.constant.Filter;
 
 
 /**

@@ -27,7 +27,7 @@ public enum PatientSex {
     private final String label;
     private final int id;
     
-    private PatientSex(String label, int id) {
+    PatientSex(String label, int id) {
         this.label = label;
         this.id = id;
     }

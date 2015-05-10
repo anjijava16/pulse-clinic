@@ -16,18 +16,22 @@
 package com.pulse.desktop.controller.table;
 
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
 import com.pulse.desktop.view.util.ConstantValues;
-import com.pulse.model.Visit;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.*;
+import com.pulse.model.Visit;
+import com.pulse.model.constant.BonusStatus;
+import com.pulse.model.constant.PaymentStatus;
 import com.pulse.model.constant.Privilege;
+import com.pulse.model.constant.Status;
+import com.pulse.model.constant.VisitType;
 
 
 /**

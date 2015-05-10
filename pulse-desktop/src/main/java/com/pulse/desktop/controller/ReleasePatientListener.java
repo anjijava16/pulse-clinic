@@ -16,19 +16,21 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.builder.MessageBuilder;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import javax.swing.JOptionPane;
 import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -70,6 +72,7 @@ public class ReleasePatientListener extends AbstractTableListener {
                 try {
                     final Visit visit = this.client.getBy(Long.valueOf(visitIdBuffer));
                     if (visit == null) {
+                        ResultToolbarService.INSTANCE.showFailedStatus("Информация о визите не найдена");
                         return;
                     }
 

@@ -16,9 +16,10 @@
 package com.pulse.desktop.controller.table;
 
 
+import java.text.SimpleDateFormat;
+
 import com.pulse.model.Visit;
 import com.pulse.model.constant.Privelegies;
-import java.text.SimpleDateFormat;
 import com.pulse.model.constant.Privilege;
 
 

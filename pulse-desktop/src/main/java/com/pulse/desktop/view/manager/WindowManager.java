@@ -40,15 +40,14 @@ import com.pulse.desktop.view.frame.childframes.TicketWindowFrame;
 import com.pulse.desktop.view.frame.childframes.UltrasoundFrame;
 import com.pulse.desktop.view.frame.childframes.UrologyFrame;
 import com.pulse.desktop.view.frame.childframes.VertebrologistFrame;
-
-import com.pulse.desktop.view.registratur.PatientCommingRegistrationFrame;
-import com.pulse.desktop.view.registratur.PatientUpdateFrame;
-import com.pulse.desktop.view.registratur.PatienCreationFrame;
-import com.pulse.desktop.view.registratur.PatientRemovingFrame;
 import com.pulse.desktop.view.frame.internal.visit.CreateVisitDateFrame;
 import com.pulse.desktop.view.frame.user.AccountChangingFrame;
 import com.pulse.desktop.view.frame.user.AccountCreationFrame;
 import com.pulse.desktop.view.frame.user.AccountInternalFrame;
+import com.pulse.desktop.view.registratur.PatienCreationFrame;
+import com.pulse.desktop.view.registratur.PatientCommingRegistrationFrame;
+import com.pulse.desktop.view.registratur.PatientRemovingFrame;
+import com.pulse.desktop.view.registratur.PatientUpdateFrame;
 
 
 /**

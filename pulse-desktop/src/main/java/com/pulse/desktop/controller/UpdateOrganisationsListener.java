@@ -16,19 +16,20 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.OrganisationsTableService;
 import com.pulse.desktop.controller.table.TableService;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.List;
 import com.pulse.model.Organisation;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.OrganisationClient;
-import com.pulse.rest.client.PowerClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -41,8 +42,6 @@ public class UpdateOrganisationsListener extends AbstractTableListener {
     private final OrganisationClient ORGANISATION_SERVICE = new OrganisationClient();
     private OrganisationsTableService tableService;
 
-    private PowerClient powerClient = new PowerClient();
-
     public UpdateOrganisationsListener(Privilege privilege, TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
         this.tableService = new OrganisationsTableService(tableHolder);
@@ -54,11 +53,8 @@ public class UpdateOrganisationsListener extends AbstractTableListener {
             try {
                 getTableHolder().clear();
 
-                List<Organisation> list = this.ORGANISATION_SERVICE.listAll();
-
-                list.stream().forEach((organisation) -> {
-                    this.tableService.add(organisation);
-                });
+                final List<Organisation> list = this.ORGANISATION_SERVICE.listAll();
+                list.stream().forEach(this.tableService::add);
 
                 ResultToolbarService.INSTANCE.showSuccessStatus();
             } catch (IOException ioe) {

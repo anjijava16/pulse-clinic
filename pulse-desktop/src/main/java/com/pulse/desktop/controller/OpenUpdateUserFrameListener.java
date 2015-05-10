@@ -16,6 +16,12 @@
 package com.pulse.desktop.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
@@ -23,10 +29,6 @@ import com.pulse.desktop.view.manager.WindowManager;
 import com.pulse.model.User;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.UserClient;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -35,8 +37,7 @@ import org.slf4j.LoggerFactory;
 public class OpenUpdateUserFrameListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private UserClient userService = new UserClient();
+    private final UserClient userService = new UserClient();
 
     public OpenUpdateUserFrameListener(Privilege privilege, TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
@@ -72,7 +73,6 @@ public class OpenUpdateUserFrameListener extends AbstractTableListener {
                         WindowManager.getInstance().getAccountChangingFrame().setVisible(true);
                     } else {
                         ResultToolbarService.INSTANCE.showFailedStatus("Пользователь не найден");
-                        return;
                     }
                 } catch (IOException ioe) {
                     ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");

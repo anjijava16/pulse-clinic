@@ -16,8 +16,9 @@
 package com.pulse.desktop.controller.service;
 
 
-import com.pulse.model.Patient;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import com.pulse.model.Patient;
 
 
 /**
@@ -29,9 +30,6 @@ public enum PatientFacade {
     private LinkedBlockingQueue<Patient> patientsList = new LinkedBlockingQueue<>();
     
     private Patient lastSelectedPatient;
-    
-    private PatientFacade() {
-    }
 
     public Patient getLastSelectedPatient() {
         return lastSelectedPatient;

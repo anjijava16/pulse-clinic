@@ -16,16 +16,20 @@
 package com.pulse.desktop.controller.table;
 
 
+import java.text.SimpleDateFormat;
+
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.view.util.ConstantValues;
-import com.pulse.model.Visit;
-import java.text.SimpleDateFormat;
 import com.pulse.model.Patient;
 import com.pulse.model.User;
-import com.pulse.model.constant.*;
+import com.pulse.model.Visit;
+import com.pulse.model.constant.BonusStatus;
+import com.pulse.model.constant.PaymentStatus;
 import com.pulse.model.constant.Privilege;
+import com.pulse.model.constant.Status;
+import com.pulse.model.constant.VisitType;
 
 
 /**
@@ -41,9 +45,8 @@ public class RegistryTableService {
     
     public String[] proxyFrom(final Visit visit) {
         if (visit == null) {
-            ResultToolbarService.INSTANCE.showFailedStatus("Информация о визите отсутствует");
-
-            throw new IllegalArgumentException("visit can't be null");
+            ResultToolbarService.INSTANCE.showFailedStatus("Информация о визите не найдена");
+            return null;
         }
         
         final String[] data = new String[TableService.INSTANCE.REGISTRY_TABLE_HEADER.length];
@@ -53,7 +56,8 @@ public class RegistryTableService {
         final User account = UserFacade.INSTANCE.findBy(visit.getDoctorId());
 
         if (patient == null) {
-            throw new NullPointerException("Can't find patient by id: " + visit.getPatientId());
+            ResultToolbarService.INSTANCE.showFailedStatus("Информация о пациенте не найдена");
+            return null;
         }
 
         String department;
