@@ -10,9 +10,9 @@ and optimized.
 
 *TODO:*
 
+* Add unit tests!!!
 * Add more security features (Like READ-ONLY analysis and form for example)
 * Add multi-languages support
-* Add unit tests
 * Re factor pulse-desktop module ;)
 * Put more comments
 * Fix all warnings
