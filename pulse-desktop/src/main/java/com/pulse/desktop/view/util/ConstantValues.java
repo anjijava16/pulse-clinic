@@ -18,6 +18,9 @@ package com.pulse.desktop.view.util;
 
 public interface ConstantValues {
 
-    public final static String SEARCH_DATE_FIELD_TEMPLATE = "dd.MM.yyyy";
-    public final static String VISIT_DATE_FIELD_TEMPLATE = "dd.MM.yyyy HH:mm:ss";
+    String SEARCH_DATE_FIELD_TEMPLATE = "dd.MM.yyyy";
+    String VISIT_DATE_FIELD_TEMPLATE = "dd.MM.yyyy HH:mm:ss";
+
+    String EMPTY_STR = "";
+    String UNKNOWN = "Неизвестно";
 }

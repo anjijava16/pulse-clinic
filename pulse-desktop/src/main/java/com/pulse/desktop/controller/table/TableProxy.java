@@ -27,10 +27,7 @@ import com.pulse.model.constant.Privilege;
  */
 public enum TableProxy {
     INSTANCE;
-    
-    private TableProxy() {
-    }
-    
+
     private final RegistryTableService REGISTRY_SERVICE = new RegistryTableService();
     private final LaboratoryTableService LABORATORY_SERVICE = new LaboratoryTableService();
     
@@ -43,7 +40,7 @@ public enum TableProxy {
                 return buffer;
                 
             default:
-                buffer = REGISTRY_SERVICE.proxyFrom(visit, dateFormat);
+                buffer = REGISTRY_SERVICE.proxyFrom(visit);
                 return buffer;
         }
     }

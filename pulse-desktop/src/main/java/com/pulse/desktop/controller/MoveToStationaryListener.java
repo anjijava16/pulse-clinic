@@ -26,7 +26,7 @@ import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableService;
 import com.pulse.desktop.view.manager.WindowManager;
-import com.pulse.desktop.view.util.Values;
+import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.model.PatientRoom;
 import com.pulse.model.User;
 import com.pulse.model.Visit;
@@ -61,16 +61,9 @@ public class MoveToStationaryListener extends AbstractTableListener {
             roomArray[ptr++] = room.getName();
         }
 
-        final String selectedTemplate = (String) JOptionPane.showInputDialog(
-                null,
-                "Выберите палату",
-                "Палата",
-                JOptionPane.NO_OPTION,
-                null,
-                roomArray,
-                null);
-
-        return selectedTemplate;
+        return (String) JOptionPane.showInputDialog(
+            null, "Выберите палату", "Палата", JOptionPane.ERROR_MESSAGE, null, roomArray, null
+        );
     }
 
     @Override
@@ -110,14 +103,14 @@ public class MoveToStationaryListener extends AbstractTableListener {
                 visit.setVisitStatus(Status.HANDLED.getCode());
                 visit.setPatientId(Long.valueOf(patientIdBuffer));
                 visit.setDoctorId(account.getId());
-                visit.setFilename(Values.Empty.getValue());
-                visit.setFilepath(Values.Empty.getValue());
+                visit.setFilename(ConstantValues.EMPTY_STR);
+                visit.setFilepath(ConstantValues.EMPTY_STR);
                 visit.setDepartmentId(Privilege.Stationary.getId());
-                visit.setAnalysName(Values.Unknown.getValue());
-                visit.setAnalysGroup(Values.Unknown.getValue());
-                visit.setTillDate(Values.Empty.getValue());
-                visit.setFromOrganisation(Values.Empty.getValue());
-                visit.setFromDoctor(Values.Empty.getValue());
+                visit.setAnalysName(ConstantValues.EMPTY_STR);
+                visit.setAnalysGroup(ConstantValues.EMPTY_STR);
+                visit.setTillDate(ConstantValues.EMPTY_STR);
+                visit.setFromOrganisation(ConstantValues.EMPTY_STR);
+                visit.setFromDoctor(ConstantValues.EMPTY_STR);
                 visit.setCreatedBy(account.getNfp());
                 visit.setRoom(room);
 

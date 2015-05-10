@@ -19,7 +19,7 @@ package com.pulse.desktop.controller.table;
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.UserFacade;
 import com.pulse.desktop.controller.table.TableService.TableHolder;
-import com.pulse.desktop.view.util.Values;
+import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.model.Visit;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -42,7 +42,7 @@ public class BookKeepingTableService {
         this.holder = holder;
     }
     
-    public void proxyFrom(List<Visit> list) {
+    public void proxyFrom(final List<Visit> list) {
         final AtomicInteger number = new AtomicInteger(0);
         list.stream().forEach((visit) -> {
             final String[] data = new String[TableService.INSTANCE.BOOKKEEPING_TABLE_HEADER.length];
@@ -51,16 +51,20 @@ public class BookKeepingTableService {
             final Patient patient = PatientService.INSTANCE.getById(visit.getPatientId());
             final User account = UserFacade.INSTANCE.findBy(visit.getDoctorId());
 
+            if (patient == null) {
+                throw new NullPointerException("Can't find patient by id: " + visit.getPatientId());
+            }
+
             String department;
             if (Privilege.findById(visit.getDepartmentId()) != null) {
                 department = Privilege.findById(visit.getDepartmentId()).getName();
             } else {
-                department = Values.Unknown.getValue();
+                department = ConstantValues.UNKNOWN;
             }
 
             String doctorNfp;
             if (account == null) {
-                doctorNfp = Values.Unknown.getValue();
+                doctorNfp = ConstantValues.UNKNOWN;
             } else {
                 doctorNfp = account.getNfp();
             }

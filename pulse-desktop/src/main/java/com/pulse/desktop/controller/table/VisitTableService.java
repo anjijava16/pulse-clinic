@@ -18,7 +18,7 @@ package com.pulse.desktop.controller.table;
 
 import com.pulse.desktop.controller.service.PatientService;
 import com.pulse.desktop.controller.service.UserFacade;
-import com.pulse.desktop.view.util.Values;
+import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.model.Visit;
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class VisitTableService {
             if (patient != null)
                 data[ptr] = String.valueOf(patient.getNfp());
             else
-                data[ptr] = Values.Unknown.getValue();
+                data[ptr] = ConstantValues.UNKNOWN;
             
             ptr++;
             
@@ -66,7 +66,7 @@ public class VisitTableService {
             if (account != null)
                 data[ptr] = account.getNfp();
             else
-                data[ptr] = Values.Unknown.getValue();
+                data[ptr] = ConstantValues.UNKNOWN;
             ptr++;
                 
             data[ptr++] = visit.getFromOrganisation();

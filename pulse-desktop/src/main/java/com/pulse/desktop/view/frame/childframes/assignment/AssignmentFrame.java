@@ -75,9 +75,11 @@ public final class AssignmentFrame {
         this.width = 1100;
         this.height = 550;
         
-        this.frame.setSize(this.width, this.height);
         this.frame.setLayout(new BorderLayout());
+
         this.frame.add(this.ROOT_PANEL);
+
+        this.frame.setSize(this.width, this.height);
         this.frame.setResizable(true);
     }
     
@@ -97,8 +99,5 @@ public final class AssignmentFrame {
         });
     }
 
-    /**
-     *
-     */
     public void addAllActionListeners() {}
 }

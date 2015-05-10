@@ -25,9 +25,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import com.pulse.desktop.view.util.ConstantValues;
 import com.pulse.desktop.view.util.FileManager;
 import com.pulse.desktop.view.util.Settings;
-import com.pulse.desktop.view.util.Values;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.model.constant.PrivelegyDir;
@@ -98,10 +98,10 @@ public class ViewAnalysListener extends AbstractTableListener {
             String patientNfp = TableService.getValueAt(getTableHolder(), row, TableService.PATIENT_NFP_FIELD).toString();
             String patientBirthday = TableService.getValueAt(getTableHolder(), row, TableService.BIRTHDAY_FIELD).toString();
 
-            if (groupName == null || groupName.equals(Values.Unknown.getValue())) {
+            if (groupName == null || groupName.equals(ConstantValues.UNKNOWN)) {
                 return;
             }
-            if (analysName == null || analysName.equals(Values.Unknown.getValue())) {
+            if (analysName == null || analysName.equals(ConstantValues.UNKNOWN)) {
                 return;
             }
 
@@ -118,13 +118,6 @@ public class ViewAnalysListener extends AbstractTableListener {
                 FILEMANAGER.copyToTemp(privelegyDir.getAnalysPath() + groupName + File.separator, privelegyDir.getTemporaryPath(), analysName);
 
                 try {
-                    File file = new File(privelegyDir.getTemporaryPath() + analysName);
-
-//                    WordReplacer replacer = new WordReplacer();
-//                    replacer.swap(file.getAbsoluteFile(), Settings.DOC_NFP_PATTERN, ": " + patientNfp);
-//                    replacer.swap(file.getAbsoluteFile(), Settings.DOC_BIRTHDAY_PATTERN, ": " + patientBirthday);
-//                    replacer.swap(file.getAbsoluteFile(), Settings.DOC_VISIT_DATE_PATTERN, ": " + visitDateBuffer);
-//                    replacer.swap(file.getAbsoluteFile(), Settings.DOC_DOCTOR_NFP_PATTERN, ": ");
                     String appPath;
                     if (analysName.endsWith("doc") || analysName.endsWith("docx")) {
                         appPath = Settings.M_OFFICE_PATH;
@@ -133,7 +126,7 @@ public class ViewAnalysListener extends AbstractTableListener {
                     }
 
                     Process process = Runtime.getRuntime().exec(appPath + " " + privelegyDir.getTemporaryPath() + analysName);
-                    int result = process.waitFor();
+                    process.waitFor();
 
                     byte[] buffer = FILEMANAGER.readFile(privelegyDir.getTemporaryPath() + analysName);
 
@@ -153,7 +146,11 @@ public class ViewAnalysListener extends AbstractTableListener {
                 }
             } else {
                 try {
-                    Visit visit = visitClient.getWithBinaryBy(visitId);
+                    final Visit visit = visitClient.getWithBinaryBy(visitId);
+
+                    if (visit == null) {
+                        throw new NullPointerException("visit is null");
+                    }
 
                     byte[] decodedBuffer = Base64.decodeBase64(visit.getBinary());
 
@@ -173,16 +170,13 @@ public class ViewAnalysListener extends AbstractTableListener {
 
                     Process process = Runtime.getRuntime().exec(appPath + " "
                             + privelegyDir.getTemporaryPath() + visit.getFilename());
-                    int result = process.waitFor();
+                    process.waitFor();
 
                     byte[] buffer = FILEMANAGER.readFile(privelegyDir.getTemporaryPath() + visit.getFilename());
 
-                    if (visit != null) {
-                        visit.setVisitStatus(Settings.STATUS_TYPE_VIEW);
-                        visit.setBinary(new String(Base64.encodeBase64(buffer), "UTF-8"));
-
-                        visitClient.update(visit);
-                    }
+                    visit.setVisitStatus(Settings.STATUS_TYPE_VIEW);
+                    visit.setBinary(new String(Base64.encodeBase64(buffer), "UTF-8"));
+                    visitClient.update(visit);
                 } catch (IOException ioe) {
                     LOGGER.error(getClass().getName() + ": " + ioe.getMessage());
                     ResultToolbarService.INSTANCE.showFailedStatus("Ошибка сети");

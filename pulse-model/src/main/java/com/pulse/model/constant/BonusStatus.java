@@ -24,7 +24,7 @@ public enum BonusStatus {
     NO("Нет", 0),
     YES("Есть", 1),;
     
-    private BonusStatus(String name, int id) {
+    BonusStatus(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -32,20 +32,20 @@ public enum BonusStatus {
     private final String name;
     private final int id;
 
-    public static BonusStatus findBy(String name) {
+    public static BonusStatus findBy(final String name) {
         for (BonusStatus status : values()) {
             if (status.getName().equals(name)) return status;
         }
         
-        return null;
+        throw new IllegalArgumentException("unknown bonus status name");
     }
     
-    public static BonusStatus findBy(int id) {
+    public static BonusStatus findBy(final int id) {
         for (BonusStatus status : values()) {
             if (status.getId() == id) return status;
         }
         
-        return null;
+        throw new IllegalArgumentException("unknown bonus status id");
     }
     
     public String getName() {

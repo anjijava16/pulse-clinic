@@ -26,7 +26,7 @@ public enum PaymentStatus {
     DEBT("Долг", 2),
     BACK("Возврат", 3);
     
-    private PaymentStatus(String name, int id) {
+    PaymentStatus(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -34,20 +34,20 @@ public enum PaymentStatus {
     private final String name;
     private final int id;
 
-    public static PaymentStatus findBy(String name) {
+    public static PaymentStatus findBy(final String name) {
         for (PaymentStatus status : values()) {
             if (status.getName().equals(name)) return status;
         }
         
-        return null;
+        throw new IllegalArgumentException("unknown payment status name");
     }
     
-    public static PaymentStatus findBy(int id) {
+    public static PaymentStatus findBy(final int id) {
         for (PaymentStatus status : values()) {
             if (status.getId() == id) return status;
         }
         
-        return null;
+        throw new IllegalArgumentException("unknown payment status id");
     }
     
     public String getName() {
