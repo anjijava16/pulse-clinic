@@ -51,8 +51,7 @@ public class AbstractTabledChildFrame {
     protected int height;  
     
     protected final JToolBar TOOLBAR = ToolbarBuilder.build();
-            
-    // =================================================================================== Private functions
+
     private void initializeToolbar() {        
         if (this.toolbarBtnList != null && !this.toolbarBtnList.isEmpty()) {
             for (JComponent component : this.toolbarBtnList) {
@@ -78,8 +77,7 @@ public class AbstractTabledChildFrame {
             this.ROOT_PANEL.add(this.tableHolder.getScrollPane(), 
                     BorderLayout.CENTER);
         }
-    } 
-    // =================================================================================== Private functions
+    }
     
     public AbstractTabledChildFrame() {        
     }

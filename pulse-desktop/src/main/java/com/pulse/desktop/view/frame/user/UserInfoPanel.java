@@ -190,12 +190,6 @@ public class UserInfoPanel {
         this.GBC.gridy = 6;
         this.GBC.insets = new Insets(0, 0, 0, 0);
         this.ROOT_PANEL.add(this.privelegyField, this.GBC);
-
-//        this.GBC.fill = GridBagConstraints.HORIZONTAL;
-//        this.GBC.gridx = 1;
-//        this.GBC.gridy = 7;
-//        this.GBC.insets = new Insets(0, 0, 0, 0);
-//        this.ROOT_PANEL.add(this.SAVE_BUTTON, this.GBC);
     }
 
     public JPanel getRootPanel() {

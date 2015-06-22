@@ -57,8 +57,7 @@ public class AnalysSelectionPanel {
     private CheckListItem[] analysesGroupNames;
     private CheckListItem[] analysesNames;
         
-    private HashMap<String, ArrayList<String>> groupToAnalysMap 
-            = new HashMap<>();
+    private HashMap<String, ArrayList<String>> groupToAnalysMap = new HashMap<>();
     
     private TemplateService service;
     
@@ -190,8 +189,8 @@ public class AnalysSelectionPanel {
                     for (int x=0;x<list.getModel().getSize();x++) {
                         final CheckListItem tmpItem = (CheckListItem) list.getModel().getElementAt(x);
                         final String analysesGroupName = tmpItem.toString();
-                        
-                        if (tmpItem.isSelected()) {                        
+
+                        if (tmpItem.isSelected()) {
                             if (!groupToAnalysMap.containsKey(analysesGroupName)) {                            
                                 groupToAnalysMap.put(analysesGroupName, new ArrayList<>());
                             } else {

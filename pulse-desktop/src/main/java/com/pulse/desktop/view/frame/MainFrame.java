@@ -570,7 +570,6 @@ public class MainFrame {
         addInternalFrame(AssignmentService.INSTANCE.getMriFrame().getInternalFrame());
         addInternalFrame(AssignmentService.INSTANCE.getPhysiotherapyFrame().getInternalFrame());
         addInternalFrame(AssignmentService.INSTANCE.getUltrasoundFrame().getInternalFrame());
-        // ------------------------------------------------------------ NEW
         
         this.mainFrame.setJMenuBar(this.MENU_BAR);
         this.mainFrame.add(this.desktopPane);

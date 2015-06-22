@@ -109,7 +109,7 @@ public class VisitCoursePanel {
     
     private final OrganisationClient organisationClient = new OrganisationClient();
     
-    public void fillDoctorsList(User user) {
+    public void fillDoctorsList(final User user) {
         if (user.getPrivelegy() == Privilege.Ultrasound.getId()) this.ULTRASOUND_DCM.addElement(user.getNfp());
         if (user.getPrivelegy() == Privilege.Ginecology.getId()) this.GYNECOLOGY_DCM.addElement(user.getNfp());
         if (user.getPrivelegy() == Privilege.Urology.getId()) this.UROLOGY_DCM.addElement(user.getNfp());

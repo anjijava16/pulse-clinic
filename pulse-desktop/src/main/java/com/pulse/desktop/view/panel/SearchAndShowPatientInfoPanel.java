@@ -43,10 +43,6 @@ public final class SearchAndShowPatientInfoPanel {
         configurePanel();
         addAllActionListeners(); 
     }
-    
-    public void removeLastSelectedPatientFromList(String oldNfp) {
-        this.SEARCH_PATIENT_PANEL.removePatientFromList(oldNfp);
-    }
         
     public void addAllActionListeners() {
         final SearchAndShowPatientListener saspl = new SearchAndShowPatientListener();

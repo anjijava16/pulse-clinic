@@ -79,8 +79,6 @@ public final class PatientCommingRegistrationFrame {
 
     protected int maxChars = 13;
 
-    protected final JToolBar TOOLBAR = new JToolBar();
-
     public JInternalFrame getInternalFrame() {
         return this.frame;
     }

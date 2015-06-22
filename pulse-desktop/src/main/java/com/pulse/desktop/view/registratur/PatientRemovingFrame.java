@@ -62,20 +62,7 @@ public final class PatientRemovingFrame {
     public JInternalFrame getInternalFrame() {
         return this.frame;    
     }
-    
-    protected void setToolbarSettings() {
-        this.TOOLBAR.setFloatable(false);
-        this.TOOLBAR.setVisible(true);
-    }
-    
-    protected void addToolbarButton(JComponent toolbarButton, boolean addSeparator) {
-        this.TOOLBAR.add(toolbarButton);
-        
-        if (addSeparator) {
-            this.TOOLBAR.addSeparator();
-        }
-    }    
-    
+
     public boolean frameIsVisible() {
         return this.frame.isVisible();
     }

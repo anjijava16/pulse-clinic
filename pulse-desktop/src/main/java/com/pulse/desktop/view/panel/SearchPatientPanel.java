@@ -54,10 +54,6 @@ public final class SearchPatientPanel {
         initializeRootPanel();
     }
 
-    public void removePatientFromList(String nfp) {
-        this.DLM.removeElement(nfp);
-    }       
-         
     private void initializeRootPanel() {
         this.LOADD_ALL_BUTTON.setBorder(BorderFactory.createEmptyBorder());
         this.LOADD_ALL_BUTTON.setBorderPainted(false);

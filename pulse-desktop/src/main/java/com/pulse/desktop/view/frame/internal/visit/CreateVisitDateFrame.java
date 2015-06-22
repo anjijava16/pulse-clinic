@@ -107,15 +107,11 @@ final public class CreateVisitDateFrame {
         this.frame.setTitle(title);
         
         setAllSettings();
-        initializeTabel();
         initializeFrame();
     }
 
     public void setPatientId(long patientId) {
         this.patientId = patientId;
-    }
-            
-    private void initializeTabel() {
     }
 
     private void initializeToolbar() {

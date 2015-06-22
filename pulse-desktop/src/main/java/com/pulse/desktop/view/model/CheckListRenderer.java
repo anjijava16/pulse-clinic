@@ -25,24 +25,22 @@ import javax.swing.ListCellRenderer;
 /**
  * @author Vladimir Shin [vladimir.shin@gmail.com]
  */
-public class CheckListRenderer 
-    extends JCheckBox
-    implements ListCellRenderer {
+public class CheckListRenderer extends JCheckBox implements ListCellRenderer {
     
     private static final long serialVersionUID = 1L;
     
     @Override
-    public Component getListCellRendererComponent(JList list, 
-                                                  Object value, 
-                                                  int index, 
-                                                  boolean isSelected, 
+    public Component getListCellRendererComponent(JList list,
+                                                  Object value,
+                                                  int index,
+                                                  boolean isSelected,
                                                   boolean hasFocus) {
         setEnabled(list.isEnabled());
         setSelected(((CheckListItem)value).isSelected());
         setFont(list.getFont());
         setBackground(list.getBackground());
         setForeground(list.getForeground());
-        setText(((CheckListItem)value).toString());
+        setText(value.toString());
         
         return this;
     }
