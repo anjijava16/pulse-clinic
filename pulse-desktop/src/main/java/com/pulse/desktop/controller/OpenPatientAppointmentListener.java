@@ -43,20 +43,13 @@ import com.pulse.rest.client.AppointmentClient;
 public class OpenPatientAppointmentListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private Privilege privilege;
-
-    private TableService.TableHolder tableHolder;
-
-    private AppointmentClient recordClient = new AppointmentClient();
-
-    private AppointmentTableService tableService;
+    private final AppointmentClient recordClient = new AppointmentClient();
+    private final Privilege privilege;
 
     public OpenPatientAppointmentListener(Privilege privilege, TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
+
         this.privilege = privilege;
-        this.tableHolder = tableHolder;
-        this.tableService = new AppointmentTableService(tableHolder);
     }
 
     @Override

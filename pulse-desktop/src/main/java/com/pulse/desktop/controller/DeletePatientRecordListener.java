@@ -39,18 +39,12 @@ import com.pulse.rest.client.RecordClient;
 public class DeletePatientRecordListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private Privilege privilege;
-    private TableHolder tableHolder;
-
-    private RecordClient recordClient = new RecordClient();
-
-    private PatientRecordTableService tableService;
+    private final RecordClient recordClient = new RecordClient();
+    private final PatientRecordTableService tableService;
 
     public DeletePatientRecordListener(Privilege privilege, TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
-        this.privilege = privilege;
-        this.tableHolder = tableHolder;
+
         this.tableService = new PatientRecordTableService(tableHolder);
     }
 

@@ -51,19 +51,13 @@ import com.pulse.rest.client.AppointmentClient;
 public class CreatePatientAppointmentListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private Privilege privilege;
-    private TableHolder tableHolder;
-
     private final AppointmentClient appointmentClient = new AppointmentClient();
     private final FileManager FILE_MANAGER = new FileManager();
 
     private AppointmentTableService tableService;
 
-    public CreatePatientAppointmentListener(Privilege privilege, TableHolder tableHolder) {
+    public CreatePatientAppointmentListener(final Privilege privilege, final TableHolder tableHolder) {
         super(privilege, tableHolder);
-        this.privilege = privilege;
-        this.tableHolder = tableHolder;
         this.tableService = new AppointmentTableService(tableHolder);
     }
 

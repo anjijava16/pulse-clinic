@@ -47,7 +47,7 @@ public class ViewAnalysListener extends AbstractTableListener {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private final FileManager FILEMANAGER = new FileManager();
 
-    private SimpleDateFormat dateFormat;
+    private final SimpleDateFormat dateFormat;
 
     private PrivelegyDir privelegyDir;
 

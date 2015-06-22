@@ -31,7 +31,6 @@ import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.NextVisitTableService;
 import com.pulse.desktop.controller.table.TableService;
-import com.pulse.desktop.view.manager.UIHandlerFacade;
 import com.pulse.model.NextVisit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.NextVisitClient;
@@ -63,8 +62,6 @@ public class SearchNextVisitByDateListener extends AbstractTableListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         ThreadPoolService.INSTANCE.execute(() -> {
-            UIHandlerFacade.getInstance().updateLaboratoryFrameIterator();
-
             getTableHolder().clear();
 
             try {

@@ -43,20 +43,13 @@ import com.pulse.rest.client.RecordClient;
 public class OpenPatientRecordListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private Privilege privilege;
-
-    private TableService.TableHolder tableHolder;
-
-    private RecordClient recordClient = new RecordClient();
-
-    private PatientRecordTableService tableService;
+    private final RecordClient recordClient = new RecordClient();
+    private final Privilege privilege;
 
     public OpenPatientRecordListener(Privilege privilege, TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
+
         this.privilege = privilege;
-        this.tableHolder = tableHolder;
-        this.tableService = new PatientRecordTableService(tableHolder);
     }
 
     @Override
@@ -96,15 +89,14 @@ public class OpenPatientRecordListener extends AbstractTableListener {
                         return;
                     }
 
-                    byte[] decodedBuffer = Base64.decodeBase64(record.getBinary());
-
-                    PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privilege);
+                    final byte[] decodedBuffer = Base64.decodeBase64(record.getBinary());
+                    final PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privilege);
 
                     if (privelegyDir == null) {
                         return;
                     }
 
-                    FileOutputStream outstream = new FileOutputStream(privelegyDir.getTemporaryPath() + record.getName());
+                    final FileOutputStream outstream = new FileOutputStream(privelegyDir.getTemporaryPath() + record.getName());
                     outstream.write(decodedBuffer);
                     outstream.flush();
                     outstream.close();
@@ -119,8 +111,8 @@ public class OpenPatientRecordListener extends AbstractTableListener {
                             appPath = Settings.E_OFFICE_PATH;
                         }
 
-                        Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
-                        int result = process.waitFor();
+                        final Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
+                        process.waitFor();
 
                         byte[] buffer = Files.toByteArray(file);
                         record.setBinary(new String(Base64.encodeBase64(buffer), "UTF-8"));

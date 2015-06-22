@@ -43,20 +43,13 @@ import com.pulse.rest.client.JournalClient;
 public class OpenJournalListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private final JournalClient journalClient = new JournalClient();
+    private final Privilege privilege;
 
-    private Privilege privilege;
-
-    private TableService.TableHolder tableHolder;
-
-    private JournalClient journalClient = new JournalClient();
-
-    private JournalTableService journalService;
-
-    public OpenJournalListener(Privilege privilege, TableService.TableHolder tableHolder) {
+    public OpenJournalListener(final Privilege privilege, final TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
+
         this.privilege = privilege;
-        this.tableHolder = tableHolder;
-        this.journalService = new JournalTableService(tableHolder);
     }
 
     @Override
@@ -96,15 +89,14 @@ public class OpenJournalListener extends AbstractTableListener {
                         return;
                     }
 
-                    byte[] decodedBuffer = Base64.decodeBase64(journal.getBinary());
-
-                    PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privilege);
+                    final byte[] decodedBuffer = Base64.decodeBase64(journal.getBinary());
+                    final PrivelegyDir privelegyDir = PrivelegyDir.getPathBy(privilege);
 
                     if (privelegyDir == null) {
                         return;
                     }
 
-                    FileOutputStream outstream = new FileOutputStream(privelegyDir.getTemporaryPath() + journal.getName());
+                    final FileOutputStream outstream = new FileOutputStream(privelegyDir.getTemporaryPath() + journal.getName());
                     outstream.write(decodedBuffer);
                     outstream.flush();
                     outstream.close();
@@ -119,8 +111,8 @@ public class OpenJournalListener extends AbstractTableListener {
                             appPath = Settings.E_OFFICE_PATH;
                         }
 
-                        Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
-                        int result = process.waitFor();
+                        final Process process = Runtime.getRuntime().exec(appPath + " " + file.getAbsolutePath());
+                        process.waitFor();
 
                         byte[] buffer = Files.toByteArray(file);
                         journal.setBinary(new String(Base64.encodeBase64(buffer), "UTF-8"));

@@ -38,18 +38,12 @@ import com.pulse.rest.client.AppointmentClient;
 public class DeletePatientAppointmentListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private final AppointmentClient appointmentClient = new AppointmentClient();
+    private final AppointmentTableService tableService;
 
-    private Privilege privilege;
-    private TableService.TableHolder tableHolder;
-
-    private AppointmentClient appointmentClient = new AppointmentClient();
-
-    private AppointmentTableService tableService;
-
-    public DeletePatientAppointmentListener(Privilege privilege, TableService.TableHolder tableHolder) {
+    public DeletePatientAppointmentListener(final Privilege privilege, final TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
-        this.privilege = privilege;
-        this.tableHolder = tableHolder;
+
         this.tableService = new AppointmentTableService(tableHolder);
     }
 

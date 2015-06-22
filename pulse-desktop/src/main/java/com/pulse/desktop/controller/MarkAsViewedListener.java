@@ -40,15 +40,10 @@ public class MarkAsViewedListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private Privilege privilege;
-    private TableService.TableHolder tableHolder;
-
     private VisitClient visitClient = new VisitClient();
 
-    public MarkAsViewedListener(Privilege privilege, TableService.TableHolder tableHolder) {
+    public MarkAsViewedListener(final Privilege privilege, final TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
-        this.privilege = privilege;
-        this.tableHolder = tableHolder;
     }
 
     @Override

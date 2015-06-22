@@ -52,10 +52,6 @@ import com.pulse.rest.client.RecordClient;
 public class CreatePatientRecordListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private Privilege privilege;
-    private TableHolder tableHolder;
-
     private final RecordClient SERVICE_CLIENT = new RecordClient();
     private final FileManager FILE_MANAGER = new FileManager();
 
@@ -63,8 +59,7 @@ public class CreatePatientRecordListener extends AbstractTableListener {
 
     public CreatePatientRecordListener(Privilege privilege, TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
-        this.privilege = privilege;
-        this.tableHolder = tableHolder;
+
         this.tableService = new PatientRecordTableService(tableHolder);
     }
 

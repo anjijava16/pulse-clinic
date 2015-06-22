@@ -72,7 +72,6 @@ public class ViewPatientAppointmentListener extends AbstractTableListener {
                 WindowManager.getInstance().getAppointmentFrame().setVisible(true);
 
                 final String patientIdBuffer = getTableHolder().getTable().getValueAt(row, TableService.PATIENT_ID_FIELD).toString();
-//                String doctorNfp = getTableHolder().getTable().getValueAt(row, TableService.DOCTOR_NAME_FIELD).toString();
                 final Patient patient = PatientService.INSTANCE.getById(Long.valueOf(patientIdBuffer));
 
                 if (patient == null) {

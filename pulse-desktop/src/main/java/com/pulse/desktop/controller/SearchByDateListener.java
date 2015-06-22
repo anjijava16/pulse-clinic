@@ -32,7 +32,6 @@ import com.pulse.desktop.controller.service.ResultToolbarService;
 import com.pulse.desktop.controller.service.ThreadPoolService;
 import com.pulse.desktop.controller.table.TableProxy;
 import com.pulse.desktop.controller.table.TableService;
-import com.pulse.desktop.view.manager.UIHandlerFacade;
 import com.pulse.model.Visit;
 import com.pulse.model.constant.Privilege;
 import com.pulse.rest.client.VisitClient;
@@ -44,16 +43,21 @@ import com.pulse.rest.client.VisitClient;
 public class SearchByDateListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-    private JComboBox<String> filterList;
-    private JDatePickerImpl calendar;
-    private SimpleDateFormat originFormat;
+    private final JComboBox<String> filterList;
+    private final JDatePickerImpl calendar;
+    private final SimpleDateFormat originFormat;
 
     private final VisitClient visitClient = new VisitClient();
 
     private final SimpleDateFormat REQUEST_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-    public SearchByDateListener(Privilege privilege, JComboBox<String> filterList, JDatePickerImpl calendar, TableService.TableHolder holder, SimpleDateFormat originFormat) {
+    public SearchByDateListener(final Privilege privilege,
+                                final JComboBox<String> filterList,
+                                final JDatePickerImpl calendar,
+                                final TableService.TableHolder holder,
+                                final SimpleDateFormat originFormat) {
         super(privilege, holder);
+
         this.filterList = filterList;
         this.calendar = calendar;
         this.originFormat = originFormat;
@@ -62,8 +66,6 @@ public class SearchByDateListener extends AbstractTableListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         ThreadPoolService.INSTANCE.execute(() -> {
-            UIHandlerFacade.getInstance().updateLaboratoryFrameIterator();
-
             getTableHolder().clear();
 
             try {

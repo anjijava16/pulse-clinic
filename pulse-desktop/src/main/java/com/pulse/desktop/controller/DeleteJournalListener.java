@@ -39,18 +39,12 @@ import com.pulse.rest.client.JournalClient;
 public class DeleteJournalListener extends AbstractTableListener {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private final JournalClient journalClient = new JournalClient();
+    private final JournalTableService tableService;
 
-    private Privilege privilege;
-    private TableHolder tableHolder;
-
-    private JournalClient journalClient = new JournalClient();
-
-    private JournalTableService tableService;
-
-    public DeleteJournalListener(Privilege privilege, TableService.TableHolder tableHolder) {
+    public DeleteJournalListener(final Privilege privilege, final TableService.TableHolder tableHolder) {
         super(privilege, tableHolder);
-        this.privilege = privilege;
-        this.tableHolder = tableHolder;
+
         this.tableService = new JournalTableService(tableHolder);
     }
 
